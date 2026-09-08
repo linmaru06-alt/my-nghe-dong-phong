@@ -6,6 +6,12 @@ interface PageProps {
   params: { slug: string };
 }
 
+export function generateStaticParams() {
+  return postsData.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const post = postsData.find((p) => p.slug === params.slug);
 

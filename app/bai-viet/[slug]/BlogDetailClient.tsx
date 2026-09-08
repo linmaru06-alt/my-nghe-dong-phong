@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import { Calendar, Clock, ArrowLeft, Sparkles } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Badge from "@/components/ui/Badge";
@@ -16,8 +16,8 @@ import postsData from "@/data/posts.json";
 import productsData from "@/data/products.json";
 import { formatDate } from "@/lib/utils";
 
-const markdownComponents = {
-  h2: ({ children }: any) => {
+const markdownComponents: Components = {
+  h2: ({ children }) => {
     const text = String(children);
     const id = text
       .toLowerCase()
@@ -32,7 +32,7 @@ const markdownComponents = {
       </h2>
     );
   },
-  h3: ({ children }: any) => {
+  h3: ({ children }) => {
     const text = String(children);
     const id = text
       .toLowerCase()
@@ -47,27 +47,27 @@ const markdownComponents = {
       </h3>
     );
   },
-  p: ({ children }: any) => (
+  p: ({ children }) => (
     <p className="text-sm md:text-base text-[#3D2C21] leading-relaxed mb-4">
       {children}
     </p>
   ),
-  blockquote: ({ children }: any) => (
+  blockquote: ({ children }) => (
     <blockquote className="border-l-4 border-primary bg-accent-soft/40 p-4 rounded-r-lg my-6 text-sm text-text font-serif italic">
       {children}
     </blockquote>
   ),
-  ul: ({ children }: any) => (
+  ul: ({ children }) => (
     <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#3D2C21] my-4 pl-2">
       {children}
     </ul>
   ),
-  ol: ({ children }: any) => (
+  ol: ({ children }) => (
     <ol className="list-decimal list-inside space-y-2 text-sm md:text-base text-[#3D2C21] my-4 pl-2">
       {children}
     </ol>
   ),
-  li: ({ children }: any) => <li className="leading-relaxed">{children}</li>,
+  li: ({ children }) => <li className="leading-relaxed">{children}</li>,
 };
 
 export interface BlogDetailClientProps {

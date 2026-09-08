@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import BlogClient from "./BlogClient";
 import Skeleton from "@/components/ui/Skeleton";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Cẩm Nang & Kiến Thức Gỗ Quý | Mỹ Nghệ Đông Phong",
   description:
     "Tổng hợp bài viết chuyên sâu về nhận biết gỗ Tử Đàn, Sưa đỏ, Nu bách xanh, cách chọn kích thước hạt vòng tay phong thủy chuẩn xác.",
