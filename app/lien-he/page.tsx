@@ -18,7 +18,7 @@ export default function ContactPage() {
     id: `faq-${index}`,
     title: item.q,
     defaultOpen: index === 0,
-    content: <p className="leading-relaxed">{item.a}</p>,
+    content: item.a,
   }));
 
   return (
