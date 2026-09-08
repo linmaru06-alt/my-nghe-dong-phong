@@ -23,9 +23,18 @@
     "youtube": "https://youtube.com"
   },
   "policies": [
-    { "title": "Cam kết 100% gỗ thật", "desc": "Đúng chủng loại gỗ tự nhiên quý hiếm, kiểm tra thấu quang/mùi hương/vân thớ trước khi nhận." },
-    { "title": "Kiểm tra hàng trước khi thanh toán", "desc": "Mở hộp kiểm tra đúng mã sản phẩm và vân gỗ đã chốt qua Zalo." },
-    { "title": "Bảo hành chất gỗ trọn đời", "desc": "Bảo hành dây xâu trọn đời đối với vòng tay, hỗ trợ làm mới và đánh bóng sản phẩm." }
+    {
+      "title": "Cam kết 100% gỗ thật",
+      "desc": "Đúng chủng loại gỗ tự nhiên quý hiếm, kiểm tra thấu quang/mùi hương/vân thớ trước khi nhận."
+    },
+    {
+      "title": "Kiểm tra hàng trước khi thanh toán",
+      "desc": "Mở hộp kiểm tra đúng mã sản phẩm và vân gỗ đã chốt qua Zalo."
+    },
+    {
+      "title": "Bảo hành chất gỗ trọn đời",
+      "desc": "Bảo hành dây xâu trọn đời đối với vòng tay, hỗ trợ làm mới và đánh bóng sản phẩm."
+    }
   ],
   "faq": [
     {

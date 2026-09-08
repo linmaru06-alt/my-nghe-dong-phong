@@ -5,9 +5,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, MessageCircle, MapPin, Clock, ShieldCheck, HeartHandshake } from "lucide-react";
 import settingsData from "@/data/settings.json";
+import { useSettingsStore } from "@/lib/useSettings";
 
 export function Footer() {
   const pathname = usePathname();
+  const { settings, loadSettings } = useSettingsStore();
+
+  React.useEffect(() => {
+    loadSettings();
+  }, [loadSettings]);
+
+  const brand = settings?.brand || settingsData.brand;
+  const phone = brand?.phone || settingsData.brand.phone;
+  const zaloLink = brand?.zaloLink || settingsData.brand.zaloLink;
+  const address = brand?.address || settingsData.brand.address;
+  const businessHours = brand?.businessHours || settingsData.brand.businessHours;
 
   // Hide footer in admin dashboard
   if (pathname.startsWith("/admin")) {
@@ -97,7 +109,7 @@ export function Footer() {
             </p>
             <div className="space-y-2.5 text-sm">
               <a
-                href={`tel:${settingsData.brand.phone.replace(/\s+/g, "")}`}
+                href={`tel:${phone.replace(/\s+/g, "")}`}
                 className="flex items-center gap-3 text-white hover:text-[#C5A059] transition-colors"
               >
                 <div className="w-8 h-8 rounded-full bg-[#3D2314] flex items-center justify-center text-[#C5A059] flex-shrink-0">
@@ -105,12 +117,12 @@ export function Footer() {
                 </div>
                 <div>
                   <span className="text-[11px] text-[#A8988C] block">Hotline tư vấn:</span>
-                  <span className="font-bold font-mono">{settingsData.brand.phone}</span>
+                  <span className="font-bold font-mono">{phone}</span>
                 </div>
               </a>
 
               <a
-                href={settingsData.brand.zaloLink}
+                href={zaloLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-white hover:text-zalo transition-colors"
@@ -126,12 +138,12 @@ export function Footer() {
 
               <div className="flex items-start gap-3 text-xs text-[#A8988C] pt-1">
                 <MapPin className="w-4 h-4 text-[#C5A059] flex-shrink-0 mt-0.5" />
-                <span>{settingsData.brand.address}</span>
+                <span>{address}</span>
               </div>
 
               <div className="flex items-center gap-3 text-xs text-[#A8988C]">
                 <Clock className="w-4 h-4 text-[#C5A059] flex-shrink-0" />
-                <span>{settingsData.brand.businessHours}</span>
+                <span>{businessHours}</span>
               </div>
             </div>
           </div>

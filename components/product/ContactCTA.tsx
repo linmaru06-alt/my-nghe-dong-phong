@@ -4,6 +4,7 @@ import React from "react";
 import { MessageCircle, Phone, ShieldCheck, Truck } from "lucide-react";
 import { createZaloLink } from "@/lib/formatPrice";
 import settingsData from "@/data/settings.json";
+import { useSettingsStore } from "@/lib/useSettings";
 
 export interface ContactCTAProps {
   productCode: string;
@@ -16,9 +17,18 @@ export function ContactCTA({
   productName,
   selectedSize,
 }: ContactCTAProps) {
+  const { settings, loadSettings } = useSettingsStore();
+
+  React.useEffect(() => {
+    loadSettings();
+  }, [loadSettings]);
+
+  const rawPhone = settings?.brand?.phone || settings?.hotline || settingsData.brand.phone;
+  const rawZalo = settings?.brand?.zaloLink || settings?.zaloLink || settingsData.brand.zaloLink;
+
   const fullDetail = selectedSize ? `${productName} (Size: ${selectedSize})` : productName;
-  const zaloUrl = createZaloLink(settingsData.brand.zaloLink, productCode, fullDetail);
-  const cleanPhone = settingsData.brand.phone.replace(/\s+/g, "");
+  const zaloUrl = createZaloLink(rawZalo, productCode, fullDetail);
+  const cleanPhone = rawPhone.replace(/\s+/g, "");
 
   return (
     <div className="space-y-4 pt-4 border-t border-border select-none">
@@ -39,7 +49,7 @@ export function ContactCTA({
           className="flex items-center justify-center gap-2.5 bg-[#8E4424] hover:bg-[#78361B] text-white font-semibold py-3.5 px-6 rounded-btn shadow-md hover:shadow-lg transition-all active:scale-[0.98] text-sm"
         >
           <Phone className="w-5 h-5" />
-          <span>Gọi Hotline {settingsData.brand.phone}</span>
+          <span>Gọi Hotline {rawPhone}</span>
         </a>
       </div>
 

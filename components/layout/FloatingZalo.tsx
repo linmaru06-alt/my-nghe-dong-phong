@@ -4,11 +4,19 @@ import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import settingsData from "@/data/settings.json";
+import { useSettingsStore } from "@/lib/useSettings";
 
 export function FloatingZalo() {
   const [isVisible, setIsVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
+  const { settings, loadSettings } = useSettingsStore();
+
+  useEffect(() => {
+    loadSettings();
+  }, [loadSettings]);
+
+  const activeZaloLink = settings?.brand?.zaloLink || settings?.zaloLink || settingsData.brand.zaloLink;
 
   useEffect(() => {
     // Hide when reaching footer to avoid overlap
@@ -57,7 +65,7 @@ export function FloatingZalo() {
 
         {/* Main Floating Button */}
         <a
-          href={settingsData.brand.zaloLink}
+          href={activeZaloLink}
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}

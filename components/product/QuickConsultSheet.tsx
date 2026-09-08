@@ -7,6 +7,7 @@ import { X, MessageCircle, Phone, Copy, Sparkles, Check, ShieldCheck } from "luc
 import { Product, ProductSize } from "@/lib/useProducts";
 import { formatPrice } from "@/lib/formatPrice";
 import settingsData from "@/data/settings.json";
+import { useSettingsStore } from "@/lib/useSettings";
 import { toast } from "@/components/ui/Toast";
 
 export interface QuickConsultSheetProps {
@@ -22,6 +23,12 @@ export function QuickConsultSheet({
   product,
   selectedSize,
 }: QuickConsultSheetProps) {
+  const { settings, loadSettings } = useSettingsStore();
+
+  useEffect(() => {
+    loadSettings();
+  }, [loadSettings]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) onClose();
@@ -47,14 +54,17 @@ export function QuickConsultSheet({
     }
   };
 
+  const rawPhone = settings?.brand?.phone || settings?.hotline || settingsData.brand.phone;
+  const rawZalo = settings?.brand?.zaloLink || settings?.zaloLink || settingsData.brand.zaloLink;
+
   const consultMessage = encodeURIComponent(
     `Xin chào Mỹ Nghệ Đông Phong, tôi đang xem tác phẩm: ${product.name} (Mã: ${product.code}${
       currentSize.label ? `, Kích thước: ${currentSize.label}` : ""
     }). Nhờ nghệ nhân tư vấn chi tiết và thời giá giúp tôi!`
   );
 
-  const zaloUrl = `${settingsData.brand.zaloLink}?text=${consultMessage}`;
-  const phoneUrl = `tel:${settingsData.brand.phone.replace(/\s+/g, "")}`;
+  const zaloUrl = `${rawZalo}?text=${consultMessage}`;
+  const phoneUrl = `tel:${rawPhone.replace(/\s+/g, "")}`;
 
   return (
     <AnimatePresence>
@@ -189,7 +199,7 @@ export function QuickConsultSheet({
                 className="w-full py-3 px-4 rounded-xl bg-[#3D2314] hover:bg-[#2A160C] text-white font-medium text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-[0.99]"
               >
                 <Phone className="w-4 h-4 text-[#C5A059]" />
-                <span>Gọi Hotline Nghệ Nhân: {settingsData.brand.phone}</span>
+                <span>Gọi Hotline Nghệ Nhân: {rawPhone}</span>
               </a>
             </div>
           </motion.div>

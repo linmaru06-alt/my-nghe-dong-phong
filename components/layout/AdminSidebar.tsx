@@ -43,11 +43,31 @@ export function AdminSidebar() {
     },
   ];
 
-  const handleLogout = () => {
+  const [adminEmail, setAdminEmail] = useState("admin@dongphong.vn");
+  const [adminName, setAdminName] = useState("Quản trị viên");
+
+  React.useEffect(() => {
+    fetch("/api/admin/auth/me")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.user) {
+          if (data.user.email) setAdminEmail(data.user.email);
+          if (data.user.name) setAdminName(data.user.name);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/admin/auth/logout", { method: "POST" });
+    } catch {}
     if (typeof window !== "undefined") {
+      localStorage.removeItem("dongphong_admin_token");
       localStorage.removeItem("admin_auth");
     }
-    router.push("/admin");
+    router.push("/admin/login");
+    router.refresh();
   };
 
   return (
@@ -137,8 +157,8 @@ export function AdminSidebar() {
               ĐP
             </div>
             <div>
-              <p className="text-xs font-semibold text-text">Quản trị viên</p>
-              <p className="text-[10px] text-text-muted">admin@dongphong.vn</p>
+              <p className="text-xs font-semibold text-text">{adminName}</p>
+              <p className="text-[10px] text-text-muted">{adminEmail}</p>
             </div>
           </div>
           <button
