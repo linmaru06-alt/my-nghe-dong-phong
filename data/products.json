@@ -11,19 +11,19 @@
     "sizes": [
       {
         "label": "10mm (19 hạt - Nữ)",
-        "price": 2100000
+        "price": null
       },
       {
         "label": "12mm (17 hạt - Tay vừa)",
-        "price": 2400000
+        "price": null
       },
       {
         "label": "14mm (15 hạt - Nam chuẩn)",
-        "price": 2600000
+        "price": null
       },
       {
         "label": "16mm (14 hạt - Nam to)",
-        "price": 3200000
+        "price": null
       },
       {
         "label": "18mm (13 hạt - VIP)",
@@ -54,15 +54,15 @@
     "sizes": [
       {
         "label": "12mm (17 hạt)",
-        "price": 3500000
+        "price": null
       },
       {
         "label": "14mm (15 hạt)",
-        "price": 3800000
+        "price": null
       },
       {
         "label": "16mm (14 hạt)",
-        "price": 4600000
+        "price": null
       },
       {
         "label": "20mm (12 hạt - Hàng tuyển)",
@@ -92,20 +92,20 @@
     "sizes": [
       {
         "label": "12mm (17 hạt)",
-        "price": 1600000
+        "price": null
       },
       {
         "label": "14mm (15 hạt)",
-        "price": 1850000
+        "price": null
       },
       {
         "label": "16mm (14 hạt)",
-        "price": 2200000
+        "price": null
       }
     ],
     "images": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAMhGSHU7cPxQi2PWofw3t-LyAUbZVvGpEU2V_kVEBqJsMMEzXuEssLICEI1cNTYJdB1JS-nvFKx_wG75xoISb8D6Up3vHu4IGaqvyEx4CQllPskdW9yNrwWZ2WVTh-KSESy7Fb0nGONadfLpJUJ-hPZcVfSJXa6cmWVHxep2o2q8WJ2-gNOuIsB6cOvw6Kjr8aYT2ZJg4CJ_UK1PKOx6GuO6TRNrznbkgQCD8SQUbjA52BfINdwy7HJw"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDTTRSjFeSJ2AV0NvX4sjOnhwDCkGmKO4p6Rhu2dc5_p-PI6li7jeD7f4RcWRwXQmYqHm62H2xFMH4I45PDyrz7G_3THAmcpZL1ii8QTwC8EQgon5KFchS4CNSxQs_xOZGkNqX3YNOEtYzvWiU3FN-LKEwldn0Dr9jJ0m_rDiYXRQF4OZxjy09zHc1TjJsPlvl4r-ZR98e3XHrU-zI7aX94XDzho3HEB0GyROxHCvvhG6Az2e36-nfOTg"
     ],
     "featured": true,
     "status": "published",
@@ -126,20 +126,20 @@
     "sizes": [
       {
         "label": "12mm (17 hạt)",
-        "price": 1250000
+        "price": null
       },
       {
         "label": "14mm (15 hạt)",
-        "price": 1450000
+        "price": null
       },
       {
         "label": "16mm (14 hạt)",
-        "price": 1750000
+        "price": null
       }
     ],
     "images": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOckbLDEjtXGWNoKK8V6I5uDmHYggCxjV5nYJzkDPD_ydhnto0TGAAhN-4b01R5M_2nOCqvZYUerwX54V5llHifPSr5Us-LrmdNxBJoPlgWEI7rP_ZwY-FA8m5swHwlJXZNdllJqsS8FlHC5J4BrFs5W-q-qzN5Ld4ZSVcLjcw22bNMJEFWpvoyY_CrQDosevKa1wi_vW9buK5kpufkgDbYZu2l05sQCYm8gigwxFgOIG9TpOY9rN_PQ"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDTTRSjFeSJ2AV0NvX4sjOnhwDCkGmKO4p6Rhu2dc5_p-PI6li7jeD7f4RcWRwXQmYqHm62H2xFMH4I45PDyrz7G_3THAmcpZL1ii8QTwC8EQgon5KFchS4CNSxQs_xOZGkNqX3YNOEtYzvWiU3FN-LKEwldn0Dr9jJ0m_rDiYXRQF4OZxjy09zHc1TjJsPlvl4r-ZR98e3XHrU-zI7aX94XDzho3HEB0GyROxHCvvhG6Az2e36-nfOTg",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA"
     ],
     "featured": false,
     "status": "published",
@@ -160,15 +160,15 @@
     "sizes": [
       {
         "label": "10mm (19 hạt)",
-        "price": 950000
+        "price": null
       },
       {
         "label": "12mm (17 hạt)",
-        "price": 1100000
+        "price": null
       },
       {
         "label": "14mm (15 hạt)",
-        "price": 1350000
+        "price": null
       }
     ],
     "images": [
@@ -228,11 +228,11 @@
     "sizes": [
       {
         "label": "Bút đơn kèm hộp gấm",
-        "price": 950000
+        "price": null
       },
       {
         "label": "Set quà tặng (Bút + 2 ruột phụ + Hộp gỗ)",
-        "price": 1250000
+        "price": null
       }
     ],
     "images": [
@@ -258,11 +258,11 @@
     "sizes": [
       {
         "label": "Bút ký tiêu chuẩn",
-        "price": 850000
+        "price": null
       },
       {
         "label": "Kèm hộp quà sang trọng",
-        "price": 1050000
+        "price": null
       }
     ],
     "images": [
@@ -314,11 +314,11 @@
     "sizes": [
       {
         "label": "Bút tiêu chuẩn",
-        "price": 750000
+        "price": null
       },
       {
         "label": "Set quà khắc tên riêng",
-        "price": 950000
+        "price": null
       }
     ],
     "images": [
@@ -344,11 +344,11 @@
     "sizes": [
       {
         "label": "Đường kính 4.5cm (Cặp 2 quả)",
-        "price": 450000
+        "price": null
       },
       {
         "label": "Đường kính 5.0cm (Cặp 2 quả)",
-        "price": 550000
+        "price": null
       }
     ],
     "images": [
@@ -374,11 +374,11 @@
     "sizes": [
       {
         "label": "Đường kính 4.8cm (Cặp 2 quả)",
-        "price": 1800000
+        "price": null
       },
       {
         "label": "Đường kính 5.2cm (Cặp 2 quả)",
-        "price": 2300000
+        "price": null
       }
     ],
     "images": [
@@ -434,11 +434,11 @@
     "sizes": [
       {
         "label": "Kích thước 30cm x 48cm",
-        "price": 1350000
+        "price": null
       },
       {
         "label": "Kích thước 35cm x 52cm",
-        "price": 1650000
+        "price": null
       }
     ],
     "images": [
@@ -464,7 +464,7 @@
     "sizes": [
       {
         "label": "Chiều dài tiêu chuẩn 14.5cm",
-        "price": 850000
+        "price": null
       }
     ],
     "images": [
@@ -490,7 +490,7 @@
     "sizes": [
       {
         "label": "Chiều dài 15cm (Dáng Freehand độc bản)",
-        "price": 1150000
+        "price": null
       }
     ],
     "images": [
@@ -516,11 +516,11 @@
     "sizes": [
       {
         "label": "Hộp 10 đôi (Dài 24.5cm tiêu chuẩn)",
-        "price": 650000
+        "price": null
       },
       {
         "label": "Hộp 10 đôi bọc đầu đồng / bạc",
-        "price": 890000
+        "price": null
       }
     ],
     "images": [
@@ -546,7 +546,7 @@
     "sizes": [
       {
         "label": "Hộp 10 đôi tiêu chuẩn",
-        "price": 480000
+        "price": null
       }
     ],
     "images": [
@@ -572,11 +572,11 @@
     "sizes": [
       {
         "label": "Đệm 1 ghế đơn (Ghế lái hoặc phụ)",
-        "price": 1850000
+        "price": null
       },
       {
         "label": "Bộ 2 ghế trước",
-        "price": 3500000
+        "price": null
       }
     ],
     "images": [
@@ -602,11 +602,11 @@
     "sizes": [
       {
         "label": "Đệm 1 ghế đơn",
-        "price": 1550000
+        "price": null
       },
       {
         "label": "Bộ 2 ghế trước",
-        "price": 2900000
+        "price": null
       }
     ],
     "images": [

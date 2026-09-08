@@ -27,7 +27,7 @@ export function PriceDisplay({
       className={cn(
         sizeClasses[size],
         isContact
-          ? "text-text-muted italic font-normal text-sm"
+          ? "text-[#C5A059] font-serif font-bold text-sm sm:text-base tracking-wide"
           : "text-primary tracking-tight",
         className
       )}

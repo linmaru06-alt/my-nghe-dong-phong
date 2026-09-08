@@ -109,7 +109,7 @@ export const ProductCard = React.memo(function ProductCard({
           {/* Price & Action Row */}
           <div className="mt-3.5 pt-3 border-t border-[#C5A059]/20 flex items-center justify-between gap-2">
             <div className="min-w-0">
-              <span className="text-[10px] text-[#5A4A42] block">Định giá từ:</span>
+              <span className="text-[10px] text-[#5A4A42] block">Thời giá tác phẩm:</span>
               <PriceDisplay price={firstPrice} size="md" />
             </div>
 

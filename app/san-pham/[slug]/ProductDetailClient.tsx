@@ -250,7 +250,7 @@ export default function ProductDetailClient({ product: propProduct, slug }: Prod
               {/* Price Display */}
               <div className="p-4 rounded-card bg-surface border border-border/70 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-text-muted block">Đơn giá thỉnh tác phẩm:</span>
+                  <span className="text-xs text-text-muted block">Thời giá thỉnh tác phẩm:</span>
                   <PriceDisplay price={activePrice} size="lg" />
                 </div>
                 <span className="text-xs text-secondary font-medium flex items-center gap-1">
