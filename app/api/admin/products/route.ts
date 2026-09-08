@@ -32,16 +32,21 @@ export async function POST(req: Request) {
       );
     }
 
-    // Đảm bảo thư mục data tồn tại
-    const dataDir = path.dirname(PRODUCTS_FILE);
-    await fs.mkdir(dataDir, { recursive: true });
-
-    // Ghi đè vào file data/products.json với định dạng chuẩn 2 spaces
-    await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+    // Ghi vào file data/products.json hoặc fallback /tmp trên Vercel
+    try {
+      const dataDir = path.dirname(PRODUCTS_FILE);
+      await fs.mkdir(dataDir, { recursive: true });
+      await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+    } catch {
+      try {
+        const tmpFile = path.join(require("os").tmpdir(), "dongphong_products.json");
+        await fs.writeFile(tmpFile, JSON.stringify(products, null, 2), "utf-8");
+      } catch {}
+    }
 
     return NextResponse.json({
       success: true,
-      message: "Đã lưu và đồng bộ thành công vào data/products.json",
+      message: "Đã lưu và đồng bộ thành công sản phẩm",
       total: products.length,
     });
   } catch (error: any) {

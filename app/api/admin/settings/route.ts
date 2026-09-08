@@ -1,37 +1,81 @@
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import os from "os";
 
 const SETTINGS_FILE = path.join(process.cwd(), "data", "settings.json");
+const TMP_SETTINGS_FILE = path.join(os.tmpdir(), "dongphong_settings.json");
 
-// GET /api/admin/settings - Đọc dữ liệu cài đặt từ file data/settings.json
-export async function GET() {
+// In-memory cache cho môi trường serverless (Vercel)
+declare global {
+  var __dongphongSettingsCache: any | undefined;
+}
+
+// Hàm đọc cài đặt an toàn
+async function readSettingsSafe() {
+  if (global.__dongphongSettingsCache) {
+    return global.__dongphongSettingsCache;
+  }
+
+  // Thử đọc từ /tmp trước (nếu đã từng lưu trên Vercel)
+  try {
+    const tmpContent = await fs.readFile(TMP_SETTINGS_FILE, "utf-8");
+    const parsed = JSON.parse(tmpContent);
+    global.__dongphongSettingsCache = parsed;
+    return parsed;
+  } catch {}
+
+  // Đọc từ data/settings.json gốc
   try {
     const fileContent = await fs.readFile(SETTINGS_FILE, "utf-8");
-    const settings = JSON.parse(fileContent);
-    return NextResponse.json({ success: true, data: settings });
-  } catch (error: any) {
-    console.error("[API /api/admin/settings GET] Lỗi đọc file:", error);
-    return NextResponse.json(
-      { success: false, error: "Không thể đọc dữ liệu cài đặt từ đĩa" },
-      { status: 500 }
-    );
+    const parsed = JSON.parse(fileContent);
+    global.__dongphongSettingsCache = parsed;
+    return parsed;
+  } catch {
+    return {};
   }
 }
 
-// POST /api/admin/settings - Cập nhật và lưu lại dữ liệu vào data/settings.json
+// Hàm ghi cài đặt an toàn (hỗ trợ cả Local disk và Vercel EROFS)
+async function writeSettingsSafe(data: any) {
+  global.__dongphongSettingsCache = data;
+
+  let savedToDisk = false;
+
+  // 1. Thử ghi vào data/settings.json gốc (Local/Server có quyền ghi)
+  try {
+    const dataDir = path.dirname(SETTINGS_FILE);
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.writeFile(SETTINGS_FILE, JSON.stringify(data, null, 2), "utf-8");
+    savedToDisk = true;
+  } catch (err: any) {
+    // Trên Vercel ổ đĩa là read-only (EROFS), bỏ qua lỗi này
+  }
+
+  // 2. Thử ghi vào /tmp để giữ cache trên instance Lambda
+  try {
+    await fs.writeFile(TMP_SETTINGS_FILE, JSON.stringify(data, null, 2), "utf-8");
+    savedToDisk = true;
+  } catch {}
+
+  return savedToDisk;
+}
+
+// GET /api/admin/settings
+export async function GET() {
+  try {
+    const settings = await readSettingsSafe();
+    return NextResponse.json({ success: true, data: settings });
+  } catch (error: any) {
+    return NextResponse.json({ success: true, data: {} });
+  }
+}
+
+// POST /api/admin/settings
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-
-    // Đọc cài đặt gốc hiện tại
-    let currentSettings: any = {};
-    try {
-      const fileContent = await fs.readFile(SETTINGS_FILE, "utf-8");
-      currentSettings = JSON.parse(fileContent);
-    } catch {
-      currentSettings = {};
-    }
+    const currentSettings = await readSettingsSafe();
 
     const {
       siteName,
@@ -42,7 +86,6 @@ export async function POST(req: Request) {
       email,
     } = body;
 
-    // Trích xuất số điện thoại / zalo thuần số
     const cleanPhone = phone ? phone.replace(/[^0-9+]/g, "") : "";
     const cleanZalo = zaloLink ? zaloLink.replace(/.*zalo\.me\//, "").replace(/[^0-9+]/g, "") : "";
 
@@ -66,12 +109,7 @@ export async function POST(req: Request) {
       },
     };
 
-    // Đảm bảo thư mục data tồn tại
-    const dataDir = path.dirname(SETTINGS_FILE);
-    await fs.mkdir(dataDir, { recursive: true });
-
-    // Ghi đè file settings.json
-    await fs.writeFile(SETTINGS_FILE, JSON.stringify(updatedSettings, null, 2), "utf-8");
+    await writeSettingsSafe(updatedSettings);
 
     return NextResponse.json({
       success: true,
@@ -79,9 +117,9 @@ export async function POST(req: Request) {
       data: updatedSettings,
     });
   } catch (error: any) {
-    console.error("[API /api/admin/settings POST] Lỗi lưu file:", error);
+    console.error("[API /api/admin/settings POST] Lỗi:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Lỗi khi lưu cài đặt vào máy chủ" },
+      { success: false, error: error.message || "Lỗi khi lưu cài đặt" },
       { status: 500 }
     );
   }

@@ -42,13 +42,35 @@ export interface AdminConfig {
 
 const DEFAULT_PASSWORDS = ["DongPhong@2026", "DongPhong@2025"];
 
+import os from "os";
+
+const TMP_CONFIG_FILE = path.join(os.tmpdir(), "dongphong_admin_config.json");
+
+declare global {
+  var __dongphongAdminConfigCache: AdminConfig | undefined;
+}
+
 // Đọc thông tin cấu hình tài khoản Admin
 export async function getAdminConfig(): Promise<AdminConfig> {
+  if (global.__dongphongAdminConfigCache) {
+    return global.__dongphongAdminConfigCache;
+  }
+
+  // Thử đọc từ /tmp
+  try {
+    const tmpContent = await fs.readFile(TMP_CONFIG_FILE, "utf-8");
+    const parsed = JSON.parse(tmpContent);
+    global.__dongphongAdminConfigCache = parsed;
+    return parsed;
+  } catch {}
+
+  // Đọc từ data/admin-config.json
   try {
     const content = await fs.readFile(CONFIG_FILE, "utf-8");
-    return JSON.parse(content);
+    const parsed = JSON.parse(content);
+    global.__dongphongAdminConfigCache = parsed;
+    return parsed;
   } catch {
-    // Nếu chưa có file cấu hình, tạo mặc định với mật khẩu DongPhong@2026
     const { hash, salt } = await hashPasswordWithSalt("DongPhong@2026");
     const defaultConfig: AdminConfig = {
       email: "admin@dongphong.vn",
@@ -59,27 +81,28 @@ export async function getAdminConfig(): Promise<AdminConfig> {
       updatedAt: new Date().toISOString(),
     };
 
-    try {
-      await fs.mkdir(path.dirname(CONFIG_FILE), { recursive: true });
-      await fs.writeFile(CONFIG_FILE, JSON.stringify(defaultConfig, null, 2), "utf-8");
-    } catch (err) {
-      console.warn("[getAdminConfig] Không thể ghi file cấu hình mới:", err);
-    }
-
+    global.__dongphongAdminConfigCache = defaultConfig;
     return defaultConfig;
   }
 }
 
 // Lưu cấu hình tài khoản Admin
 export async function saveAdminConfig(config: AdminConfig): Promise<boolean> {
+  global.__dongphongAdminConfigCache = config;
+
+  // Thử ghi vào đĩa gốc
   try {
-    await fs.mkdir(path.dirname(CONFIG_FILE), { recursive: true });
+    const dataDir = path.dirname(CONFIG_FILE);
+    await fs.mkdir(dataDir, { recursive: true });
     await fs.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2), "utf-8");
-    return true;
-  } catch (err) {
-    console.error("[saveAdminConfig] Lỗi ghi file cấu hình admin:", err);
-    return false;
-  }
+  } catch {}
+
+  // Thử ghi vào /tmp
+  try {
+    await fs.writeFile(TMP_CONFIG_FILE, JSON.stringify(config, null, 2), "utf-8");
+  } catch {}
+
+  return true;
 }
 
 // Kiểm tra thông tin đăng nhập

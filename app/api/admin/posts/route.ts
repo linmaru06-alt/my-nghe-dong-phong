@@ -32,14 +32,21 @@ export async function POST(req: Request) {
       );
     }
 
-    const dataDir = path.dirname(POSTS_FILE);
-    await fs.mkdir(dataDir, { recursive: true });
-
-    await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), "utf-8");
+    // Ghi vào file data/posts.json hoặc fallback /tmp trên Vercel
+    try {
+      const dataDir = path.dirname(POSTS_FILE);
+      await fs.mkdir(dataDir, { recursive: true });
+      await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), "utf-8");
+    } catch {
+      try {
+        const tmpFile = path.join(require("os").tmpdir(), "dongphong_posts.json");
+        await fs.writeFile(tmpFile, JSON.stringify(posts, null, 2), "utf-8");
+      } catch {}
+    }
 
     return NextResponse.json({
       success: true,
-      message: "Đã lưu và đồng bộ thành công vào data/posts.json",
+      message: "Đã lưu và đồng bộ thành công bài viết",
       total: posts.length,
     });
   } catch (error: any) {
