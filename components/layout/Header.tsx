@@ -9,12 +9,19 @@ import { cn } from "@/lib/utils";
 import SearchDropdown from "@/components/ui/SearchDropdown";
 import MobileMenu from "@/components/layout/MobileMenu";
 import settingsData from "@/data/settings.json";
+import useCloseOnNavigate from "@/hooks/useCloseOnNavigate";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // Tự động đóng search và menu khi điều hướng trang
+  useCloseOnNavigate([
+    () => setIsSearchOpen(false),
+    () => setIsMobileMenuOpen(false),
+  ]);
 
   // On home page, header can be transparent over hero
   const isHomePage = pathname === "/";

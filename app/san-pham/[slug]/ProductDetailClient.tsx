@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Phone, Sparkles, Maximize2 } from "lucide-react";
+import { MessageCircle, Phone, Sparkles, Maximize2, Copy } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Badge from "@/components/ui/Badge";
 import PriceDisplay from "@/components/product/PriceDisplay";
@@ -16,6 +16,7 @@ import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
 import settingsData from "@/data/settings.json";
 import { createZaloLink } from "@/lib/formatPrice";
+import { toast } from "@/components/ui/Toast";
 
 export interface ProductDetailClientProps {
   product?: any;
@@ -134,6 +135,18 @@ export default function ProductDetailClient({ product: propProduct, slug }: Prod
     `${product.name} (${activeSize?.label || ""})`
   );
 
+  const handleCopySku = () => {
+    try {
+      navigator.clipboard.writeText(product.code);
+      toast.success(
+        `Đã sao chép mã SKU: ${product.code}`,
+        "Gửi mã này qua Zalo để nghệ nhân Đông Phong báo giá và quay video trực tiếp."
+      );
+    } catch {
+      toast.info(`Mã sản phẩm: ${product.code}`);
+    }
+  };
+
   return (
     <div className="bg-bg min-h-screen py-8 md:py-12">
       <div className="container mx-auto px-4 md:px-6">
@@ -175,9 +188,18 @@ export default function ProductDetailClient({ product: propProduct, slug }: Prod
               </button>
 
               <div className="absolute top-3 left-3">
-                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-pill bg-text/80 text-white backdrop-blur-xs">
-                  {product.code}
-                </span>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopySku();
+                  }}
+                  title="Bấm để sao chép mã sản phẩm"
+                  className="font-mono text-xs font-bold px-2.5 py-1 rounded-pill bg-[#1F1610]/85 text-white backdrop-blur-xs flex items-center gap-1.5 hover:bg-[#3D2314] border border-white/20 transition shadow-sm active:scale-95"
+                >
+                  <span>{product.code}</span>
+                  <Copy className="w-3 h-3 text-[#C5A059]" />
+                </button>
               </div>
             </div>
 
@@ -300,9 +322,15 @@ export default function ProductDetailClient({ product: propProduct, slug }: Prod
       {/* ─── MOBILE STICKY CONTACT UTILITY BAR (Stitch Screen 13: Mobile 4 - Chi Tiết Sản Phẩm App) ─── */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-surface/95 backdrop-blur-xl border-t border-border shadow-[0_-4px_20px_rgba(107,63,31,0.12)] px-4 py-2.5 pb-safe flex flex-col gap-1.5">
         <div className="flex items-center justify-between px-0.5 text-[11px]">
-          <span className="font-mono text-secondary font-semibold truncate max-w-[200px]">
-            Mã SP: {product.code} · Báo mã khi liên hệ
-          </span>
+          <button
+            type="button"
+            onClick={handleCopySku}
+            className="font-mono text-[#C5A059] font-bold inline-flex items-center gap-1 hover:underline active:scale-95"
+            title="Bấm để sao chép mã sản phẩm"
+          >
+            <span>Mã SP: {product.code}</span>
+            <Copy className="w-3 h-3 text-[#C5A059]" />
+          </button>
           <span className="inline-flex items-center gap-1 text-[#005620] font-semibold shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3EE26C] animate-pulse" />
             Sẵn sàng quay video trực tiếp

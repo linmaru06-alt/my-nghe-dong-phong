@@ -40,12 +40,43 @@ interface ProductsState {
 
 const STORAGE_KEY = "dongphong_products_v2";
 
+async function syncProductsToBackend(products: Product[]) {
+  if (typeof window === "undefined") return;
+  try {
+    const res = await fetch("/api/admin/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ products }),
+    });
+    if (!res.ok) {
+      console.warn("[useProducts] API đồng bộ disk trả về mã lỗi:", res.status);
+    }
+  } catch (err) {
+    console.warn("[useProducts] Không thể đồng bộ sản phẩm vào backend disk:", err);
+  }
+}
+
 export const useProductsStore = create<ProductsState>((set, get) => ({
   products: initialProducts as Product[],
   isLoaded: false,
 
-  loadProducts: () => {
+  loadProducts: async () => {
     if (typeof window === "undefined") return;
+    try {
+      // Thử nạp dữ liệu trực tiếp từ file data/products.json qua API
+      const res = await fetch("/api/admin/products");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+          set({ products: json.data, isLoaded: true });
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("[useProducts] Không kết nối được API, dùng dữ liệu lưu tạm:", e);
+    }
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
@@ -81,6 +112,7 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
+    syncProductsToBackend(list);
   },
 
   addProduct: (product: Product) => {
@@ -100,6 +132,7 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
+    syncProductsToBackend(list);
   },
 
   toggleFeatured: (id: string) => {
@@ -110,6 +143,7 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
+    syncProductsToBackend(list);
   },
 
   toggleStatus: (id: string) => {
@@ -122,6 +156,7 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
+    syncProductsToBackend(list);
   },
 
   resetToDefault: () => {
@@ -129,5 +164,6 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialProducts));
     }
     set({ products: initialProducts as Product[] });
+    syncProductsToBackend(initialProducts as Product[]);
   },
 }));

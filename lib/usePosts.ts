@@ -30,12 +30,42 @@ interface PostsState {
 
 const STORAGE_KEY = "dongphong_posts_v2";
 
+async function syncPostsToBackend(posts: Post[]) {
+  if (typeof window === "undefined") return;
+  try {
+    const res = await fetch("/api/admin/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ posts }),
+    });
+    if (!res.ok) {
+      console.warn("[usePosts] API đồng bộ disk trả về mã lỗi:", res.status);
+    }
+  } catch (err) {
+    console.warn("[usePosts] Không thể đồng bộ bài viết vào backend disk:", err);
+  }
+}
+
 export const usePostsStore = create<PostsState>((set, get) => ({
   posts: initialPosts as Post[],
   isLoaded: false,
 
-  loadPosts: () => {
+  loadPosts: async () => {
     if (typeof window === "undefined") return;
+    try {
+      const res = await fetch("/api/admin/posts");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+          set({ posts: json.data, isLoaded: true });
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("[usePosts] Không kết nối được API, dùng dữ liệu lưu tạm:", e);
+    }
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
@@ -71,6 +101,7 @@ export const usePostsStore = create<PostsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ posts: list });
+    syncPostsToBackend(list);
   },
 
   addPost: (post: Post) => {
@@ -90,6 +121,7 @@ export const usePostsStore = create<PostsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ posts: list });
+    syncPostsToBackend(list);
   },
 
   resetToDefault: () => {
@@ -97,5 +129,6 @@ export const usePostsStore = create<PostsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialPosts));
     }
     set({ posts: initialPosts as Post[] });
+    syncPostsToBackend(initialPosts as Post[]);
   },
 }));

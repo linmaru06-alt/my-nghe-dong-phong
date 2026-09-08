@@ -8,6 +8,7 @@ import categoriesData from "@/data/categories.json";
 import woodTypesData from "@/data/woodTypes.json";
 import { useProductsStore } from "@/lib/useProducts";
 import { slugify } from "@/lib/slugify";
+import { toast } from "@/components/ui/Toast";
 
 export interface ProductFormData {
   id?: string;
@@ -119,11 +120,14 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
       addProduct(productPayload as any);
     }
 
-    setToastMessage("✓ Đã lưu sản phẩm thành công!");
+    toast.success(
+      "Đã lưu tác phẩm thành công!",
+      "Dữ liệu đã được ghi vào data/products.json và sẵn sàng đẩy lên GitHub/Vercel."
+    );
+
     setTimeout(() => {
-      setToastMessage(null);
       router.push("/admin/san-pham");
-    }, 1200);
+    }, 800);
   };
 
   const handlePreview = () => {

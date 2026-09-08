@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Sparkles, Eye } from "lucide-react";
 import PriceDisplay from "./PriceDisplay";
 import Badge from "@/components/ui/Badge";
-import { createZaloLink } from "@/lib/formatPrice";
-import settingsData from "@/data/settings.json";
+import { QuickConsultSheet } from "./QuickConsultSheet";
+import { Product } from "@/lib/useProducts";
 
 export interface ProductCardProps {
   id: string;
@@ -23,91 +22,133 @@ export interface ProductCardProps {
 }
 
 export const ProductCard = React.memo(function ProductCard({
+  id,
   slug,
   name,
   code,
+  category,
   woodType,
   images,
   sizes,
   featured,
 }: ProductCardProps) {
   const router = useRouter();
+  const [isConsultOpen, setIsConsultOpen] = useState(false);
 
-  // Find first size price or lowest price
   const firstPrice = sizes && sizes.length > 0 ? sizes[0].price : null;
   const imageUrl = images && images.length > 0 ? images[0] : "/images/placeholder.svg";
-  const zaloUrl = createZaloLink(settingsData.brand.zaloLink, code, name);
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // If user clicked directly on or inside the Zalo button, don't navigate to product
     const target = e.target as HTMLElement;
-    if (target.closest("a[data-zalo='true']")) {
+    if (target.closest("button[data-action='consult']")) {
       return;
     }
     router.push(`/san-pham/${slug}`);
   };
 
+  const productObject: Product = {
+    id,
+    slug,
+    name,
+    code,
+    category,
+    woodType,
+    description: "",
+    preservation: "",
+    sizes,
+    images,
+    featured: !!featured,
+    status: "published",
+    createdAt: "",
+  };
+
   return (
-    <div
-      onClick={handleCardClick}
-      className="group flex flex-col rounded-card bg-surface border border-border/70 hover:border-primary/50 shadow-card hover:shadow-xl transition-all duration-300 overflow-hidden relative cursor-pointer"
-    >
-      {/* Product Image Container */}
-      <div className="relative aspect-square w-full bg-accent-soft/40 overflow-hidden block">
-        <Image
-          src={imageUrl}
-          alt={name}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-        />
+    <>
+      <div
+        onClick={handleCardClick}
+        className="group flex flex-col rounded-2xl bg-white border border-[#C5A059]/25 hover:border-[#C5A059]/80 shadow-[0_4px_16px_rgba(44,26,14,0.06)] hover:shadow-[0_16px_36px_rgba(44,26,14,0.14)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden relative cursor-pointer"
+      >
+        {/* Product Image Container */}
+        <div className="relative aspect-square w-full bg-[#FAF6F0] overflow-hidden block">
+          <Image
+            src={imageUrl}
+            alt={name}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
+          />
 
-        {/* Badges on Image */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
-          <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-pill bg-text/80 text-white backdrop-blur-xs">
-            {code}
-          </span>
-          {featured && (
-            <Badge variant="gold" className="text-[10px] py-0 px-2">
-              Nổi bật
-            </Badge>
-          )}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-3.5 md:p-4 flex-1 flex flex-col justify-between">
-        <div>
-          <span className="text-[11px] text-text-muted font-medium block truncate mb-1">
-            {woodType}
-          </span>
-          <h3 className="font-serif text-sm md:text-base font-bold text-text group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-            {name}
-          </h3>
-        </div>
-
-        {/* Price & Action Row */}
-        <div className="mt-3 pt-3 border-t border-border/50 flex items-center justify-between gap-2">
-          <div className="min-w-0">
-            <span className="text-[10px] text-text-muted block">Giá chỉ từ:</span>
-            <PriceDisplay price={firstPrice} size="md" />
+          {/* Badges on Image */}
+          <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10">
+            <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1F1610]/80 text-white backdrop-blur-xs shadow-xs border border-white/20">
+              {code}
+            </span>
+            {featured && (
+              <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#1F1610] shadow-sm">
+                ★ Tác Phẩm Nổi Bật
+              </span>
+            )}
           </div>
 
-          <a
-            href={zaloUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-zalo="true"
-            onClick={(e) => e.stopPropagation()}
-            title={`Tư vấn Zalo mã ${code}`}
-            className="p-2 rounded-full bg-zalo/10 hover:bg-zalo text-zalo hover:text-white transition-all duration-200 flex-shrink-0 z-10"
-            aria-label={`Chat Zalo về sản phẩm ${code}`}
-          >
-            <MessageCircle className="w-4 h-4 fill-current" />
-          </a>
+          {/* Quick Hover Action Overlay (Desktop) */}
+          <div className="absolute inset-0 bg-[#2A160C]/20 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:flex items-center justify-center gap-2">
+            <span className="px-3.5 py-1.5 rounded-full bg-white/95 text-[#2A160C] text-xs font-semibold shadow-md flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+              <Eye className="w-3.5 h-3.5 text-[#C5A059]" />
+              Chi tiết tác phẩm
+            </span>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-[#FAF6F0]/40">
+          <div>
+            <div className="flex items-center justify-between gap-1 mb-1">
+              <span className="text-[11px] text-[#5C3A21] font-medium block truncate">
+                {woodType}
+              </span>
+              <span className="text-[10px] text-[#C5A059] font-medium hidden sm:inline-block">
+                Gỗ Quý
+              </span>
+            </div>
+            <h3 className="font-serif text-sm sm:text-base font-bold text-[#1F1610] group-hover:text-[#5C3A21] transition-colors line-clamp-2 leading-snug">
+              {name}
+            </h3>
+          </div>
+
+          {/* Price & Action Row */}
+          <div className="mt-3.5 pt-3 border-t border-[#C5A059]/20 flex items-center justify-between gap-2">
+            <div className="min-w-0">
+              <span className="text-[10px] text-[#5A4A42] block">Định giá từ:</span>
+              <PriceDisplay price={firstPrice} size="md" />
+            </div>
+
+            {/* Quick Consult Button */}
+            <button
+              type="button"
+              data-action="consult"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsConsultOpen(true);
+              }}
+              title="Nhận tư vấn & báo giá nhanh"
+              className="p-2 sm:px-2.5 sm:py-1.5 rounded-xl bg-[#0068FF]/10 hover:bg-[#0068FF] text-[#0068FF] hover:text-white transition-all duration-200 flex items-center gap-1.5 shrink-0 active:scale-95 shadow-2xs"
+              aria-label={`Tư vấn sản phẩm ${code}`}
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              <span className="text-xs font-semibold hidden md:inline">Tư vấn</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Quick Consult Bottom Sheet */}
+      <QuickConsultSheet
+        isOpen={isConsultOpen}
+        onClose={() => setIsConsultOpen(false)}
+        product={productObject}
+        selectedSize={sizes?.[0]}
+      />
+    </>
   );
 });
 

@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { Save, Send, Eye } from "lucide-react";
 import { usePostsStore } from "@/lib/usePosts";
 import { slugify } from "@/lib/slugify";
+import { toast } from "@/components/ui/Toast";
 
 export interface BlogFormData {
   id?: string;
@@ -84,11 +85,14 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
       addPost(postPayload as any);
     }
 
-    setToastMessage("✓ Đã lưu bài viết thành công!");
+    toast.success(
+      "Đã lưu bài viết thành công!",
+      "Dữ liệu đã được ghi vào data/posts.json và sẵn sàng đẩy lên GitHub/Vercel."
+    );
+
     setTimeout(() => {
-      setToastMessage(null);
       router.push("/admin/bai-viet");
-    }, 1200);
+    }, 800);
   };
 
   return (

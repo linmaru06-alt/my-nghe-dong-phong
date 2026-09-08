@@ -28,6 +28,7 @@ import Footer from "@/components/layout/Footer";
 import FloatingZalo from "@/components/layout/FloatingZalo";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import PageTransition from "@/components/ui/PageTransition";
+import ToastContainer from "@/components/ui/Toast";
 
 export default function RootLayout({
   children,
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Footer />
         <FloatingZalo />
         <MobileBottomNav />
+        <ToastContainer />
       </body>
     </html>
   );

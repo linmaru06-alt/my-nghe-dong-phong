@@ -37,21 +37,61 @@ export function ImageUploader({
     onChange([selected, ...remaining]);
   };
 
-  // Mock file input handler (converts local file to data URL)
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  // Upload file lên backend Next.js API (/api/admin/upload)
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
-    Array.from(files).forEach((file) => {
-      if (images.length >= maxFiles) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          onChange([...images, event.target.result as string]);
+    setIsUploading(true);
+    setUploadError(null);
+
+    const fileList = Array.from(files);
+    const newUrls: string[] = [];
+
+    for (const file of fileList) {
+      if (images.length + newUrls.length >= maxFiles) break;
+
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", "products");
+
+        const res = await fetch("/api/admin/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success && data.url) {
+          newUrls.push(data.url);
+        } else {
+          throw new Error(data.error || "Không thể tải ảnh");
         }
-      };
-      reader.readAsDataURL(file);
-    });
+      } catch (err: any) {
+        console.warn("[ImageUploader] Upload qua API gặp sự cố, thử dự phòng:", err.message);
+        // Dự phòng: nếu API không khả dụng, đọc tạm bằng FileReader
+        await new Promise<void>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            if (event.target?.result) {
+              newUrls.push(event.target.result as string);
+            }
+            resolve();
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    }
+
+    if (newUrls.length > 0) {
+      onChange([...images, ...newUrls]);
+    }
+    setIsUploading(false);
+    // Reset file input
+    e.target.value = "";
   };
 
   return (
@@ -110,19 +150,33 @@ export function ImageUploader({
 
         {/* Upload Button Placeholder */}
         {images.length < maxFiles && (
-          <label className="aspect-square rounded-lg border-2 border-dashed border-border hover:border-primary flex flex-col items-center justify-center p-2 text-center cursor-pointer transition-colors bg-bg/50 hover:bg-surface">
-            <Upload className="w-5 h-5 text-text-muted mb-1" />
-            <span className="text-[11px] font-medium text-text-muted">Chọn ảnh</span>
+          <label className={`aspect-square rounded-lg border-2 border-dashed border-border hover:border-primary flex flex-col items-center justify-center p-2 text-center cursor-pointer transition-colors bg-bg/50 hover:bg-surface ${isUploading ? 'opacity-60 pointer-events-none' : ''}`}>
+            {isUploading ? (
+              <>
+                <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin mb-1" />
+                <span className="text-[11px] font-medium text-primary">Đang tải lên...</span>
+              </>
+            ) : (
+              <>
+                <Upload className="w-5 h-5 text-text-muted mb-1" />
+                <span className="text-[11px] font-medium text-text-muted">Chọn ảnh từ máy</span>
+              </>
+            )}
             <input
               type="file"
               accept="image/*"
               multiple
+              disabled={isUploading}
               onChange={handleFileChange}
               className="hidden"
             />
           </label>
         )}
       </div>
+
+      {uploadError && (
+        <p className="text-xs text-red-600 mt-1">{uploadError}</p>
+      )}
 
       {/* Or Paste Direct Image URL */}
       {images.length < maxFiles && (

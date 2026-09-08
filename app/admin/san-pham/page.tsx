@@ -9,6 +9,7 @@ import Pagination from "@/components/ui/Pagination";
 import { useProductsStore } from "@/lib/useProducts";
 import categoriesData from "@/data/categories.json";
 import { formatPrice } from "@/lib/formatPrice";
+import { toast } from "@/components/ui/Toast";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -50,7 +51,16 @@ export default function AdminProductsPage() {
   const handleDelete = (id: string, name: string) => {
     if (confirm(`Bạn có chắc chắn muốn xóa tác phẩm "${name}"?`)) {
       deleteProduct(id);
+      toast.success(`Đã xóa "${name}"`, "Dữ liệu đã được cập nhật vào data/products.json");
     }
+  };
+
+  const handleToggleFeatured = (id: string, name: string, currentFeatured: boolean) => {
+    toggleFeatured(id);
+    toast.info(
+      currentFeatured ? `Đã bỏ ghim nổi bật "${name}"` : `★ Đã ghim "${name}" lên trang chủ!`,
+      "Đã đồng bộ vào data/products.json"
+    );
   };
 
   return (
@@ -180,7 +190,7 @@ export default function AdminProductsPage() {
                   <td className="py-2.5 px-3 text-center">
                     <button
                       type="button"
-                      onClick={() => toggleFeatured(product.id)}
+                      onClick={() => handleToggleFeatured(product.id, product.name, product.featured)}
                       title={product.featured ? "Bỏ ghim nổi bật" : "Ghim lên trang chủ"}
                       className={`p-1.5 rounded-full transition-colors ${
                         product.featured
