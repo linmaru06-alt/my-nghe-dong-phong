@@ -33,7 +33,7 @@ export function FloatingZalo() {
   return (
     <aside
       aria-label="Liên hệ hỗ trợ Zalo"
-      className="fixed bottom-5 right-5 md:bottom-8 md:right-8 z-40 flex items-center select-none"
+      className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-40 flex items-center select-none"
     >
       {/* Tooltip on Desktop */}
       <div

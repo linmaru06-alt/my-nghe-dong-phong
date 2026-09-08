@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingZalo from "@/components/layout/FloatingZalo";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import PageTransition from "@/components/ui/PageTransition";
 
 export default function RootLayout({
@@ -34,11 +35,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className={`${playfair.variable} ${beVietnam.variable}`}>
-      <body className="min-h-screen antialiased flex flex-col bg-bg text-text">
+      <body className="min-h-screen antialiased flex flex-col bg-bg text-text pb-16 md:pb-0">
         <Header />
         <PageTransition>{children}</PageTransition>
         <Footer />
         <FloatingZalo />
+        <MobileBottomNav />
       </body>
     </html>
   );

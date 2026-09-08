@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -34,9 +34,6 @@ export default function ProductDetailClient({ slug }: ProductDetailClientProps) 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [showStickyBar, setShowStickyBar] = useState(false);
-
-  const mainCtaRef = useRef<HTMLDivElement>(null);
 
   // Category name
   const categoryInfo = categoriesData.find((c) => c.id === product.category);
@@ -55,23 +52,6 @@ export default function ProductDetailClient({ slug }: ProductDetailClientProps) 
   const relatedProducts = productsData
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
-
-  // Sticky CTA Observer on mobile
-  useEffect(() => {
-    const el = mainCtaRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Show sticky bar when main CTA is NOT intersecting and scrolled down
-        setShowStickyBar(!entry.isIntersecting && entry.boundingClientRect.top < 0);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const accordionItems = [
     {
@@ -234,8 +214,8 @@ export default function ProductDetailClient({ slug }: ProductDetailClientProps) 
                 onSelectSize={setSelectedSizeIndex}
               />
 
-              {/* Main CTA Block (Observed for Mobile Sticky) */}
-              <div ref={mainCtaRef}>
+              {/* Main CTA Block */}
+              <div>
                 <ContactCTA
                   productCode={product.code}
                   productName={product.name}
@@ -288,39 +268,41 @@ export default function ProductDetailClient({ slug }: ProductDetailClientProps) 
         initialIndex={selectedImageIndex}
       />
 
-      {/* Mobile Bottom Sticky Bar */}
-      {showStickyBar && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-border p-3 shadow-2xl animate-in slide-in-from-bottom duration-300">
-          <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0 flex-1">
-              <span className="font-mono text-[10px] text-secondary font-bold block">
-                {product.code}
-              </span>
-              <p className="text-xs font-bold text-text truncate">{product.name}</p>
-              <PriceDisplay price={activePrice} size="sm" className="font-bold" />
-            </div>
-
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <a
-                href={zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-zalo text-white px-3.5 py-2 rounded-btn text-xs font-bold flex items-center gap-1.5 shadow-sm active:scale-95"
-              >
-                <MessageCircle className="w-4 h-4 fill-white text-zalo" />
-                <span>Zalo</span>
-              </a>
-              <a
-                href={`tel:${settingsData.brand.phone.replace(/\s+/g, "")}`}
-                className="bg-[#8E4424] text-white p-2 rounded-btn active:scale-95 shadow-sm"
-                aria-label="Gọi điện thoại"
-              >
-                <Phone className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
+      {/* ─── MOBILE STICKY CONTACT UTILITY BAR (Stitch Screen 13: Mobile 4 - Chi Tiết Sản Phẩm App) ─── */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-surface/95 backdrop-blur-xl border-t border-border shadow-[0_-4px_20px_rgba(107,63,31,0.12)] px-4 py-2.5 pb-safe flex flex-col gap-1.5">
+        <div className="flex items-center justify-between px-0.5 text-[11px]">
+          <span className="font-mono text-secondary font-semibold truncate max-w-[200px]">
+            Mã SP: {product.code} · Báo mã khi liên hệ
+          </span>
+          <span className="inline-flex items-center gap-1 text-[#005620] font-semibold shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3EE26C] animate-pulse" />
+            Sẵn sàng quay video trực tiếp
+          </span>
         </div>
-      )}
+
+        {/* Dual Action Buttons */}
+        <div className="flex items-center gap-2">
+          {/* Direct Zalo Inquiry (Flex 3) */}
+          <a
+            href={zaloUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-[3] h-11 rounded-btn bg-[#06C755] hover:bg-[#05a847] active:scale-[0.98] text-white flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(6,199,85,0.3)] transition-all font-bold text-xs"
+          >
+            <MessageCircle className="w-4 h-4 fill-white text-zalo" />
+            <span>Nhắn Zalo Soi Vân Video</span>
+          </a>
+
+          {/* Direct Phone Hotline (Flex 2) */}
+          <a
+            href={`tel:${settingsData.brand.phone.replace(/\s+/g, "")}`}
+            className="flex-[2] h-11 rounded-btn bg-surface border border-border hover:border-primary active:scale-[0.98] text-primary flex items-center justify-center gap-1.5 shadow-xs transition-all font-bold text-xs"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>{settingsData.brand.phone}</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

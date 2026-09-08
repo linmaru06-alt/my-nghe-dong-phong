@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
-import { Search, X, Filter } from "lucide-react";
+import React, { useState } from "react";
+import { Search, X, Filter, SlidersHorizontal } from "lucide-react";
 import categoriesData from "@/data/categories.json";
 import { cn } from "@/lib/utils";
+import MobileFilterSheet from "./MobileFilterSheet";
 
 export interface ProductFilterProps {
   selectedCategory: string;
@@ -26,10 +27,60 @@ export function ProductFilter({
   woodTypes,
   totalResults,
 }: ProductFilterProps) {
+  const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false);
+
+  // Calculate active filter count (category + wood type)
+  const activeFiltersCount =
+    (selectedCategory ? 1 : 0) + (selectedWoodType ? 1 : 0);
+
   return (
     <div className="space-y-4 mb-8">
-      {/* Search and Secondary Select Bar */}
-      <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+      {/* ─── MOBILE FILTER BAR (md:hidden) ─── */}
+      <div className="flex md:hidden items-center gap-2">
+        {/* Mobile Search Box */}
+        <div className="relative flex-1">
+          <Search className="w-4 h-4 text-text-muted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            placeholder="Tìm tác phẩm, mã SKU..."
+            className="w-full bg-surface border border-border rounded-btn pl-9 pr-8 py-2.5 text-xs text-text placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors shadow-xs"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => onSearchChange("")}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted hover:text-text p-0.5"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Mobile Filter Button (Opens Bottom Sheet) */}
+        <button
+          type="button"
+          onClick={() => setIsFilterSheetOpen(true)}
+          className={cn(
+            "flex items-center gap-1.5 px-3.5 py-2.5 rounded-btn border text-xs font-semibold shrink-0 shadow-xs transition-colors",
+            activeFiltersCount > 0
+              ? "bg-primary text-white border-primary"
+              : "bg-surface border-border text-text hover:border-primary"
+          )}
+        >
+          <SlidersHorizontal className="w-4 h-4" />
+          <span>Bộ lọc</span>
+          {activeFiltersCount > 0 && (
+            <span className="w-4 h-4 rounded-full bg-secondary text-white text-[10px] flex items-center justify-center font-bold">
+              {activeFiltersCount}
+            </span>
+          )}
+        </button>
+      </div>
+
+      {/* ─── DESKTOP FILTER BAR (hidden md:flex) ─── */}
+      <div className="hidden md:flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
         {/* Search Box */}
         <div className="relative flex-1 max-w-md">
           <Search className="w-4 h-4 text-text-muted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -75,13 +126,13 @@ export function ProductFilter({
         </div>
       </div>
 
-      {/* Category Filter Chips (Horizontal scrollable) */}
+      {/* Category Filter Chips (Horizontal scrollable on both mobile & desktop) */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
         <button
           type="button"
           onClick={() => onSelectCategory("")}
           className={cn(
-            "px-4 py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 snap-start select-none",
+            "px-3.5 py-1.5 md:px-4 md:py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 snap-start select-none",
             !selectedCategory
               ? "bg-primary text-white shadow-sm"
               : "bg-surface border border-border text-text hover:border-primary hover:text-primary"
@@ -99,7 +150,7 @@ export function ProductFilter({
               type="button"
               onClick={() => onSelectCategory(cat.id)}
               className={cn(
-                "px-4 py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 snap-start flex items-center gap-1.5 select-none",
+                "px-3.5 py-1.5 md:px-4 md:py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 snap-start flex items-center gap-1.5 select-none",
                 isActive
                   ? "bg-primary text-white shadow-sm"
                   : "bg-surface border border-border text-text hover:border-primary hover:text-primary"
@@ -111,6 +162,18 @@ export function ProductFilter({
           );
         })}
       </div>
+
+      {/* ─── MOBILE FILTER BOTTOM SHEET (Stitch Screen 03) ─── */}
+      <MobileFilterSheet
+        isOpen={isFilterSheetOpen}
+        onClose={() => setIsFilterSheetOpen(false)}
+        selectedCategory={selectedCategory}
+        onSelectCategory={onSelectCategory}
+        selectedWoodType={selectedWoodType}
+        onSelectWoodType={onSelectWoodType}
+        woodTypes={woodTypes}
+        totalResults={totalResults}
+      />
     </div>
   );
 }
