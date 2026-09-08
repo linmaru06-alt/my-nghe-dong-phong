@@ -16,6 +16,60 @@ import postsData from "@/data/posts.json";
 import productsData from "@/data/products.json";
 import { formatDate } from "@/lib/utils";
 
+const markdownComponents = {
+  h2: ({ children }: any) => {
+    const text = String(children);
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+    return (
+      <h2
+        id={id}
+        className="font-serif text-2xl md:text-3xl font-bold text-primary mt-10 mb-4 pb-2 border-b border-border/60 scroll-mt-24"
+      >
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children }: any) => {
+    const text = String(children);
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+    return (
+      <h3
+        id={id}
+        className="font-serif text-xl font-bold text-secondary mt-6 mb-3 scroll-mt-24"
+      >
+        {children}
+      </h3>
+    );
+  },
+  p: ({ children }: any) => (
+    <p className="text-sm md:text-base text-[#3D2C21] leading-relaxed mb-4">
+      {children}
+    </p>
+  ),
+  blockquote: ({ children }: any) => (
+    <blockquote className="border-l-4 border-primary bg-accent-soft/40 p-4 rounded-r-lg my-6 text-sm text-text font-serif italic">
+      {children}
+    </blockquote>
+  ),
+  ul: ({ children }: any) => (
+    <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#3D2C21] my-4 pl-2">
+      {children}
+    </ul>
+  ),
+  ol: ({ children }: any) => (
+    <ol className="list-decimal list-inside space-y-2 text-sm md:text-base text-[#3D2C21] my-4 pl-2">
+      {children}
+    </ol>
+  ),
+  li: ({ children }: any) => <li className="leading-relaxed">{children}</li>,
+};
+
 export interface BlogDetailClientProps {
   slug: string;
 }
@@ -133,61 +187,7 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
 
             {/* Markdown Renderer */}
             <div className="prose prose-stone max-w-none text-text leading-relaxed">
-              <ReactMarkdown
-                components={{
-                  h2: ({ children }) => {
-                    const text = String(children);
-                    const id = text
-                      .toLowerCase()
-                      .replace(/[^\w\s-]/g, "")
-                      .replace(/\s+/g, "-");
-                    return (
-                      <h2
-                        id={id}
-                        className="font-serif text-2xl md:text-3xl font-bold text-primary mt-10 mb-4 pb-2 border-b border-border/60 scroll-mt-24"
-                      >
-                        {children}
-                      </h2>
-                    );
-                  },
-                  h3: ({ children }) => {
-                    const text = String(children);
-                    const id = text
-                      .toLowerCase()
-                      .replace(/[^\w\s-]/g, "")
-                      .replace(/\s+/g, "-");
-                    return (
-                      <h3
-                        id={id}
-                        className="font-serif text-xl font-bold text-secondary mt-6 mb-3 scroll-mt-24"
-                      >
-                        {children}
-                      </h3>
-                    );
-                  },
-                  p: ({ children }) => (
-                    <p className="text-sm md:text-base text-[#3D2C21] leading-relaxed mb-4">
-                      {children}
-                    </p>
-                  ),
-                  blockquote: ({ children }) => (
-                    <blockquote className="border-l-4 border-primary bg-accent-soft/40 p-4 rounded-r-lg my-6 text-sm text-text font-serif italic">
-                      {children}
-                    </blockquote>
-                  ),
-                  ul: ({ children }) => (
-                    <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#3D2C21] my-4 pl-2">
-                      {children}
-                    </ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal list-inside space-y-2 text-sm md:text-base text-[#3D2C21] my-4 pl-2">
-                      {children}
-                    </ol>
-                  ),
-                  li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-                }}
-              >
+              <ReactMarkdown components={markdownComponents}>
                 {post.content}
               </ReactMarkdown>
             </div>
