@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowRight, LayoutGrid } from "lucide-react";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
@@ -83,17 +82,11 @@ export function CategoryGrid() {
 
         {/* Grid: 4 cols on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {categoriesData.map((cat, index) => {
+          {categoriesData.map((cat) => {
             const count = getCount(cat.id);
 
             return (
-              <motion.div
-                key={cat.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: index * 0.05 }}
-              >
+              <div key={cat.id}>
                 <Link
                   href={`/san-pham?category=${cat.id}`}
                   className="group flex flex-col p-4 rounded-xl bg-surface border border-border shadow-card hover:shadow-xl hover:-translate-y-1 hover:border-primary transition-all duration-300 h-full justify-between"
@@ -121,17 +114,12 @@ export function CategoryGrid() {
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
 
           {/* 8th Card: View All */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.35 }}
-          >
+          <div>
             <Link
               href="/san-pham"
               className="group flex flex-col items-center justify-center p-6 rounded-xl text-center border-2 border-dashed border-secondary/40 bg-bg hover:bg-accent-soft/50 hover:border-primary hover:-translate-y-1 transition-all duration-300 h-full min-h-[260px]"
@@ -150,7 +138,7 @@ export function CategoryGrid() {
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </>

@@ -116,13 +116,11 @@ export function Header() {
                 >
                   {link.label}
                   {isActive && (
-                    <motion.div
-                      layoutId="navUnderline"
+                    <span
                       className={cn(
-                        "absolute bottom-0 left-0 right-0 h-[2px] rounded-full",
+                        "absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-all duration-200",
                         isTransparent ? "bg-white" : "bg-primary"
                       )}
-                      transition={{ duration: 0.2 }}
                     />
                   )}
                 </Link>

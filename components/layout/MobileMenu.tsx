@@ -39,9 +39,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   };
 
   const blogCategories = [
-    { label: "Kiến thức về gỗ", href: "/bai-viet?tab=kien-thuc" },
-    { label: "Hướng dẫn lựa chọn", href: "/bai-viet?tab=huong-dan" },
-    { label: "Bảo quản sản phẩm", href: "/bai-viet?tab=bao-quan" },
+    { label: "Kiến thức về gỗ", href: "/bai-viet?tab=kien-thuc-ve-go" },
+    { label: "Hướng dẫn lựa chọn", href: "/bai-viet?tab=huong-dan-lua-chon" },
+    { label: "Bảo quản sản phẩm", href: "/bai-viet?tab=bao-quan-san-pham" },
   ];
 
   return (

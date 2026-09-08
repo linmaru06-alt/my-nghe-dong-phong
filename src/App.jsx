@@ -3,14 +3,14 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { FloatingContact } from "./components/FloatingContact";
 
-import { Home } from "./pages/Home";
-import { Catalog } from "./pages/Catalog";
-import { ProductDetail } from "./pages/ProductDetail";
-import { About } from "./pages/About";
-import { Articles } from "./pages/Articles";
-import { ArticleDetail } from "./pages/ArticleDetail";
-import { Contact } from "./pages/Contact";
-import { Admin } from "./pages/Admin";
+import { Home } from "./_pages/Home";
+import { Catalog } from "./_pages/Catalog";
+import { ProductDetail } from "./_pages/ProductDetail";
+import { About } from "./_pages/About";
+import { Articles } from "./_pages/Articles";
+import { ArticleDetail } from "./_pages/ArticleDetail";
+import { Contact } from "./_pages/Contact";
+import { Admin } from "./_pages/Admin";
 
 import { storage } from "./data/storage-adapter";
 import { updateMetaTags } from "./utils/seo";

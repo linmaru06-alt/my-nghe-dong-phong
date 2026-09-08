@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
@@ -24,6 +24,10 @@ export interface BlogClientProps {
 
 export default function BlogClient({ initialTab = "" }: BlogClientProps) {
   const [activeTab, setActiveTab] = useState(initialTab);
+
+  useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
 
   // Lọc bài viết
   const filteredPosts = activeTab

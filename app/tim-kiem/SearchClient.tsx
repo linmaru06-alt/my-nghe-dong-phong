@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useState, useMemo, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, Package, BookOpen, MessageCircle } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -12,13 +12,21 @@ import postsData from "@/data/posts.json";
 import categoriesData from "@/data/categories.json";
 import settingsData from "@/data/settings.json";
 
-export default function SearchClient() {
-  const searchParams = useSearchParams();
-  const q = searchParams.get("q") || "";
-  const [searchInput, setSearchInput] = useState(q);
+export interface SearchClientProps {
+  initialQuery?: string;
+}
+
+export default function SearchClient({ initialQuery = "" }: SearchClientProps) {
+  const router = useRouter();
+  const q = initialQuery;
+  const [searchInput, setSearchInput] = useState(initialQuery);
   const [activeTab, setActiveTab] = useState<"products" | "posts">("products");
 
-  const trimmed = q.trim().toLowerCase();
+  useEffect(() => {
+    setSearchInput(initialQuery);
+  }, [initialQuery]);
+
+  const trimmed = (initialQuery || searchInput).trim().toLowerCase();
 
   // Search logic
   const matchedProducts = useMemo(() => {
@@ -47,7 +55,7 @@ export default function SearchClient() {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchInput.trim()) {
-      window.location.href = `/tim-kiem?q=${encodeURIComponent(searchInput.trim())}`;
+      router.push(`/tim-kiem?q=${encodeURIComponent(searchInput.trim())}`);
     }
   };
 

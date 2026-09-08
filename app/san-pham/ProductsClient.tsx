@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ProductFilter from "@/components/product/ProductFilter";
 import ProductGrid from "@/components/product/ProductGrid";
@@ -30,6 +30,13 @@ export default function ProductsClient({
   const [selectedWoodType, setSelectedWoodType] = useState(initialWoodType);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [currentPage, setCurrentPage] = useState(initialPage);
+
+  useEffect(() => {
+    setSelectedCategory(initialCategory);
+    setSelectedWoodType(initialWoodType);
+    setSearchQuery(initialQuery);
+    setCurrentPage(initialPage);
+  }, [initialCategory, initialWoodType, initialQuery, initialPage]);
 
   // Cập nhật URL khi đổi danh mục
   const updateUrl = (cat: string, wood: string, q: string, page: number) => {
