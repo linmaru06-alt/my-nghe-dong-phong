@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import ProductCard, { ProductCardProps } from "./ProductCard";
 import Skeleton from "@/components/ui/Skeleton";
 import EmptyState from "@/components/ui/EmptyState";
@@ -41,22 +40,11 @@ export function ProductGrid({
   }
 
   return (
-    <motion.div
-      layout
-      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6"
-    >
-      {products.map((product, index) => (
-        <motion.div
-          key={product.id}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.25, delay: Math.min(index * 0.04, 0.3) }}
-        >
-          <ProductCard {...product} />
-        </motion.div>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
       ))}
-    </motion.div>
+    </div>
   );
 }
 
