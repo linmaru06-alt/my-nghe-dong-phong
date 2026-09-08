@@ -17,6 +17,8 @@ dist
 dist-ssr
 *.local
 .env*.local
+.env
+backend/.env
 .agents/mcp_config.json
 
 # Editor directories and files

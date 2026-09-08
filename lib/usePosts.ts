@@ -22,6 +22,8 @@ interface PostsState {
   getPostBySlug: (slug: string) => Post | undefined;
   getPostById: (id: string) => Post | undefined;
   savePost: (post: Post) => void;
+  addPost: (post: Post) => void;
+  updatePost: (id: string, post: Partial<Post>) => void;
   deletePost: (id: string) => void;
   resetToDefault: () => void;
 }
@@ -69,6 +71,17 @@ export const usePostsStore = create<PostsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ posts: list });
+  },
+
+  addPost: (post: Post) => {
+    get().savePost(post);
+  },
+
+  updatePost: (id: string, updates: Partial<Post>) => {
+    const existing = get().getPostById(id);
+    if (existing) {
+      get().savePost({ ...existing, ...updates });
+    }
   },
 
   deletePost: (id: string) => {

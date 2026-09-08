@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   keywords: ["đồ gỗ mỹ nghệ", "vòng tay phong thủy", "bút ký gỗ quý", "mỹ nghệ đông phong"],
 };
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import FloatingZalo from "@/components/layout/FloatingZalo";
+import PageTransition from "@/components/ui/PageTransition";
+
 export default function RootLayout({
   children,
 }: {
@@ -29,7 +34,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className={`${playfair.variable} ${beVietnam.variable}`}>
-      <body className="min-h-screen antialiased flex flex-col">{children}</body>
+      <body className="min-h-screen antialiased flex flex-col bg-bg text-text">
+        <Header />
+        <PageTransition>{children}</PageTransition>
+        <Footer />
+        <FloatingZalo />
+      </body>
     </html>
   );
 }

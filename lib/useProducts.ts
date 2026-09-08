@@ -30,6 +30,8 @@ interface ProductsState {
   getProductBySlug: (slug: string) => Product | undefined;
   getProductById: (id: string) => Product | undefined;
   saveProduct: (product: Product) => void;
+  addProduct: (product: Product) => void;
+  updateProduct: (id: string, product: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
   toggleFeatured: (id: string) => void;
   toggleStatus: (id: string) => void;
@@ -79,6 +81,17 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
+  },
+
+  addProduct: (product: Product) => {
+    get().saveProduct(product);
+  },
+
+  updateProduct: (id: string, updates: Partial<Product>) => {
+    const existing = get().getProductById(id);
+    if (existing) {
+      get().saveProduct({ ...existing, ...updates });
+    }
   },
 
   deleteProduct: (id: string) => {

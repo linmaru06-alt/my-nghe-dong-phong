@@ -1,8 +1,29 @@
-export default function BlogListPage() {
+import { Suspense } from "react";
+import BlogClient from "./BlogClient";
+import Skeleton from "@/components/ui/Skeleton";
+
+export const metadata = {
+  title: "Cẩm Nang & Kiến Thức Gỗ Quý | Mỹ Nghệ Đông Phong",
+  description:
+    "Tổng hợp bài viết chuyên sâu về nhận biết gỗ Tử Đàn, Sưa đỏ, Nu bách xanh, cách chọn kích thước hạt vòng tay phong thủy chuẩn xác.",
+};
+
+export default function BlogPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-serif text-primary mb-4 font-bold">Kiến Thức & Cẩm Nang Đồ Gỗ</h1>
-      <p className="text-text-muted">Chia sẻ kinh nghiệm nhận biết vân gỗ, chọn kích thước phong thủy và bảo quản sản phẩm.</p>
-    </div>
+    <main className="flex-1 w-full bg-bg">
+      <Suspense
+        fallback={
+          <div className="container mx-auto px-4 py-12">
+            <div className="h-8 w-64 rounded bg-border/40 mb-8 animate-pulse" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Skeleton variant="blog-card" />
+              <Skeleton variant="blog-card" />
+            </div>
+          </div>
+        }
+      >
+        <BlogClient />
+      </Suspense>
+    </main>
   );
 }
