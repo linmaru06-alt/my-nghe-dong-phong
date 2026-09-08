@@ -1,5 +1,4 @@
 import React from "react";
-import { siteConfig } from "../config/site-config";
 
 export function About({ onNavigate }) {
   return (

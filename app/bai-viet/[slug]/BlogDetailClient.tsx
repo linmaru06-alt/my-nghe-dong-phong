@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
-import { Calendar, Clock, ArrowLeft, Share2, Sparkles } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Sparkles } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Badge from "@/components/ui/Badge";
 import ReadingProgress from "@/components/ui/ReadingProgress";

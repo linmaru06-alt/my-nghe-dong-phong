@@ -54,7 +54,7 @@ export async function requireAuth(
 
     req.admin = admin as AuthenticatedAdmin;
     next();
-  } catch (error) {
+  } catch (_error) {
     return sendError(
       res,
       ERROR_CODES.INVALID_TOKEN,

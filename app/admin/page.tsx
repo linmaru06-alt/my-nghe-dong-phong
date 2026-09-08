@@ -10,7 +10,6 @@ import {
   FileClock,
   Plus,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import { useProductsStore } from "@/lib/useProducts";

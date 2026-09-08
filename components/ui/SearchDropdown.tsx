@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, ArrowRight, Loader2, BookOpen, Package } from "lucide-react";
+import { Search, X, ArrowRight, BookOpen, Package } from "lucide-react";
 import productsData from "@/data/products.json";
 import postsData from "@/data/posts.json";
 import { formatPrice } from "@/lib/formatPrice";
@@ -17,7 +17,6 @@ export interface SearchDropdownProps {
 
 export function SearchDropdown({ isOpen, onClose }: SearchDropdownProps) {
   const [query, setQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 

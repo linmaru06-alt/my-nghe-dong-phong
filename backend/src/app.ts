@@ -46,7 +46,7 @@ app.get("/api/health", async (_req, res) => {
   let dbStatus = "UP";
   try {
     await prisma.$queryRaw`SELECT 1`;
-  } catch (error) {
+  } catch (_error) {
     dbStatus = "DOWN";
   }
 

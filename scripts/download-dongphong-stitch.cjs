@@ -63,7 +63,7 @@ async function fetchScreens() {
   for (let i = 0; i < screens.length; i++) {
     const s = screens[i];
     const screenId = s.name.split('/').pop();
-    const safeTitle = (s.title || `screen-${i+1}`).replace(/[\/\\?%*:|"<>]/g, '_');
+    const safeTitle = (s.title || `screen-${i+1}`).replace(/[/\\?%*:|"<>]/g, '_');
     const folderName = `${String(i + 1).padStart(2, '0')}_${safeTitle}`;
     const screenDir = path.join(OUT_DIR, folderName);
 

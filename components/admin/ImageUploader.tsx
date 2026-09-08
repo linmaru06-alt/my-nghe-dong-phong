@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Upload, X, Star, Plus } from "lucide-react";
+import { Upload, X, Star } from "lucide-react";
 
 export interface ImageUploaderProps {
   images: string[];

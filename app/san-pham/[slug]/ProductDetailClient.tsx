@@ -7,11 +7,8 @@ import { notFound } from "next/navigation";
 import {
   MessageCircle,
   Phone,
-  ShieldCheck,
-  Truck,
   Sparkles,
   Maximize2,
-  Package,
 } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Badge from "@/components/ui/Badge";

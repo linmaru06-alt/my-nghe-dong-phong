@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Heart, Sparkles, Award, MapPin, MessageCircle } from "lucide-react";
+import { ShieldCheck, Heart, Sparkles, MapPin, MessageCircle } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import settingsData from "@/data/settings.json";
 

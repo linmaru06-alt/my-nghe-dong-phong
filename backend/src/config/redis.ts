@@ -24,7 +24,7 @@ try {
     console.warn("⚠️ Redis unavailable, running in memory-only fallback mode:", err.message);
   });
 
-  redisClient.on("error", (err) => {
+  redisClient.on("error", (_err) => {
     isRedisAvailable = false;
   });
 } catch (err) {

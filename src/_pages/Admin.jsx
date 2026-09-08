@@ -22,7 +22,7 @@ export function Admin({ onDataChange }) {
     const newStatus = p.status === "published" ? "draft" : "published";
     const updated = storage.saveProduct({ ...p, status: newStatus });
     setProducts(storage.getProducts({ includeDrafts: true }));
-    onDataChange && onDataChange();
+    if (onDataChange) onDataChange();
     showNotification(`Đã chuyển sản phẩm "${updated.name}" sang trạng thái: ${newStatus === "published" ? "ĐÃ ĐĂNG" : "BẢN NHÁP"}`);
   };
 
@@ -30,7 +30,7 @@ export function Admin({ onDataChange }) {
   const handleToggleProductFeatured = (p) => {
     const updated = storage.saveProduct({ ...p, isFeatured: !p.isFeatured });
     setProducts(storage.getProducts({ includeDrafts: true }));
-    onDataChange && onDataChange();
+    if (onDataChange) onDataChange();
     showNotification(`Đã ${updated.isFeatured ? "ghim" : "bỏ ghim"} sản phẩm "${updated.name}" trên Trang chủ`);
   };
 
@@ -39,7 +39,7 @@ export function Admin({ onDataChange }) {
     if (window.confirm(`Bạn có chắc muốn xóa tác phẩm "${name}"?`)) {
       storage.deleteProduct(id);
       setProducts(storage.getProducts({ includeDrafts: true }));
-      onDataChange && onDataChange();
+      if (onDataChange) onDataChange();
       showNotification(`Đã xóa sản phẩm "${name}"`);
     }
   };
@@ -50,7 +50,7 @@ export function Admin({ onDataChange }) {
     storage.saveProduct(editingProduct);
     setProducts(storage.getProducts({ includeDrafts: true }));
     setEditingProduct(null);
-    onDataChange && onDataChange();
+    if (onDataChange) onDataChange();
     showNotification("Đã lưu thông tin sản phẩm thành công!");
   };
 
@@ -61,7 +61,7 @@ export function Admin({ onDataChange }) {
       setProducts(storage.getProducts({ includeDrafts: true }));
       setArticles(storage.getArticles({ includeDrafts: true }));
       setConfig(storage.getConfig());
-      onDataChange && onDataChange();
+      if (onDataChange) onDataChange();
       showNotification("Đã khôi phục dữ liệu gốc thành công!");
     }
   };
@@ -303,7 +303,7 @@ export function Admin({ onDataChange }) {
           <button
             onClick={() => {
               storage.updateConfig(config);
-              onDataChange && onDataChange();
+              if (onDataChange) onDataChange();
               showNotification("Đã cập nhật thông tin doanh nghiệp thành công!");
             }}
             style={{
