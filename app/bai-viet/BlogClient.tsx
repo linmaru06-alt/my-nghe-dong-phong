@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Badge from "@/components/ui/Badge";
@@ -19,17 +18,19 @@ const tabs = [
   { id: "bao-quan-san-pham", label: "Bảo quản sản phẩm" },
 ];
 
-export default function BlogClient() {
-  const searchParams = useSearchParams();
-  const initialTab = searchParams.get("tab") || "";
+export interface BlogClientProps {
+  initialTab?: string;
+}
+
+export default function BlogClient({ initialTab = "" }: BlogClientProps) {
   const [activeTab, setActiveTab] = useState(initialTab);
 
-  // Filter posts
+  // Lọc bài viết
   const filteredPosts = activeTab
     ? postsData.filter((p) => p.category === activeTab && p.status === "published")
     : postsData.filter((p) => p.status === "published");
 
-  // First article as featured
+  // Bài viết tiêu điểm đầu tiên
   const featuredPost = filteredPosts[0];
   const remainingPosts = filteredPosts.slice(1);
 
@@ -60,7 +61,7 @@ export default function BlogClient() {
               className={`px-4 py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
                 isActive
                   ? "bg-primary text-white shadow-sm"
-                  : "bg-surface border border-border text-text hover:border-primary hover:text-primary"
+                  : "bg-surface border border-border text-text hover:border-primary"
               }`}
             >
               {tab.label}
@@ -69,63 +70,79 @@ export default function BlogClient() {
         })}
       </div>
 
-      {/* Featured Article Card (Full-width prominence) */}
-      {featuredPost && (
-        <div className="mb-12 rounded-card bg-surface border border-border overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 group">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-            <div className="lg:col-span-6 relative aspect-[16/10] lg:aspect-auto min-h-[260px] bg-accent-soft/30 overflow-hidden">
-              <Image
-                src={featuredPost.thumbnail}
-                alt={featuredPost.title}
-                fill
-                priority
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <div className="lg:col-span-6 p-6 md:p-10 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <Badge variant="wood">Tiêu điểm</Badge>
-                  <span className="text-xs text-text-muted flex items-center gap-1">
+      {/* Main Layout: 2 Columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+        {/* Left Column: Articles (8 cols) */}
+        <div className="lg:col-span-8 space-y-10">
+          {/* Featured Post Card (Big) */}
+          {featuredPost && (
+            <article className="group rounded-card bg-surface border border-border/70 overflow-hidden shadow-card hover:shadow-xl transition-all duration-300">
+              <Link
+                href={`/bai-viet/${featuredPost.slug}`}
+                className="relative aspect-16/9 w-full block bg-accent-soft/40 overflow-hidden"
+              >
+                <Image
+                  src={featuredPost.thumbnail || "/images/placeholder.svg"}
+                  alt={featuredPost.title}
+                  fill
+                  priority
+                  className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  sizes="(max-width: 1024px) 100vw, 65vw"
+                />
+                <div className="absolute top-3 left-3">
+                  <Badge variant="gold">Tiêu điểm</Badge>
+                </div>
+              </Link>
+
+              <div className="p-5 md:p-8">
+                <div className="flex items-center gap-4 text-xs text-text-muted mb-3">
+                  <span className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" />
                     {formatDate(featuredPost.publishedAt)}
                   </span>
-                  <span className="text-xs text-text-muted flex items-center gap-1">
+                  <span className="flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
                     {featuredPost.readingTime} phút đọc
                   </span>
                 </div>
 
-                <Link href={`/bai-viet/${featuredPost.slug}`}>
-                  <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-primary group-hover:text-primary-hover transition-colors mb-3 leading-snug">
+                <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-text group-hover:text-primary transition-colors leading-snug mb-3">
+                  <Link href={`/bai-viet/${featuredPost.slug}`}>
                     {featuredPost.title}
-                  </h2>
-                </Link>
+                  </Link>
+                </h2>
 
-                <p className="text-sm text-text-muted leading-relaxed line-clamp-3 mb-6">
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed line-clamp-3 mb-6">
                   {featuredPost.excerpt}
                 </p>
+
+                <Link
+                  href={`/bai-viet/${featuredPost.slug}`}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-primary-hover group/link"
+                >
+                  <span>Đọc bài viết chi tiết</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                </Link>
               </div>
+            </article>
+          )}
 
-              <Link
-                href={`/bai-viet/${featuredPost.slug}`}
-                className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover"
-              >
-                <span>Đọc toàn bộ bài viết</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+          {/* Remaining Articles Grid (2 cols) */}
+          {remainingPosts.length > 0 && (
+            <div>
+              <h3 className="font-serif text-xl font-bold text-primary mb-6">
+                Bài Viết Mới Nhất
+              </h3>
+              <BlogGrid posts={remainingPosts} />
             </div>
-          </div>
+          )}
         </div>
-      )}
 
-      {/* Grid + Sidebar Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-8">
-          <BlogGrid posts={remainingPosts} />
-        </div>
+        {/* Right Column: Sidebar (4 cols) */}
         <div className="lg:col-span-4">
-          <BlogSidebar />
+          <div className="sticky top-24">
+            <BlogSidebar />
+          </div>
         </div>
       </div>
     </div>

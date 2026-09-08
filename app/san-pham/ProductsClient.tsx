@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import ProductFilter from "@/components/product/ProductFilter";
 import ProductGrid from "@/components/product/ProductGrid";
 import Pagination from "@/components/ui/Pagination";
@@ -11,66 +11,77 @@ import woodTypesData from "@/data/woodTypes.json";
 
 const ITEMS_PER_PAGE = 12;
 
-export default function ProductsClient() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export interface ProductsClientProps {
+  initialCategory?: string;
+  initialWoodType?: string;
+  initialQuery?: string;
+  initialPage?: number;
+}
 
-  const initialCategory = searchParams.get("category") || "";
-  const initialWoodType = searchParams.get("woodType") || "";
-  const initialQuery = searchParams.get("q") || "";
+export default function ProductsClient({
+  initialCategory = "",
+  initialWoodType = "",
+  initialQuery = "",
+  initialPage = 1,
+}: ProductsClientProps) {
+  const router = useRouter();
 
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedWoodType, setSelectedWoodType] = useState(initialWoodType);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initialPage);
 
-  // Sync URL when category changes
+  // Cập nhật URL khi đổi danh mục
+  const updateUrl = (cat: string, wood: string, q: string, page: number) => {
+    const params = new URLSearchParams();
+    if (cat) params.set("category", cat);
+    if (wood) params.set("woodType", wood);
+    if (q) params.set("q", q);
+    if (page > 1) params.set("page", String(page));
+    const qs = params.toString();
+    router.push(`/san-pham${qs ? `?${qs}` : ""}`, { scroll: false });
+  };
+
   const handleSelectCategory = (cat: string) => {
     setSelectedCategory(cat);
     setCurrentPage(1);
-    const params = new URLSearchParams(searchParams.toString());
-    if (cat) params.set("category", cat);
-    else params.delete("category");
-    router.push(`/san-pham?${params.toString()}`, { scroll: false });
+    updateUrl(cat, selectedWoodType, searchQuery, 1);
   };
 
   const handleSelectWoodType = (wood: string) => {
     setSelectedWoodType(wood);
     setCurrentPage(1);
-    const params = new URLSearchParams(searchParams.toString());
-    if (wood) params.set("woodType", wood);
-    else params.delete("woodType");
-    router.push(`/san-pham?${params.toString()}`, { scroll: false });
+    updateUrl(selectedCategory, wood, searchQuery, 1);
   };
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
     setCurrentPage(1);
+    updateUrl(selectedCategory, selectedWoodType, query, 1);
   };
 
-  // Sync from URL if params change externally
-  useEffect(() => {
-    setSelectedCategory(searchParams.get("category") || "");
-    setSelectedWoodType(searchParams.get("woodType") || "");
-    if (searchParams.get("q")) setSearchQuery(searchParams.get("q") || "");
-  }, [searchParams]);
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    updateUrl(selectedCategory, selectedWoodType, searchQuery, page);
+    window.scrollTo({ top: 120, behavior: "smooth" });
+  };
 
-  // Unique wood types list
+  // Danh sách loại gỗ duy nhất
   const woodTypes = useMemo(() => {
     return woodTypesData.map((w) => w.name);
   }, []);
 
-  // Filtered products logic
+  // Lọc sản phẩm
   const filteredProducts = useMemo(() => {
     return productsData.filter((product) => {
       if (product.status !== "published") return false;
 
-      // Category filter
+      // Lọc danh mục
       if (selectedCategory && product.category !== selectedCategory) {
         return false;
       }
 
-      // Wood type filter
+      // Lọc loại gỗ
       if (
         selectedWoodType &&
         !product.woodType.toLowerCase().includes(selectedWoodType.toLowerCase())
@@ -78,7 +89,7 @@ export default function ProductsClient() {
         return false;
       }
 
-      // Search query
+      // Tìm kiếm từ khóa
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase().trim();
         const matchesName = product.name.toLowerCase().includes(q);
@@ -94,7 +105,7 @@ export default function ProductsClient() {
     });
   }, [selectedCategory, selectedWoodType, searchQuery]);
 
-  // Pagination calculation
+  // Tính toán phân trang
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const paginatedProducts = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -135,7 +146,7 @@ export default function ProductsClient() {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={setCurrentPage}
+        onPageChange={handlePageChange}
       />
     </div>
   );

@@ -108,7 +108,7 @@ export function QuickConsultSheet({
             <div className="flex items-start gap-3.5 bg-white/80 p-3.5 rounded-2xl border border-[#C5A059]/30 mb-5 shadow-2xs">
               <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-[#2A160C]/5 shrink-0 border border-[#C5A059]/40">
                 <Image
-                  src={product.images[0] || "/images/placeholder.svg"}
+                  src={product.images?.[0] || "/images/placeholder.svg"}
                   alt={product.name}
                   fill
                   className="object-cover"

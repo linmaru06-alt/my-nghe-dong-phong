@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { MessageCircle, Sparkles, Eye } from "lucide-react";
+import { MessageCircle, Eye } from "lucide-react";
 import PriceDisplay from "./PriceDisplay";
-import Badge from "@/components/ui/Badge";
 import { QuickConsultSheet } from "./QuickConsultSheet";
 import { Product } from "@/lib/useProducts";
 
@@ -32,19 +31,10 @@ export const ProductCard = React.memo(function ProductCard({
   sizes,
   featured,
 }: ProductCardProps) {
-  const router = useRouter();
   const [isConsultOpen, setIsConsultOpen] = useState(false);
 
   const firstPrice = sizes && sizes.length > 0 ? sizes[0].price : null;
   const imageUrl = images && images.length > 0 ? images[0] : "/images/placeholder.svg";
-
-  const handleCardClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (target.closest("button[data-action='consult']")) {
-      return;
-    }
-    router.push(`/san-pham/${slug}`);
-  };
 
   const productObject: Product = {
     id,
@@ -55,8 +45,8 @@ export const ProductCard = React.memo(function ProductCard({
     woodType,
     description: "",
     preservation: "",
-    sizes,
-    images,
+    sizes: sizes || [],
+    images: images || [],
     featured: !!featured,
     status: "published",
     createdAt: "",
@@ -64,9 +54,10 @@ export const ProductCard = React.memo(function ProductCard({
 
   return (
     <>
-      <div
-        onClick={handleCardClick}
-        className="group flex flex-col rounded-2xl bg-white border border-[#C5A059]/25 hover:border-[#C5A059]/80 shadow-[0_4px_16px_rgba(44,26,14,0.06)] hover:shadow-[0_16px_36px_rgba(44,26,14,0.14)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden relative cursor-pointer"
+      <Link
+        href={`/san-pham/${slug}`}
+        prefetch={true}
+        className="group flex flex-col rounded-2xl bg-white border border-[#C5A059]/25 hover:border-[#C5A059]/80 shadow-[0_4px_16px_rgba(44,26,14,0.06)] hover:shadow-[0_16px_36px_rgba(44,26,14,0.14)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden relative block"
       >
         {/* Product Image Container */}
         <div className="relative aspect-square w-full bg-[#FAF6F0] overflow-hidden block">
@@ -85,7 +76,7 @@ export const ProductCard = React.memo(function ProductCard({
             </span>
             {featured && (
               <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#1F1610] shadow-sm">
-                ★ Tác Phẩm Nổi Bật
+                ★ Nổi Bật
               </span>
             )}
           </div>
@@ -125,13 +116,13 @@ export const ProductCard = React.memo(function ProductCard({
             {/* Quick Consult Button */}
             <button
               type="button"
-              data-action="consult"
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 setIsConsultOpen(true);
               }}
               title="Nhận tư vấn & báo giá nhanh"
-              className="p-2 sm:px-2.5 sm:py-1.5 rounded-xl bg-[#0068FF]/10 hover:bg-[#0068FF] text-[#0068FF] hover:text-white transition-all duration-200 flex items-center gap-1.5 shrink-0 active:scale-95 shadow-2xs"
+              className="p-2 sm:px-2.5 sm:py-1.5 rounded-xl bg-[#0068FF]/10 hover:bg-[#0068FF] text-[#0068FF] hover:text-white transition-all duration-200 flex items-center gap-1.5 shrink-0 active:scale-95 shadow-2xs z-20"
               aria-label={`Tư vấn sản phẩm ${code}`}
             >
               <MessageCircle className="w-4 h-4 fill-current" />
@@ -139,7 +130,7 @@ export const ProductCard = React.memo(function ProductCard({
             </button>
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Quick Consult Bottom Sheet */}
       <QuickConsultSheet
