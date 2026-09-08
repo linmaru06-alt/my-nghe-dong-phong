@@ -66,7 +66,7 @@ export default function AboutPage() {
               </div>
             </div>
             <Image
-              src="/images/workshop-banner.jpg"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBekTM5DBX99f63WVv_CW702BMPR98TeeTWj4GFuqtbRUQ7iDn1wa3JbzaAirRZW5LypmnE5ypgvl2aJ2iRcps9IyTyVj2HksIkr_R8yizro-pxEr9qnNJPGiNiE0QMpt47ho7vXfqKtCm0kAzLA2H-Uw1p8ELc6sQQWQiXq0ttF_KK70Tq_rzVHSbS5vRakYK36vte0N0YOr3hFZiXv4PM9u_SrCPmo6ca1XxHuCfvf4VSRXa7RzjVeQ"
               alt="Xưởng mộc Mỹ Nghệ Đông Phong"
               fill
               className="object-cover opacity-80"

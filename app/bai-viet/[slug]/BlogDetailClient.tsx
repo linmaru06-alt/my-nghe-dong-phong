@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import ReactMarkdown, { type Components } from "react-markdown";
 import { Calendar, Clock, ArrowLeft, Sparkles } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -71,19 +70,28 @@ const markdownComponents: Components = {
 };
 
 export interface BlogDetailClientProps {
-  slug: string;
+  post?: any;
+  slug?: string;
 }
 
-export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
-  const post = postsData.find((p) => p.slug === slug);
-  if (!post) notFound();
+export default function BlogDetailClient({ post: propPost, slug }: BlogDetailClientProps) {
+  const post =
+    propPost ||
+    (slug
+      ? postsData.find(
+          (p) =>
+            p.slug.toLowerCase() === decodeURIComponent(slug).trim().toLowerCase() ||
+            p.id.toLowerCase() === decodeURIComponent(slug).trim().toLowerCase()
+        )
+      : null);
 
   // Extract headings from markdown content for TOC
   const tocItems: TocItem[] = useMemo(() => {
+    if (!post?.content) return [];
     const lines = post.content.split("\n");
     const items: TocItem[] = [];
 
-    lines.forEach((line) => {
+    lines.forEach((line: string) => {
       const h2Match = line.match(/^##\s+(.+)$/);
       if (h2Match) {
         const text = h2Match[1].trim();
@@ -106,20 +114,40 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
     });
 
     return items;
-  }, [post.content]);
+  }, [post?.content]);
 
   // Related products
   const relatedProducts = useMemo(() => {
-    if (!post.relatedProducts || post.relatedProducts.length === 0) return [];
+    if (!post?.relatedProducts || post.relatedProducts.length === 0) return [];
     return productsData.filter((p) => post.relatedProducts.includes(p.id));
-  }, [post.relatedProducts]);
+  }, [post?.relatedProducts]);
 
   // Related posts (same category, excluding current)
   const relatedPosts = useMemo(() => {
+    if (!post) return [];
     return postsData
       .filter((p) => p.category === post.category && p.id !== post.id)
       .slice(0, 3);
-  }, [post.category, post.id]);
+  }, [post]);
+
+  if (!post) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-xl font-serif font-bold text-primary mb-2">
+          Không tìm thấy bài viết yêu cầu
+        </h2>
+        <p className="text-xs text-text-muted mb-6">
+          Bài viết có thể đã được cập nhật đường dẫn hoặc chuyển danh mục.
+        </p>
+        <Link
+          href="/bai-viet"
+          className="px-6 py-2.5 rounded-btn bg-primary text-white text-xs font-bold shadow-sm hover:bg-primary-hover transition-colors"
+        >
+          Xem cẩm nang bài viết
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-bg min-h-screen pb-16 md:pb-24">

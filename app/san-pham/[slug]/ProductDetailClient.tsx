@@ -3,13 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import {
-  MessageCircle,
-  Phone,
-  Sparkles,
-  Maximize2,
-} from "lucide-react";
+import { MessageCircle, Phone, Sparkles, Maximize2 } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Badge from "@/components/ui/Badge";
 import PriceDisplay from "@/components/product/PriceDisplay";
@@ -24,26 +18,61 @@ import settingsData from "@/data/settings.json";
 import { createZaloLink } from "@/lib/formatPrice";
 
 export interface ProductDetailClientProps {
-  slug: string;
+  product?: any;
+  slug?: string;
 }
 
-export default function ProductDetailClient({ slug }: ProductDetailClientProps) {
-  const product = productsData.find((p) => p.slug === slug);
-  if (!product) notFound();
+export default function ProductDetailClient({ product: propProduct, slug }: ProductDetailClientProps) {
+  // Use passed product or search safely by slug
+  const product =
+    propProduct ||
+    (slug
+      ? productsData.find(
+          (p) =>
+            p.slug.toLowerCase() === decodeURIComponent(slug).trim().toLowerCase() ||
+            p.id.toLowerCase() === decodeURIComponent(slug).trim().toLowerCase()
+        )
+      : null);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
+  if (!product) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-xl font-serif font-bold text-primary mb-2">
+          Không tìm thấy tác phẩm yêu cầu
+        </h2>
+        <p className="text-xs text-text-muted mb-6">
+          Tác phẩm này có thể đã được cập nhật đường dẫn hoặc chuyển danh mục.
+        </p>
+        <Link
+          href="/san-pham"
+          className="px-6 py-2.5 rounded-btn bg-primary text-white text-xs font-bold shadow-sm hover:bg-primary-hover transition-colors"
+        >
+          Xem danh mục sản phẩm
+        </Link>
+      </div>
+    );
+  }
+
+  // Safe images list
+  const productImages =
+    product.images && product.images.length > 0
+      ? product.images
+      : ["/images/placeholder.svg"];
+
   // Category name
   const categoryInfo = categoriesData.find((c) => c.id === product.category);
 
   // Active size price
-  const activeSize = product.sizes[selectedSizeIndex] || product.sizes[0];
+  const productSizes = product.sizes || [];
+  const activeSize = productSizes[selectedSizeIndex] || productSizes[0];
   const activePrice = activeSize?.price ?? null;
 
   // Images formatted for Lightbox
-  const lightboxImages = product.images.map((img) => ({
+  const lightboxImages = productImages.map((img: string) => ({
     url: img,
     alt: `${product.name} - ${product.woodType}`,
   }));
@@ -130,7 +159,7 @@ export default function ProductDetailClient({ slug }: ProductDetailClientProps) 
               className="relative aspect-square w-full rounded-card overflow-hidden bg-accent-soft/30 border border-border shadow-sm cursor-zoom-in group"
             >
               <Image
-                src={product.images[selectedImageIndex] || "/images/placeholder.jpg"}
+                src={productImages[selectedImageIndex] || "/images/placeholder.svg"}
                 alt={product.name}
                 fill
                 priority
@@ -153,9 +182,9 @@ export default function ProductDetailClient({ slug }: ProductDetailClientProps) 
             </div>
 
             {/* Thumbnail Carousel */}
-            {product.images.length > 1 && (
+            {productImages.length > 1 && (
               <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none select-none">
-                {product.images.map((img, index) => (
+                {productImages.map((img: string, index: number) => (
                   <button
                     key={index}
                     type="button"

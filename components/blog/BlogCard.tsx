@@ -39,7 +39,7 @@ export const BlogCard = React.memo(function BlogCard({
         className="relative aspect-[16/10] w-full bg-accent-soft/40 overflow-hidden block"
       >
         <Image
-          src={thumbnail || "/images/placeholder.jpg"}
+          src={thumbnail || "/images/placeholder.svg"}
           alt={title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

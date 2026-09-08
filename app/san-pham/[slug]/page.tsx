@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import ProductDetailClient from "./ProductDetailClient";
 import productsData from "@/data/products.json";
 
@@ -12,8 +13,17 @@ export function generateStaticParams() {
   }));
 }
 
+function findProductBySlug(rawSlug: string) {
+  if (!rawSlug) return undefined;
+  const decoded = decodeURIComponent(rawSlug).trim().toLowerCase();
+  return (
+    productsData.find((p) => p.slug.toLowerCase() === decoded) ||
+    productsData.find((p) => p.id.toLowerCase() === decoded)
+  );
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const product = productsData.find((p) => p.slug === params.slug);
+  const product = findProductBySlug(params.slug);
 
   if (!product) {
     return {
@@ -21,21 +31,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const firstImage = product.images?.[0] || "/images/placeholder.svg";
+
   return {
     title: `${product.name} (${product.code}) | Mỹ Nghệ Đông Phong`,
     description: product.description.slice(0, 160),
     openGraph: {
       title: `${product.name} — Mỹ Nghệ Đông Phong`,
       description: product.description.slice(0, 160),
-      images: product.images[0] ? [{ url: product.images[0] }] : [],
+      images: [{ url: firstImage }],
     },
   };
 }
 
 export default function ProductDetailPage({ params }: PageProps) {
+  const product = findProductBySlug(params.slug);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
     <main className="flex-1 w-full">
-      <ProductDetailClient slug={params.slug} />
+      <ProductDetailClient product={product} />
     </main>
   );
 }

@@ -9,16 +9,37 @@
     "description": "Chế tác từ phôi gỗ Tử Đàn Tiểu Diệp già cỗi nhiều năm tuổi, tôm gỗ mịn tít và ánh kim sa lấp lánh như sao sa. Đeo càng lâu chất gỗ càng lên nước bóng gương sâu thẫm.",
     "preservation": "Tránh tiếp xúc hóa chất tẩy rửa mạnh. Khi không đeo nên cất trong túi nhung hoặc hộp gấm thoáng khí.",
     "sizes": [
-      { "label": "10mm (19 hạt - Nữ)", "price": 2100000 },
-      { "label": "12mm (17 hạt - Tay vừa)", "price": 2400000 },
-      { "label": "14mm (15 hạt - Nam chuẩn)", "price": 2600000 },
-      { "label": "16mm (14 hạt - Nam to)", "price": 3200000 },
-      { "label": "18mm (13 hạt - VIP)", "price": null }
+      {
+        "label": "10mm (19 hạt - Nữ)",
+        "price": 2100000
+      },
+      {
+        "label": "12mm (17 hạt - Tay vừa)",
+        "price": 2400000
+      },
+      {
+        "label": "14mm (15 hạt - Nam chuẩn)",
+        "price": 2600000
+      },
+      {
+        "label": "16mm (14 hạt - Nam to)",
+        "price": 3200000
+      },
+      {
+        "label": "18mm (13 hạt - VIP)",
+        "price": null
+      }
     ],
-    "images": ["/assets/images/products/vong-tay-tu-dan-1.webp", "/assets/images/products/vong-tay-tu-dan-2.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDCLQJSGdzaUzbEkMos_gG-Lv-rr3CSwjE2etFuYUNOfx0eCiXkCoYPmcxswPcSPurehR927s_SWSA194dvIczQefMExkza4lS9aT67RlZln9n-zVT8zSZvMpCxCVW_I2KZZ13sHfsiTCtmqOXHuZguG_AH4Pe3WnkgOHKO6jxPpTQG9Lc1onk9PFr2ErRTff7PoyINdXZCXcTVuOk-edSMohvHfr9aHfIn_z256Ozn0Mhypti_f7jm7A",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBg3HiPf_jTsDzsb-Tm2K0sHlPZ5vi1ao72hkWRr7iJKDNxt9cZrmBMp-CvuyPv1ZsMyJ6UHXbzYRpVqGuVVWJZDf_PlZ_grx1KOo4188X1tNaAxtpSWLjzayvuyQs5kdOv0901GLKjmsfwF5uf7qqmqVH3AZ8M0cLcZU2uy90uXeDu78AjRxlwpy6NxAYR7UTQ2VE-n02e27EFBI9CVAFQf3BqQQwOAnrsbsl_OaN_WTrEVW5iVr68xw"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["cach-chon-size-vong-tay-go", "cach-bao-quan-vong-tay-go-hang-ngay"],
+    "relatedPosts": [
+      "cach-chon-size-vong-tay-go",
+      "cach-bao-quan-vong-tay-go-hang-ngay"
+    ],
     "createdAt": "2025-06-01"
   },
   {
@@ -31,15 +52,32 @@
     "description": "Vân mây biến hóa 4 mặt huyền ảo, mùi thơm dịu ngọt quý phái đặc trưng của dòng sưa đỏ cổ thụ nghìn năm tích tụ linh khí.",
     "preservation": "Lau bằng khăn vải cotton khô sạch sau khi đeo. Để nơi thoáng mát, tránh ánh nắng trực tiếp gay gắt.",
     "sizes": [
-      { "label": "12mm (17 hạt)", "price": 3500000 },
-      { "label": "14mm (15 hạt)", "price": 3800000 },
-      { "label": "16mm (14 hạt)", "price": 4600000 },
-      { "label": "20mm (12 hạt - Hàng tuyển)", "price": null }
+      {
+        "label": "12mm (17 hạt)",
+        "price": 3500000
+      },
+      {
+        "label": "14mm (15 hạt)",
+        "price": 3800000
+      },
+      {
+        "label": "16mm (14 hạt)",
+        "price": 4600000
+      },
+      {
+        "label": "20mm (12 hạt - Hàng tuyển)",
+        "price": null
+      }
     ],
-    "images": ["/assets/images/products/vong-tay-sua-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDCLQJSGdzaUzbEkMos_gG-Lv-rr3CSwjE2etFuYUNOfx0eCiXkCoYPmcxswPcSPurehR927s_SWSA194dvIczQefMExkza4lS9aT67RlZln9n-zVT8zSZvMpCxCVW_I2KZZ13sHfsiTCtmqOXHuZguG_AH4Pe3WnkgOHKO6jxPpTQG9Lc1onk9PFr2ErRTff7PoyINdXZCXcTVuOk-edSMohvHfr9aHfIn_z256Ozn0Mhypti_f7jm7A",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["cach-chon-size-vong-tay-go"],
+    "relatedPosts": [
+      "cach-chon-size-vong-tay-go"
+    ],
     "createdAt": "2025-06-02"
   },
   {
@@ -52,14 +90,28 @@
     "description": "Vân nu hoa dầy đặc, hàm lượng tinh dầu cao chìm nước 100%, mùi thơm thảo mộc ấm ngọt lan tỏa suốt ngày dài.",
     "preservation": "Hạn chế ngâm nước nóng. Xoa nhẹ vào lòng bàn tay để nhiệt lượng kích thích tinh dầu gỗ tỏa hương.",
     "sizes": [
-      { "label": "12mm (17 hạt)", "price": 1600000 },
-      { "label": "14mm (15 hạt)", "price": 1850000 },
-      { "label": "16mm (14 hạt)", "price": 2200000 }
+      {
+        "label": "12mm (17 hạt)",
+        "price": 1600000
+      },
+      {
+        "label": "14mm (15 hạt)",
+        "price": 1850000
+      },
+      {
+        "label": "16mm (14 hạt)",
+        "price": 2200000
+      }
     ],
-    "images": ["/assets/images/products/vong-tay-nu-bach-xanh-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAMhGSHU7cPxQi2PWofw3t-LyAUbZVvGpEU2V_kVEBqJsMMEzXuEssLICEI1cNTYJdB1JS-nvFKx_wG75xoISb8D6Up3vHu4IGaqvyEx4CQllPskdW9yNrwWZ2WVTh-KSESy7Fb0nGONadfLpJUJ-hPZcVfSJXa6cmWVHxep2o2q8WJ2-gNOuIsB6cOvw6Kjr8aYT2ZJg4CJ_UK1PKOx6GuO6TRNrznbkgQCD8SQUbjA52BfINdwy7HJw"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["van-go-va-nu-go-dac-diem-thuong-gap"],
+    "relatedPosts": [
+      "van-go-va-nu-go-dac-diem-thuong-gap"
+    ],
     "createdAt": "2025-06-03"
   },
   {
@@ -72,14 +124,28 @@
     "description": "Nu hoa cám chìm nước, tinh dầu thơm ngào ngạt lan tỏa giúp tẩy uế khí, an thần và mang lại giấc ngủ ngon.",
     "preservation": "Lau khăn khô mềm định kỳ. Tránh để nơi ẩm ướt hoặc nhiệt độ quá cao.",
     "sizes": [
-      { "label": "12mm (17 hạt)", "price": 1250000 },
-      { "label": "14mm (15 hạt)", "price": 1450000 },
-      { "label": "16mm (14 hạt)", "price": 1750000 }
+      {
+        "label": "12mm (17 hạt)",
+        "price": 1250000
+      },
+      {
+        "label": "14mm (15 hạt)",
+        "price": 1450000
+      },
+      {
+        "label": "16mm (14 hạt)",
+        "price": 1750000
+      }
     ],
-    "images": ["/assets/images/products/vong-tay-ngoc-am-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOckbLDEjtXGWNoKK8V6I5uDmHYggCxjV5nYJzkDPD_ydhnto0TGAAhN-4b01R5M_2nOCqvZYUerwX54V5llHifPSr5Us-LrmdNxBJoPlgWEI7rP_ZwY-FA8m5swHwlJXZNdllJqsS8FlHC5J4BrFs5W-q-qzN5Ld4ZSVcLjcw22bNMJEFWpvoyY_CrQDosevKa1wi_vW9buK5kpufkgDbYZu2l05sQCYm8gigwxFgOIG9TpOY9rN_PQ"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["cach-bao-quan-vong-tay-go-hang-ngay"],
+    "relatedPosts": [
+      "cach-bao-quan-vong-tay-go-hang-ngay"
+    ],
     "createdAt": "2025-06-04"
   },
   {
@@ -92,14 +158,28 @@
     "description": "Hiệu ứng vân chớp ánh kim 3D chuyển động khi nghiêng dưới ánh sáng, mùi hương thanh mát dễ chịu.",
     "preservation": "Để nơi thoáng khí, dùng khăn mềm lau nhẹ nhàng sau khi ra nhiều mồ hôi.",
     "sizes": [
-      { "label": "10mm (19 hạt)", "price": 950000 },
-      { "label": "12mm (17 hạt)", "price": 1100000 },
-      { "label": "14mm (15 hạt)", "price": 1350000 }
+      {
+        "label": "10mm (19 hạt)",
+        "price": 950000
+      },
+      {
+        "label": "12mm (17 hạt)",
+        "price": 1100000
+      },
+      {
+        "label": "14mm (15 hạt)",
+        "price": 1350000
+      }
     ],
-    "images": ["/assets/images/products/vong-tay-chop-bx-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAMhGSHU7cPxQi2PWofw3t-LyAUbZVvGpEU2V_kVEBqJsMMEzXuEssLICEI1cNTYJdB1JS-nvFKx_wG75xoISb8D6Up3vHu4IGaqvyEx4CQllPskdW9yNrwWZ2WVTh-KSESy7Fb0nGONadfLpJUJ-hPZcVfSJXa6cmWVHxep2o2q8WJ2-gNOuIsB6cOvw6Kjr8aYT2ZJg4CJ_UK1PKOx6GuO6TRNrznbkgQCD8SQUbjA52BfINdwy7HJw"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["cach-bao-quan-vong-tay-go-hang-ngay"],
+    "relatedPosts": [
+      "cach-bao-quan-vong-tay-go-hang-ngay"
+    ],
     "createdAt": "2025-06-05"
   },
   {
@@ -112,17 +192,30 @@
     "description": "Thớ dầu tự nhiên dầy đặc, vân chỉ đen nhánh đan xen, hương thơm trầm tĩnh tích tụ tinh hoa đất trời qua nhiều thập kỷ.",
     "preservation": "Tuyệt đối không để dính nước hoa hay xà phòng làm bít tắc lỗ tiết dầu tự nhiên của trầm.",
     "sizes": [
-      { "label": "10mm (Chuỗi hạt)", "price": null },
-      { "label": "12mm (Nam/Nữ)", "price": null },
-      { "label": "14mm (Hàng tuyển)", "price": null }
+      {
+        "label": "10mm (Chuỗi hạt)",
+        "price": null
+      },
+      {
+        "label": "12mm (Nam/Nữ)",
+        "price": null
+      },
+      {
+        "label": "14mm (Hàng tuyển)",
+        "price": null
+      }
     ],
-    "images": ["/assets/images/products/vong-tay-tram-huong-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBg3HiPf_jTsDzsb-Tm2K0sHlPZ5vi1ao72hkWRr7iJKDNxt9cZrmBMp-CvuyPv1ZsMyJ6UHXbzYRpVqGuVVWJZDf_PlZ_grx1KOo4188X1tNaAxtpSWLjzayvuyQs5kdOv0901GLKjmsfwF5uf7qqmqVH3AZ8M0cLcZU2uy90uXeDu78AjRxlwpy6NxAYR7UTQ2VE-n02e27EFBI9CVAFQf3BqQQwOAnrsbsl_OaN_WTrEVW5iVr68xw",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["cach-bao-quan-vong-tay-go-hang-ngay"],
+    "relatedPosts": [
+      "cach-bao-quan-vong-tay-go-hang-ngay"
+    ],
     "createdAt": "2025-06-06"
   },
-
   {
     "id": "bk-001",
     "slug": "but-ky-nu-huyet-long-thau-quang",
@@ -133,13 +226,24 @@
     "description": "Thân bút gỗ nu huyết long thấu quang đỏ rực như ruby dưới ánh đèn, phối khoen kim loại mạ vàng sang trọng, nét mực dạ Parker êm mượt.",
     "preservation": "Lau thân bút bằng khăn bông khô. Tránh va đập mạnh làm ảnh hưởng cơ cấu ngòi bút.",
     "sizes": [
-      { "label": "Bút đơn kèm hộp gấm", "price": 950000 },
-      { "label": "Set quà tặng (Bút + 2 ruột phụ + Hộp gỗ)", "price": 1250000 }
+      {
+        "label": "Bút đơn kèm hộp gấm",
+        "price": 950000
+      },
+      {
+        "label": "Set quà tặng (Bút + 2 ruột phụ + Hộp gỗ)",
+        "price": 1250000
+      }
     ],
-    "images": ["/assets/images/products/but-ky-huyet-long-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBZ70QpDt38cVkTZx5hWHfT3mC4uu3z02lT2bjkbl18lgu_ZAkaQDwWKxdOst5ZiencgcK514zEM8GRs_SjDFWb4aLK2kC1mlGvb0r_pobnNuHIU4XTYUhsG3lvEf3bTVRNoaLKYzi_5F5BzoJp-hfqD_8xQGCMAcAkFAI7sgDCM-XD8y3Q4xcA3e-wwiHR46oRwMwS7yEIL40RpX0lQudYnYj1GVtHGT26ZZVL6LzlE59alsabeHdQsA"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "relatedPosts": [
+      "nhung-dieu-can-xem-khi-chon-but-ky-go"
+    ],
     "createdAt": "2025-06-07"
   },
   {
@@ -152,13 +256,24 @@
     "description": "Vân nu hoa đan kết hài hòa, thoang thoảng hương thơm thảo mộc tự nhiên mỗi khi cầm bút ký hợp đồng.",
     "preservation": "Bảo quản nơi khô ráo, tránh nguồn nhiệt cao.",
     "sizes": [
-      { "label": "Bút ký tiêu chuẩn", "price": 850000 },
-      { "label": "Kèm hộp quà sang trọng", "price": 1050000 }
+      {
+        "label": "Bút ký tiêu chuẩn",
+        "price": 850000
+      },
+      {
+        "label": "Kèm hộp quà sang trọng",
+        "price": 1050000
+      }
     ],
-    "images": ["/assets/images/products/but-ky-nu-bach-xanh-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAmoLwoVk_p-BiVCKwbuki-prk4_13mEQ9YjpZlnv3GSflSmdiCgmtxcO0yxltauAb2kjow8D-i7z-xolzTzFpf76mme_C1ymSpNlLtjoY26qGMHE21cY-eR3i-eW6SVSv66pYKiO1QUWHU22CZCjcZEW9LgRrnebnRMTODchV-JN0M2zXGSSxvl4i0i_1hM81JElUfAs5QKYg9LIokXgVKahJ4JNK-VM9zTg10kZHYhpztJsIp6XRn0w"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "relatedPosts": [
+      "nhung-dieu-can-xem-khi-chon-but-ky-go"
+    ],
     "createdAt": "2025-06-08"
   },
   {
@@ -171,12 +286,20 @@
     "description": "Dòng bút đế vương chế tác từ phôi hoàng đàn tuyết già, tinh dầu lên tuyết óng ánh, hương thơm ngào ngạt vương giả.",
     "preservation": "Cất trong hộp kín khi không sử dụng để tinh dầu kết tinh thành tuyết trắng tự nhiên.",
     "sizes": [
-      { "label": "Bản kỷ niệm giới hạn", "price": null }
+      {
+        "label": "Bản kỷ niệm giới hạn",
+        "price": null
+      }
     ],
-    "images": ["/assets/images/products/but-ky-hoang-dan-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAmoLwoVk_p-BiVCKwbuki-prk4_13mEQ9YjpZlnv3GSflSmdiCgmtxcO0yxltauAb2kjow8D-i7z-xolzTzFpf76mme_C1ymSpNlLtjoY26qGMHE21cY-eR3i-eW6SVSv66pYKiO1QUWHU22CZCjcZEW9LgRrnebnRMTODchV-JN0M2zXGSSxvl4i0i_1hM81JElUfAs5QKYg9LIokXgVKahJ4JNK-VM9zTg10kZHYhpztJsIp6XRn0w"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "relatedPosts": [
+      "nhung-dieu-can-xem-khi-chon-but-ky-go"
+    ],
     "createdAt": "2025-06-09"
   },
   {
@@ -189,16 +312,26 @@
     "description": "Chất gỗ mun sừng đen tuyền huyền bí, không tôm gỗ, bóng loáng sang trọng thể hiện uy quyền người lãnh đạo.",
     "preservation": "Lau sạch bằng khăn mềm.",
     "sizes": [
-      { "label": "Bút tiêu chuẩn", "price": 750000 },
-      { "label": "Set quà khắc tên riêng", "price": 950000 }
+      {
+        "label": "Bút tiêu chuẩn",
+        "price": 750000
+      },
+      {
+        "label": "Set quà khắc tên riêng",
+        "price": 950000
+      }
     ],
-    "images": ["/assets/images/products/but-ky-mun-sung-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCCNKBoBrwOVLNiOqQ8du_TmY5jBOS0MshjNuG1MdshoWGLypsTb-F9wxVkgBG1t6SCw6icr3PLdI-jfAm_AluCifaVI2rgr2Ga33BwtZgSbXGvCUcwmgT-j_h78V4vqykKtMIHQ7Ftofa2WDl8PVK42pBCLIRikOefIvSYD0dxIAwJJTu7HpGGVA6IYeFHNEXVr6bIN_kKOz0s006qv8Yu5OY7nxlbLxr_gPBoHKXfqFjco5OZYRvZAA",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAmoLwoVk_p-BiVCKwbuki-prk4_13mEQ9YjpZlnv3GSflSmdiCgmtxcO0yxltauAb2kjow8D-i7z-xolzTzFpf76mme_C1ymSpNlLtjoY26qGMHE21cY-eR3i-eW6SVSv66pYKiO1QUWHU22CZCjcZEW9LgRrnebnRMTODchV-JN0M2zXGSSxvl4i0i_1hM81JElUfAs5QKYg9LIokXgVKahJ4JNK-VM9zTg10kZHYhpztJsIp6XRn0w"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "relatedPosts": [
+      "nhung-dieu-can-xem-khi-chon-but-ky-go"
+    ],
     "createdAt": "2025-06-10"
   },
-
   {
     "id": "bl-001",
     "slug": "bi-lan-tay-go-cam-lai",
@@ -209,13 +342,24 @@
     "description": "Vân chỉ cẩm lai đen tím uốn lượn sắc sảo, tiện tròn chuẩn xác, kích thích huyệt vị kinh lạc giảm tê mỏi bàn tay.",
     "preservation": "Lăn tay hàng ngày, mồ hôi tay làm bi càng ngày càng lên nước nâu bóng đậm đà.",
     "sizes": [
-      { "label": "Đường kính 4.5cm (Cặp 2 quả)", "price": 450000 },
-      { "label": "Đường kính 5.0cm (Cặp 2 quả)", "price": 550000 }
+      {
+        "label": "Đường kính 4.5cm (Cặp 2 quả)",
+        "price": 450000
+      },
+      {
+        "label": "Đường kính 5.0cm (Cặp 2 quả)",
+        "price": 550000
+      }
     ],
-    "images": ["/assets/images/products/bi-lan-tay-cam-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA0ZQTkMxoeFqbUb51lzz1AWErlK8e8YqLdwyuV4VJhgCI6QwEibA2s7vaIeMR-r6rVV3viNAWKTq8y3eR9jq_tmV5BhOHoNtA54qsNxbsxhqUFZ7VbvmKkLCnVafZbWgIq-WfpeK20LradYiSqBqZgFL5XA4LqXodTe4Nk3_30SvhuGdAqdtDwUVuwuLFiPDO-KKfveLVWqHTu1WVMx8dmwtwC3RBJsP69PNC97pbAfZ1m8rq-Zqucew",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-11"
   },
   {
@@ -228,16 +372,26 @@
     "description": "Cặp bi tiện từ phôi sưa đỏ già nguyên khối, vân vần vũ 3D, mùi thơm thanh nhã giải tỏa âu lo căng thẳng.",
     "preservation": "Lau khăn khô mềm định kỳ.",
     "sizes": [
-      { "label": "Đường kính 4.8cm (Cặp 2 quả)", "price": 1800000 },
-      { "label": "Đường kính 5.2cm (Cặp 2 quả)", "price": 2300000 }
+      {
+        "label": "Đường kính 4.8cm (Cặp 2 quả)",
+        "price": 1800000
+      },
+      {
+        "label": "Đường kính 5.2cm (Cặp 2 quả)",
+        "price": 2300000
+      }
     ],
-    "images": ["/assets/images/products/bi-lan-tay-sua-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA0ZQTkMxoeFqbUb51lzz1AWErlK8e8YqLdwyuV4VJhgCI6QwEibA2s7vaIeMR-r6rVV3viNAWKTq8y3eR9jq_tmV5BhOHoNtA54qsNxbsxhqUFZ7VbvmKkLCnVafZbWgIq-WfpeK20LradYiSqBqZgFL5XA4LqXodTe4Nk3_30SvhuGdAqdtDwUVuwuLFiPDO-KKfveLVWqHTu1WVMx8dmwtwC3RBJsP69PNC97pbAfZ1m8rq-Zqucew",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-12"
   },
-
   {
     "id": "gg-001",
     "slug": "goi-hat-go-sua-do",
@@ -248,13 +402,24 @@
     "description": "Đan kết từ hàng nghìn hạt sưa đỏ tuyển chọn, độ cong công thái học nâng đỡ đốt sống cổ, mùi thơm ru êm giấc ngủ sâu.",
     "preservation": "Lau sạch hạt bằng khăn ẩm vắt kiệt, để nơi râm mát thoáng khí.",
     "sizes": [
-      { "label": "Kích thước 30cm x 50cm", "price": null },
-      { "label": "Kích thước 35cm x 55cm", "price": null }
+      {
+        "label": "Kích thước 30cm x 50cm",
+        "price": null
+      },
+      {
+        "label": "Kích thước 35cm x 55cm",
+        "price": null
+      }
     ],
-    "images": ["/assets/images/products/goi-go-sua-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOckbLDEjtXGWNoKK8V6I5uDmHYggCxjV5nYJzkDPD_ydhnto0TGAAhN-4b01R5M_2nOCqvZYUerwX54V5llHifPSr5Us-LrmdNxBJoPlgWEI7rP_ZwY-FA8m5swHwlJXZNdllJqsS8FlHC5J4BrFs5W-q-qzN5Ld4ZSVcLjcw22bNMJEFWpvoyY_CrQDosevKa1wi_vW9buK5kpufkgDbYZu2l05sQCYm8gigwxFgOIG9TpOY9rN_PQ"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-13"
   },
   {
@@ -267,16 +432,26 @@
     "description": "Hạt bách xanh thơm ấm nồng, thông thoáng khí huyết, hỗ trợ xua tan mệt mỏi sau ngày làm việc dài.",
     "preservation": "Vệ sinh nhẹ bằng khăn sạch, không ngâm ngập trong nước.",
     "sizes": [
-      { "label": "Kích thước 30cm x 48cm", "price": 1350000 },
-      { "label": "Kích thước 35cm x 52cm", "price": 1650000 }
+      {
+        "label": "Kích thước 30cm x 48cm",
+        "price": 1350000
+      },
+      {
+        "label": "Kích thước 35cm x 52cm",
+        "price": 1650000
+      }
     ],
-    "images": ["/assets/images/products/goi-go-bach-xanh-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOckbLDEjtXGWNoKK8V6I5uDmHYggCxjV5nYJzkDPD_ydhnto0TGAAhN-4b01R5M_2nOCqvZYUerwX54V5llHifPSr5Us-LrmdNxBJoPlgWEI7rP_ZwY-FA8m5swHwlJXZNdllJqsS8FlHC5J4BrFs5W-q-qzN5Ld4ZSVcLjcw22bNMJEFWpvoyY_CrQDosevKa1wi_vW9buK5kpufkgDbYZu2l05sQCYm8gigwxFgOIG9TpOY9rN_PQ"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-14"
   },
-
   {
     "id": "tau-001",
     "slug": "tau-hut-go-trac-can-sung",
@@ -287,12 +462,20 @@
     "description": "Buồng đốt gỗ trắc già chịu nhiệt tốt, cán sừng uốn cong cổ điển mang phong thái lịch lãm phong trần.",
     "preservation": "Vệ sinh buồng đốt định kỳ bằng que thông chuyên dụng sau khi nguội hẳn.",
     "sizes": [
-      { "label": "Chiều dài tiêu chuẩn 14.5cm", "price": 850000 }
+      {
+        "label": "Chiều dài tiêu chuẩn 14.5cm",
+        "price": 850000
+      }
     ],
-    "images": ["/assets/images/products/tau-go-trac-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBg3HiPf_jTsDzsb-Tm2K0sHlPZ5vi1ao72hkWRr7iJKDNxt9cZrmBMp-CvuyPv1ZsMyJ6UHXbzYRpVqGuVVWJZDf_PlZ_grx1KOo4188X1tNaAxtpSWLjzayvuyQs5kdOv0901GLKjmsfwF5uf7qqmqVH3AZ8M0cLcZU2uy90uXeDu78AjRxlwpy6NxAYR7UTQ2VE-n02e27EFBI9CVAFQf3BqQQwOAnrsbsl_OaN_WTrEVW5iVr68xw",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDts92to_khrOjbwWFid5GFesuFcPyOsyfdXCgvfPD6cKKnypyitxEojNQyRQZw2r9V41eB56hQg7zZR1uBxDt2FYEsQJYJlNcoBf1M3Wf2ovXYFSMH_9W0hFEOHyvUBkjJe6x9gcDDvvTyLWEdNg4clYBzXIkOs87NMuF-XYDOLmfL7c7ELz4dncq6DBFHf2i4Y8haYV0lxqjXKZISrjYcN_xEWZLTcLk8llHedm7J6RJp-5DLp1em3w"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-15"
   },
   {
@@ -305,15 +488,22 @@
     "description": "Vân hoa nu cẩm sắc sảo phủ kín thân tẩu, dáng tẩu Freehand độc bản dành cho người sưu tầm sành điệu.",
     "preservation": "Tránh cạo mạnh đáy buồng đốt khi còn nóng.",
     "sizes": [
-      { "label": "Chiều dài 15cm (Dáng Freehand độc bản)", "price": 1150000 }
+      {
+        "label": "Chiều dài 15cm (Dáng Freehand độc bản)",
+        "price": 1150000
+      }
     ],
-    "images": ["/assets/images/products/tau-nu-cam-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBg3HiPf_jTsDzsb-Tm2K0sHlPZ5vi1ao72hkWRr7iJKDNxt9cZrmBMp-CvuyPv1ZsMyJ6UHXbzYRpVqGuVVWJZDf_PlZ_grx1KOo4188X1tNaAxtpSWLjzayvuyQs5kdOv0901GLKjmsfwF5uf7qqmqVH3AZ8M0cLcZU2uy90uXeDu78AjRxlwpy6NxAYR7UTQ2VE-n02e27EFBI9CVAFQf3BqQQwOAnrsbsl_OaN_WTrEVW5iVr68xw",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDts92to_khrOjbwWFid5GFesuFcPyOsyfdXCgvfPD6cKKnypyitxEojNQyRQZw2r9V41eB56hQg7zZR1uBxDt2FYEsQJYJlNcoBf1M3Wf2ovXYFSMH_9W0hFEOHyvUBkjJe6x9gcDDvvTyLWEdNg4clYBzXIkOs87NMuF-XYDOLmfL7c7ELz4dncq6DBFHf2i4Y8haYV0lxqjXKZISrjYcN_xEWZLTcLk8llHedm7J6RJp-5DLp1em3w"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["van-go-va-nu-go-dac-diem-thuong-gap"],
+    "relatedPosts": [
+      "van-go-va-nu-go-dac-diem-thuong-gap"
+    ],
     "createdAt": "2025-06-16"
   },
-
   {
     "id": "dua-001",
     "slug": "dua-go-mun-sung-cao-cap",
@@ -324,13 +514,24 @@
     "description": "Gỗ mun sừng đen tuyền 100% tự nhiên, không phủ sơn hóa chất, đanh chắc như đá, không thấm nước và không ẩm mốc.",
     "preservation": "Rửa sạch sau bữa ăn và dựng thẳng trong ống đũa thoáng khí. Không ngâm qua đêm.",
     "sizes": [
-      { "label": "Hộp 10 đôi (Dài 24.5cm tiêu chuẩn)", "price": 650000 },
-      { "label": "Hộp 10 đôi bọc đầu đồng / bạc", "price": 890000 }
+      {
+        "label": "Hộp 10 đôi (Dài 24.5cm tiêu chuẩn)",
+        "price": 650000
+      },
+      {
+        "label": "Hộp 10 đôi bọc đầu đồng / bạc",
+        "price": 890000
+      }
     ],
-    "images": ["/assets/images/products/dua-mun-sung-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOckbLDEjtXGWNoKK8V6I5uDmHYggCxjV5nYJzkDPD_ydhnto0TGAAhN-4b01R5M_2nOCqvZYUerwX54V5llHifPSr5Us-LrmdNxBJoPlgWEI7rP_ZwY-FA8m5swHwlJXZNdllJqsS8FlHC5J4BrFs5W-q-qzN5Ld4ZSVcLjcw22bNMJEFWpvoyY_CrQDosevKa1wi_vW9buK5kpufkgDbYZu2l05sQCYm8gigwxFgOIG9TpOY9rN_PQ"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["cach-ve-sinh-va-bao-quan-dua-go"],
+    "relatedPosts": [
+      "cach-ve-sinh-va-bao-quan-dua-go"
+    ],
     "createdAt": "2025-06-17"
   },
   {
@@ -343,15 +544,22 @@
     "description": "Vân gỗ trắc đỏ đen tự nhiên sang trọng, bề mặt mộc đánh sáp ong truyền thống an toàn tuyệt đối cho gia đình.",
     "preservation": "Sau khi rửa lau khô trước khi cất vào ống đũa.",
     "sizes": [
-      { "label": "Hộp 10 đôi tiêu chuẩn", "price": 480000 }
+      {
+        "label": "Hộp 10 đôi tiêu chuẩn",
+        "price": 480000
+      }
     ],
-    "images": ["/assets/images/products/dua-go-trac-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCOckbLDEjtXGWNoKK8V6I5uDmHYggCxjV5nYJzkDPD_ydhnto0TGAAhN-4b01R5M_2nOCqvZYUerwX54V5llHifPSr5Us-LrmdNxBJoPlgWEI7rP_ZwY-FA8m5swHwlJXZNdllJqsS8FlHC5J4BrFs5W-q-qzN5Ld4ZSVcLjcw22bNMJEFWpvoyY_CrQDosevKa1wi_vW9buK5kpufkgDbYZu2l05sQCYm8gigwxFgOIG9TpOY9rN_PQ"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["cach-ve-sinh-va-bao-quan-dua-go"],
+    "relatedPosts": [
+      "cach-ve-sinh-va-bao-quan-dua-go"
+    ],
     "createdAt": "2025-06-18"
   },
-
   {
     "id": "dto-001",
     "slug": "dem-ghe-oto-go-trac",
@@ -362,13 +570,24 @@
     "description": "Hạt tròn 12mm gỗ trắc mát lạnh chống ê mỏi và chống nóng lưng trên những hành trình dài.",
     "preservation": "Dùng khăn ẩm lau bề mặt khi bám bụi bẩn.",
     "sizes": [
-      { "label": "Đệm 1 ghế đơn (Ghế lái hoặc phụ)", "price": 1850000 },
-      { "label": "Bộ 2 ghế trước", "price": 3500000 }
+      {
+        "label": "Đệm 1 ghế đơn (Ghế lái hoặc phụ)",
+        "price": 1850000
+      },
+      {
+        "label": "Bộ 2 ghế trước",
+        "price": 3500000
+      }
     ],
-    "images": ["/assets/images/products/dem-oto-trac-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDCLQJSGdzaUzbEkMos_gG-Lv-rr3CSwjE2etFuYUNOfx0eCiXkCoYPmcxswPcSPurehR927s_SWSA194dvIczQefMExkza4lS9aT67RlZln9n-zVT8zSZvMpCxCVW_I2KZZ13sHfsiTCtmqOXHuZguG_AH4Pe3WnkgOHKO6jxPpTQG9Lc1onk9PFr2ErRTff7PoyINdXZCXcTVuOk-edSMohvHfr9aHfIn_z256Ozn0Mhypti_f7jm7A",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAixtMBjkiIIxus-FcmvLoR8VQelCgFzMFXjKaaZC8m55CgD0gquCGiF4W15YG43frtpdg2vyf-MmcUE64_pSL1rxRMAbMVj4KqlrSe_vF4iXVf65Zfyfp9ktua05bTOn-Bi3yVNyqYPSypnM-pTMap1WuI-vtldJrp08ttslgqlB-7hclH0LCLjaJ-XGLOf7rGG203vv0il0cuixT_Iixwv-JIikfKYSKhMB3yaBBL1QGupnQnLn1nxA"
+    ],
     "featured": true,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-19"
   },
   {
@@ -381,13 +600,24 @@
     "description": "Mùi hương gỗ bách xanh tự nhiên khử mùi hôi điều hòa xe hơi, tạo cảm giác thư thái và tỉnh táo khi lái xe.",
     "preservation": "Lau bằng khăn ẩm mềm.",
     "sizes": [
-      { "label": "Đệm 1 ghế đơn", "price": 1550000 },
-      { "label": "Bộ 2 ghế trước", "price": 2900000 }
+      {
+        "label": "Đệm 1 ghế đơn",
+        "price": 1550000
+      },
+      {
+        "label": "Bộ 2 ghế trước",
+        "price": 2900000
+      }
     ],
-    "images": ["/assets/images/products/dem-oto-bach-xanh-1.webp"],
+    "images": [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDCLQJSGdzaUzbEkMos_gG-Lv-rr3CSwjE2etFuYUNOfx0eCiXkCoYPmcxswPcSPurehR927s_SWSA194dvIczQefMExkza4lS9aT67RlZln9n-zVT8zSZvMpCxCVW_I2KZZ13sHfsiTCtmqOXHuZguG_AH4Pe3WnkgOHKO6jxPpTQG9Lc1onk9PFr2ErRTff7PoyINdXZCXcTVuOk-edSMohvHfr9aHfIn_z256Ozn0Mhypti_f7jm7A",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAixtMBjkiIIxus-FcmvLoR8VQelCgFzMFXjKaaZC8m55CgD0gquCGiF4W15YG43frtpdg2vyf-MmcUE64_pSL1rxRMAbMVj4KqlrSe_vF4iXVf65Zfyfp9ktua05bTOn-Bi3yVNyqYPSypnM-pTMap1WuI-vtldJrp08ttslgqlB-7hclH0LCLjaJ-XGLOf7rGG203vv0il0cuixT_Iixwv-JIikfKYSKhMB3yaBBL1QGupnQnLn1nxA"
+    ],
     "featured": false,
     "status": "published",
-    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "relatedPosts": [
+      "gioi-thieu-nhom-san-pham-dong-phong"
+    ],
     "createdAt": "2025-06-20"
   }
 ]

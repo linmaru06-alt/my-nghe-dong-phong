@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import PriceDisplay from "./PriceDisplay";
 import Badge from "@/components/ui/Badge";
@@ -30,18 +31,29 @@ export const ProductCard = React.memo(function ProductCard({
   sizes,
   featured,
 }: ProductCardProps) {
+  const router = useRouter();
+
   // Find first size price or lowest price
   const firstPrice = sizes && sizes.length > 0 ? sizes[0].price : null;
-  const imageUrl = images && images.length > 0 ? images[0] : "/images/placeholder.jpg";
+  const imageUrl = images && images.length > 0 ? images[0] : "/images/placeholder.svg";
   const zaloUrl = createZaloLink(settingsData.brand.zaloLink, code, name);
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // If user clicked directly on or inside the Zalo button, don't navigate to product
+    const target = e.target as HTMLElement;
+    if (target.closest("a[data-zalo='true']")) {
+      return;
+    }
+    router.push(`/san-pham/${slug}`);
+  };
+
   return (
-    <div className="group flex flex-col rounded-card bg-surface border border-border/70 hover:border-primary/50 shadow-card hover:shadow-xl transition-all duration-300 overflow-hidden relative">
+    <div
+      onClick={handleCardClick}
+      className="group flex flex-col rounded-card bg-surface border border-border/70 hover:border-primary/50 shadow-card hover:shadow-xl transition-all duration-300 overflow-hidden relative cursor-pointer"
+    >
       {/* Product Image Container */}
-      <Link
-        href={`/san-pham/${slug}`}
-        className="relative aspect-square w-full bg-accent-soft/40 overflow-hidden block"
-      >
+      <div className="relative aspect-square w-full bg-accent-soft/40 overflow-hidden block">
         <Image
           src={imageUrl}
           alt={name}
@@ -61,7 +73,7 @@ export const ProductCard = React.memo(function ProductCard({
             </Badge>
           )}
         </div>
-      </Link>
+      </div>
 
       {/* Content */}
       <div className="p-3.5 md:p-4 flex-1 flex flex-col justify-between">
@@ -69,11 +81,9 @@ export const ProductCard = React.memo(function ProductCard({
           <span className="text-[11px] text-text-muted font-medium block truncate mb-1">
             {woodType}
           </span>
-          <Link href={`/san-pham/${slug}`}>
-            <h3 className="font-serif text-sm md:text-base font-bold text-text group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-              {name}
-            </h3>
-          </Link>
+          <h3 className="font-serif text-sm md:text-base font-bold text-text group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+            {name}
+          </h3>
         </div>
 
         {/* Price & Action Row */}
@@ -87,8 +97,10 @@ export const ProductCard = React.memo(function ProductCard({
             href={zaloUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-zalo="true"
+            onClick={(e) => e.stopPropagation()}
             title={`Tư vấn Zalo mã ${code}`}
-            className="p-2 rounded-full bg-zalo/10 hover:bg-zalo text-zalo hover:text-white transition-all duration-200 flex-shrink-0"
+            className="p-2 rounded-full bg-zalo/10 hover:bg-zalo text-zalo hover:text-white transition-all duration-200 flex-shrink-0 z-10"
             aria-label={`Chat Zalo về sản phẩm ${code}`}
           >
             <MessageCircle className="w-4 h-4 fill-current" />

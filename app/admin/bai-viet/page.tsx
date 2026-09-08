@@ -9,7 +9,12 @@ import { usePostsStore } from "@/lib/usePosts";
 import { formatDate } from "@/lib/utils";
 
 export default function AdminPostsPage() {
-  const { posts, deletePost } = usePostsStore();
+  const { posts, deletePost, loadPosts } = usePostsStore();
+
+  React.useEffect(() => {
+    loadPosts();
+  }, [loadPosts]);
+
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -100,7 +105,7 @@ export default function AdminPostsPage() {
                 <td className="py-2.5 px-3">
                   <div className="relative w-14 h-10 rounded overflow-hidden bg-bg border border-border flex-shrink-0">
                     <Image
-                      src={post.thumbnail || "/images/placeholder.jpg"}
+                      src={post.thumbnail || "/images/placeholder.svg"}
                       alt={post.title}
                       fill
                       className="object-cover"

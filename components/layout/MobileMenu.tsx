@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown, Phone, MessageCircle, Search } from "lucide-react";
 import categoriesData from "@/data/categories.json";
@@ -13,15 +14,27 @@ export interface MobileMenuProps {
 }
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const router = useRouter();
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isPostsOpen, setIsPostsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       onClose();
-      window.location.href = `/tim-kiem?q=${encodeURIComponent(searchQuery.trim())}`;
+      router.push(`/tim-kiem?q=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 

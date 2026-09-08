@@ -13,7 +13,11 @@ import { formatPrice } from "@/lib/formatPrice";
 const ITEMS_PER_PAGE = 10;
 
 export default function AdminProductsPage() {
-  const { products, deleteProduct, toggleFeatured } = useProductsStore();
+  const { products, deleteProduct, toggleFeatured, loadProducts } = useProductsStore();
+
+  React.useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -143,7 +147,7 @@ export default function AdminProductsPage() {
                   <td className="py-2.5 px-3">
                     <div className="relative w-12 h-12 rounded overflow-hidden bg-bg border border-border flex-shrink-0">
                       <Image
-                        src={product.images[0] || "/images/placeholder.jpg"}
+                        src={product.images[0] || "/images/placeholder.svg"}
                         alt={product.name}
                         fill
                         className="object-cover"

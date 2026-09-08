@@ -26,6 +26,8 @@ export function FloatingZalo() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  const isProductDetail = pathname.startsWith("/san-pham/") && pathname !== "/san-pham";
+
   if (pathname.startsWith("/admin") || !isVisible) {
     return null;
   }
@@ -33,7 +35,9 @@ export function FloatingZalo() {
   return (
     <aside
       aria-label="Liên hệ hỗ trợ Zalo"
-      className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-40 flex items-center select-none"
+      className={`fixed bottom-20 right-4 md:bottom-8 md:right-8 z-40 flex items-center select-none ${
+        isProductDetail ? "hidden md:flex" : ""
+      }`}
     >
       {/* Tooltip on Desktop */}
       <div

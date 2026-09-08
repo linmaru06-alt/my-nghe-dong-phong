@@ -17,7 +17,7 @@ export function HeroSection() {
   return (
     <>
       {/* ─── MOBILE VIEW (Stitch Screen 11: Mobile 1B - Trang Chủ App) ─── */}
-      <section className="block md:hidden px-4 pt-3 pb-2 select-none">
+      <section className="block md:hidden px-4 pt-[72px] pb-3 select-none">
         <div className="relative w-full h-[220px] rounded-[16px] overflow-hidden shadow-[0_8px_24px_rgba(107,63,31,0.16)] flex flex-col justify-end p-4">
           {/* Background Image with Warm Amber Scrim */}
           <div
