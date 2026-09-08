@@ -1,0 +1,13 @@
+[
+  { "id": "tu-dan", "name": "Gỗ Tử Đàn", "fullName": "Tử Đàn Tiểu Diệp Ấn Độ", "origin": "Ấn Độ" },
+  { "id": "sua-do", "name": "Gỗ Sưa Đỏ", "fullName": "Sưa Đỏ Bắc Bộ", "origin": "Việt Nam" },
+  { "id": "nu-bach-xanh", "name": "Nu Bách Xanh", "fullName": "Nu Bách Xanh Chìm Nước Mộc Châu", "origin": "Mộc Châu" },
+  { "id": "nu-ngoc-am", "name": "Nu Ngọc Am", "fullName": "Nu Ngọc Am Hà Giang", "origin": "Hà Giang" },
+  { "id": "chop-bach-xanh", "name": "Chớp Bách Xanh", "fullName": "Gỗ Chớp Bách Xanh 3D", "origin": "Việt Nam" },
+  { "id": "tram-huong", "name": "Trầm Hương", "fullName": "Trầm Hương Tự Nhiên", "origin": "Việt Nam" },
+  { "id": "nu-huyet-long", "name": "Nu Huyết Long", "fullName": "Nu Huyết Long Thấu Quang", "origin": "Indonesia" },
+  { "id": "hoang-dan", "name": "Hoàng Đàn", "fullName": "Hoàng Đàn Tuyết Lạng Sơn", "origin": "Lạng Sơn" },
+  { "id": "mun-sung", "name": "Mun Sừng", "fullName": "Gỗ Mun Sừng Khánh Hòa", "origin": "Khánh Hòa" },
+  { "id": "cam-lai", "name": "Gỗ Cẩm", "fullName": "Gỗ Cẩm Lai / Nu Cẩm", "origin": "Việt Nam" },
+  { "id": "go-trac", "name": "Gỗ Trắc", "fullName": "Gỗ Trắc Đỏ Đen", "origin": "Việt Nam" }
+]

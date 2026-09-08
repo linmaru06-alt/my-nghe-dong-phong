@@ -1,0 +1,41 @@
+{
+  "siteName": "Mỹ Nghệ Đông Phong",
+  "shortName": "Đông Phong",
+  "tagline": "Tinh hoa từ những thớ gỗ quý",
+  "description": "Chuyên chế tác và cung cấp các vật phẩm gỗ quý tự nhiên: Vòng tay phong thủy, bút ký cao cấp, bi lăn tay, gối gỗ quý, tẩu thuốc, đũa gỗ và đệm ô tô.",
+  "hotline": "0912 345 678",
+  "hotlineRaw": "0912345678",
+  "zalo": "0912345678",
+  "zaloLink": "https://zalo.me/0912345678",
+  "address": "Làng nghề Mộc truyền thống, Hà Nội, Việt Nam",
+  "workingHours": "08:00 - 21:00 (Hàng ngày, kể cả T7 & CN)",
+  "email": "lienhe@mynghedongphong.vn",
+  "socialLinks": {
+    "facebook": "https://facebook.com",
+    "zalo": "https://zalo.me/0912345678",
+    "youtube": "https://youtube.com"
+  },
+  "policies": [
+    { "title": "Cam kết 100% gỗ thật", "desc": "Đúng chủng loại gỗ tự nhiên quý hiếm, kiểm tra thấu quang/mùi hương/vân thớ trước khi nhận." },
+    { "title": "Kiểm tra hàng trước khi thanh toán", "desc": "Mở hộp kiểm tra đúng mã sản phẩm và vân gỗ đã chốt qua Zalo." },
+    { "title": "Bảo hành chất gỗ trọn đời", "desc": "Bảo hành dây xâu trọn đời đối với vòng tay, hỗ trợ làm mới và đánh bóng sản phẩm." }
+  ],
+  "faq": [
+    {
+      "q": "Làm thế nào để phân biệt gỗ thật và gỗ ép giả mạo?",
+      "a": "Gỗ thật tại Đông Phong luôn có vân gỗ tự nhiên không đồng nhất, tôm gỗ li ti, có mùi thơm thảo mộc đặc trưng của từng loài cây và trọng lượng đầm chắc khi cầm tay."
+    },
+    {
+      "q": "Tôi ở xa thì có được kiểm tra hàng trước khi thanh toán không?",
+      "a": "Có! Quý khách hoàn toàn được quyền mở hộp kiểm tra đúng sản phẩm, đúng kích thước và vân gỗ đã được chụp gửi trước qua Zalo rồi mới thanh toán tiền cho nhân viên giao hàng."
+    },
+    {
+      "q": "Vòng tay gỗ bị đứt dây xâu thì cơ sở có hỗ trợ không?",
+      "a": "Đông Phong bảo hành dây xâu trọn đời cho toàn bộ khách hàng. Quý khách chỉ cần gửi lại cơ sở hoặc mang tới xưởng sẽ được các thợ mộc xâu mới miễn phí."
+    },
+    {
+      "q": "Cách đặt hàng và tư vấn nhanh nhất là gì?",
+      "a": "Quý khách chỉ cần bấm nút 'Nhắn Zalo' hoặc 'Gọi điện' trên màn hình chi tiết sản phẩm. Hệ thống sẽ tự động đính kèm mã sản phẩm để nhân viên tư vấn gửi video cận cảnh ngay lập tức."
+    }
+  ]
+}

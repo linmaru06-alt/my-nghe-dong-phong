@@ -1,0 +1,9 @@
+[
+  { "id": "vong-tay", "name": "Vòng tay", "icon": "🪬", "order": 1, "description": "Vòng tay phong thủy chế tác từ gỗ quý tự nhiên, mùi hương thanh tịnh an thần." },
+  { "id": "but-ky", "name": "Bút ký", "icon": "🖊️", "order": 2, "description": "Bút ký gỗ quý cao cấp làm quà tặng doanh nhân, ký kết may mắn hanh thông." },
+  { "id": "bi-lan-tay", "name": "Bi lăn tay", "icon": "⚪", "order": 3, "description": "Bi lăn tập tay gỗ quý dưỡng sinh, lưu thông khí huyết và thư giãn." },
+  { "id": "goi-go", "name": "Gối gỗ", "icon": "🪵", "order": 4, "description": "Gối xâu hạt gỗ quý thoáng mát cổ gáy, hương thơm dịu giấc ngủ sâu." },
+  { "id": "tau", "name": "Tẩu", "icon": "🪄", "order": 5, "description": "Tẩu gỗ thủ công cán sừng, phong thái lịch lãm phong trần." },
+  { "id": "dua-go", "name": "Đũa gỗ", "icon": "🥢", "order": 6, "description": "Đũa gỗ mộc mun sừng và gỗ trắc, không ẩm mốc, bền đẹp an toàn." },
+  { "id": "dem-o-to", "name": "Đệm khoác ô tô", "icon": "🚗", "order": 7, "description": "Đệm ghế ô tô xâu hạt gỗ chống mồ hôi lưng, massage êm ái mọi nẻo đường." }
+]

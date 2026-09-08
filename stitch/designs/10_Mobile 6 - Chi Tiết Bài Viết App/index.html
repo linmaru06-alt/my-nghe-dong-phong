@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#fff8f5;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#feb783", "on-background": "#29170c", "surface-variant": "#fedcc8", "on-secondary-container": "#78461c", "surface": "#fff8f5", "surface-container-lowest": "#ffffff", "outline-variant": "#d6c3b8", "primary-container": "#6b3f1f", "on-primary-fixed-variant": "#673c1c", "on-primary-container": "#eaac84", "secondary": "#865227", "on-tertiary-fixed-variant": "#00531f", "on-surface": "#29170c", "inverse-primary": "#f8b990", "on-secondary": "#ffffff", "surface-container-highest": "#fedcc8", "primary": "#50290b", "tertiary-fixed": "#69ff89", "inverse-on-surface": "#ffede4", "on-surface-variant": "#51443c", "on-error-container": "#93000a", "on-tertiary-fixed": "#002108", "surface-tint": "#835331", "surface-dim": "#f5d3c0", "outline": "#84746b", "inverse-surface": "#402c1f", "on-secondary-fixed-variant": "#6a3b11", "primary-fixed": "#ffdcc6", "secondary-fixed-dim": "#feb783", "error": "#ba1a1a", "surface-container-low": "#fff1ea", "on-primary-fixed": "#311300", "tertiary-container": "#005620", "surface-container-high": "#ffe3d3", "on-tertiary-container": "#29d460", "error-container": "#ffdad6", "background": "#fff8f5", "surface-container": "#ffeadf", "on-primary": "#ffffff", "tertiary-fixed-dim": "#3ee26c", "primary-fixed-dim": "#f8b990", "tertiary": "#003c14", "on-tertiary": "#ffffff", "on-error": "#ffffff", "secondary-fixed": "#ffdcc4", "surface-bright": "#fff8f5", "on-secondary-fixed": "#301400" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.5rem", "space-3xl": "4.5rem", "space-md": "1rem", "gutter-desktop": "1.5rem", "space-2xl": "3rem", "container-max": "1280px", "space-2xs": "0.25rem", "space-sm": "0.75rem", "space-4xl": "6rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "space-xl": "2rem" }, fontFamily: { "h1-mobile": ["Playfair Display"], "body-large": ["Be Vietnam Pro"], "label": ["Be Vietnam Pro"], "body": ["Be Vietnam Pro"], "caption": ["Be Vietnam Pro"], "display": ["Playfair Display"], "body-medium": ["Be Vietnam Pro"], "h2": ["Playfair Display"], "display-mobile": ["Playfair Display"], "h1": ["Playfair Display"], "h3": ["Playfair Display"] }, fontSize: { "h1-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "0em", "fontWeight": "600" }], "body-large": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "label": ["13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "caption": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-medium": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "h2": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "h1": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "h3": ["22px", { "lineHeight": "30px", "fontWeight": "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body text-body text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(107,63,31,0.06)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0 flex-1"><button aria-label="Quay lại" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors shrink-0" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span></button><img alt="An elegant luxury artisan woodcraft emblem logo for 'Mỹ Nghệ Đông Phong', featuring a stylized traditional Vietnamese wood grain pattern intertwined with an artistic oriental seal or stylized circular artisan carpenter motif, clean lines, luxury dark wood brown (#6B3F1F) and antique gold (#C8963E), minimal, vector style on transparent background.. Design context: - Primary color: #6b3f1f
+- Font: playfairDisplay
+- Mode: light
+- Roundness: rounded-md
+. The logo should be visually consistent with these brand tokens." class="h-7 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1Wv-Nv0NV-zUQsGyPVIlJSw2dr-eXrrFLhX4vV0jbqhyvWeJcJssNwwhKvoquU3yskfSy-xlhJfLgzQF-S0GKdWMwgWyJPqzgve4jv0Ag9OVbXuBJk-pweNhKb9QKxiql41pkh3UmgY2r2Ny9hVZ-xO1NG97ADNZJ3sji-iLCEcPRRYxtFDN5-WUHsJNxpm5v3PbBkTiemGlql1xLod_mzgUQVJaj9Na60qh98swVAR-Wzk1hcdEz1V5lgX"/><h1 class="font-h3 text-h3 text-primary truncate">Nội Dung Bài Viết</h1></div><div class="flex items-center gap-space-2xs shrink-0"><button aria-label="Chia sẻ" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[22px]">share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-2xs shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface flex-1"><div class="flex flex-col w-full relative">
+<!-- Reading Progress Bar -->
+<div class="sticky top-0 z-40 w-full bg-surface-variant/40 h-[3px]">
+<div class="bg-primary-container h-full w-[45%] transition-all duration-150" id="read-progress"></div>
+</div>
+<!-- Hero Image -->
+<div class="w-full h-[210px] relative overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="An elderly Vietnamese master carpenter with weathered gentle hands wearing linen artisan clothing, deeply examining the intricate swirled golden and amber burled grain slab of precious huanghuali wood in a warm sunlit workshop in Northern Vietnam, dust motes dancing in golden hour lighting, cinematic macro perspective." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrQNsl1xYKi6CYzCHF239e4KDa2MnRZxH_tHdKPdT42C5K68F8my5Pb_aCZUuKY0ehSe4ay6PSrDdXO9WFeDogz4grxqBGw74HyuLxUfxTmHFjWOpZj3dD1LuuacBr1S_QHBQnCVQZ4FDJLxomqNmdlFXUV3ZhVPrHma5ETaE9x0S1jL5koWcN1gr2BBN_O1qEsFsiHuK0GS37Ukha_7aVrEXQDs5qablsYypBFCI_lC-0L3J0E8K3rA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-on-primary">
+<span class="font-caption text-caption uppercase tracking-wider bg-primary/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-inverse-on-surface">Khảo sát mẫu mộc</span>
+<span class="font-caption text-caption text-inverse-on-surface/90 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">photo_camera</span> Xưởng Đông Phong
+      </span>
+</div>
+</div>
+<!-- Article Header -->
+<header class="px-gutter-mobile pt-5 pb-3">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-primary font-label text-label tracking-wide mb-3">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+      KIẾN THỨC GỖ
+    </div>
+<h1 class="font-h1-mobile text-h1-mobile text-primary font-bold tracking-tight mb-3">
+      Vân Gỗ và Nu Gỗ: Những Đặc Điểm Nhận Biết Tuyệt Tác Tự Nhiên
+    </h1>
+<div class="flex flex-wrap items-center gap-y-1.5 gap-x-2 text-on-surface-variant font-caption text-caption pb-4">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">calendar_today</span> 12/06/2025
+      </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">schedule</span> 5 phút đọc
+      </span>
+<span>•</span>
+<span class="flex items-center gap-1 font-body-medium text-primary">
+<span class="material-symbols-outlined text-[15px]">verified</span> Nghệ nhân Đông Phong
+      </span>
+</div>
+<div class="w-full h-0.5 bg-surface-container-high rounded-full"></div>
+</header>
+<!-- Article Content -->
+<article class="px-gutter-mobile flex flex-col gap-5 text-on-surface">
+<!-- Lead Paragraph -->
+<p class="font-body-large text-body-large text-primary-container leading-relaxed font-medium bg-surface-container-low p-4 rounded-xl shadow-sm">
+      Trong kho tàng mỹ nghệ cung đình và dân gian xứ Bắc, Nu Gỗ không đơn thuần là một chất liệu điêu khắc quý hiếm, mà là kết tinh phi thường của thời gian, thổ nhưỡng và vết thương tự chữa lành của đại ngàn trăm tuổi.
+    </p>
+<!-- Section 1 -->
+<div class="flex flex-col gap-2.5">
+<h2 class="font-h2 text-h2 text-primary">
+        1. Khái niệm và sự hình thành của Nu Gỗ
+      </h2>
+<p class="font-body text-body text-on-surface-variant leading-relaxed">
+        Nu thực chất là một "dị tật" sinh học kỳ vĩ. Khi thân cây cổ thụ (như Hương, Gõ Đỏ, Nghiến, hay Mun) chịu tác động khắc nghiệt từ tự nhiên—sét đánh, chấn thương thân hoặc mối mọt xâm nhập—nhựa sống và khoáng chất dồn tụ lại bao bọc quanh điểm thương tổn để tự bảo vệ qua hàng trăm năm.
+      </p>
+<p class="font-body text-body text-on-surface-variant leading-relaxed">
+        Sự dồn nén mãnh liệt của tế bào xơ gỗ dưới áp suất nội tại tạo nên mật độ thớ dày đặc phi thường, làm các đường vân không còn phát triển thẳng theo chiều dọc mà cuộn xoáy ngẫu hứng thành hoa văn biến ảo kỳ bí.
+      </p>
+</div>
+<!-- Editorial Blockquote -->
+<figure class="my-1 pl-4 pr-3 py-3.5 bg-surface-container rounded-r-xl relative overflow-hidden shadow-sm">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<p class="font-h3 text-[17px] leading-relaxed italic text-primary font-serif">
+        "Ngàn cây mới có một cây sinh nu, vạn cây mới có một khối nu tròn vẹn không bị thối mục ruột. Sở hữu được một tấc nu quý sánh tựa tàng trữ một thỏi vàng ròng trầm tích."
+      </p>
+<figcaption class="mt-2 text-right font-label text-label text-secondary font-semibold">
+        — Lão nghệ nhân Bùi Trọng Phong
+      </figcaption>
+</figure>
+<!-- Section 2 -->
+<div class="flex flex-col gap-2.5">
+<h2 class="font-h2 text-h2 text-primary">
+        2. Điểm khác biệt giữa Vân Sóng, Mắt Quỷ và Nu Gai
+      </h2>
+<p class="font-body text-body text-on-surface-variant leading-relaxed">
+        Người sành chơi đồ mộc phân biệt phẩm cấp của các phôi gỗ tự nhiên dựa trên ba hình thái vân nu đặc thù có giá trị sưu tầm cao nhất:
+      </p>
+</div>
+<!-- Visual Comparison Cards -->
+<div class="grid grid-cols-2 gap-2.5">
+<div class="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm">
+<div class="h-32 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="Extreme macro close-up view of wild burled wood grain showing 'Mat Quy' swirling devil eye circular grain patterns, rich deep honey amber and dark brown swirls, glossy smooth sanded texture of luxury rosewood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh8QkBpbh7xpKJ6aGrCF4C6lFNtkgqMO58pTQu3gSeVAnTjDQfjS_fefNzZBsECK9vYKHLH18AYs8BN5yTIY_t0_zs1VDYdUMOjI6z5cGNl0QDPy7CHr8NR_0twkYDXWpyLOFA6ivaGtcS4EBr5qfNYHQzoLT-0D_RwQMl_2T3ZjQFoo1OWdQSrLMwEuqPvUkyMuTG1f4pgdiXclgcgxaYU67poW80OdB1cbiigeZ8lbeWGDUrVeDGuQ"/>
+</div>
+<div class="p-2.5 flex flex-col gap-1">
+<span class="font-label text-label text-primary font-bold">Vân Mắt Quỷ (Nu Cầu)</span>
+<p class="font-caption text-[12px] text-on-surface-variant leading-snug line-clamp-3">Các vòng xoáy tròn đồng tâm đan cài li ti, chiều sâu thớ óng ánh như mắt cọp khi đón ánh sáng xiên.</p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm">
+<div class="h-32 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="Extreme macro photograph of Nu Gai textured spiky burl grain with rugged natural spikes transformed into polished smooth wood surface with ripple wave patterns, warm natural timber lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA00VEHyQeJ2Z6SIyq7tVxy2fZ-bmmvUNPXMsGAUy2DS1yqKTmcWO_AgpK-pclBYW9228yLGUvmV05K6TCUbFxvKQ-CcAKoHfW85HE-wlzUywMRz_fKowLnE5j8JmjL8Yx46B4X2H_H0HWvxvr4R-Cm_TEioEiZtb_z9TGo2Y0Ba4aJPGv4WFgRM7z9tzMcX9cW3TieT3bmsGN02XCZcTt3tFvGKDupvjg-dLT1VhMt8hay29p5trLRuQ"/>
+</div>
+<div class="p-2.5 flex flex-col gap-1">
+<span class="font-label text-label text-primary font-bold">Nu Gai &amp; Vân Sóng Lượn</span>
+<p class="font-caption text-[12px] text-on-surface-variant leading-snug line-clamp-3">Hình thái sinh trưởng gồ ghề ngoài vỏ gỗ, khi bào nhẵn lộ ra vệt lụa dập dờn như dòng nước ngầm cuộn chảy.</p>
+</div>
+</div>
+</div>
+<!-- Pro-Tip Box -->
+<aside class="p-4 rounded-xl bg-secondary-container/30 text-on-background shadow-sm flex gap-3 items-start">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center shrink-0 text-on-secondary-container mt-0.5">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-body-medium text-body-medium font-bold text-on-secondary-container">
+          Lời khuyên nghệ nhân (Pro-Tip)
+        </h4>
+<p class="font-body text-body text-on-surface-variant leading-relaxed">
+          Bảo dưỡng vân nu tuyệt đối tránh sáp công nghiệp hóa chất làm bít tắc thở gỗ. Nên dùng khăn mềm ẩm lau nhẹ, định kỳ xoa một lượng nhỏ dầu tràm nguyên chất hoặc sáp ong tự nhiên để vân gỗ mãi ánh sắc hổ phách ấm nồng.
+        </p>
+</div>
+</aside>
+<!-- Feedback & Engagement Micro-Action -->
+<div class="flex items-center justify-between py-2 px-1 text-on-surface-variant font-label text-label">
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-primary transition-colors" id="like-btn" onclick="toggleLike()">
+<span class="material-symbols-outlined text-[18px]" id="like-icon">thumb_up</span>
+<span id="like-count">148 Hữu ích</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-primary" onclick="shareArticle()">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-2 rounded-lg bg-tertiary-container text-tertiary-fixed font-label text-label" onclick="openConsult()">
+<span class="material-symbols-outlined text-[16px]">support_agent</span> Hỏi Nghệ Nhân
+        </button>
+</div>
+</div>
+</article>
+<!-- Divider -->
+<div class="mx-gutter-mobile my-6 h-0.5 bg-surface-container-high rounded-full"></div>
+<!-- Related Products Section (Horizontal Carousel) -->
+<section class="flex flex-col gap-3">
+<div class="px-gutter-mobile flex items-center justify-between">
+<div>
+<span class="font-caption text-caption text-secondary font-semibold uppercase tracking-wider">Tác phẩm điển hình</span>
+<h3 class="font-h3 text-h3 text-primary font-bold">Vật Phẩm Từ Gỗ Nu Quý</h3>
+</div>
+<a class="font-label text-label text-secondary flex items-center gap-0.5 hover:text-primary" href="#">
+        Xem hết <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Carousel Track -->
+<div class="flex gap-3 overflow-x-auto px-gutter-mobile pb-2 pt-1 no-scrollbar scroll-smooth">
+<!-- Product Card 1 -->
+<div class="min-w-[190px] w-[190px] rounded-xl bg-surface-container-lowest p-2.5 shadow-sm flex flex-col gap-2 shrink-0">
+<div class="w-full h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Handcrafted luxury prayer bracelet made of rare Sưa Đỏ wood beads showing fiery grain and natural purple-red luster, placed gracefully on a raw textured silk cloth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHp5OJk6OERasj-7YfELYSIN0GIK0LTORD-pPnOhyQoFyowa0OBdFIU3JbSa0VioWyew62RyWWiFMgO5p5am9NQ4Lch01AU0mmVW1LpW8AMFG_SlMY3keTPIHIZK-PpDjxVotLC4bt36VzOcqILKjXyg675Cu6vFjZ1mTQl-UejsK2L12096sdPxYbtuYFB1aBkTAFgTKw6zL_ZvmX_hPU20UYIU30Gm2JYL84xJm-dBRysg39UPLkpg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-caption text-[11px] text-secondary font-medium">Gỗ Sưa Đỏ Bắc Bộ</span>
+<h4 class="font-body-medium text-[14px] leading-snug font-bold text-primary truncate">Vòng Tay Phong Thủy Sưa Đỏ</h4>
+<span class="font-label text-label text-primary-container font-bold mt-1">3.800.000 đ</span>
+</div>
+<button class="w-full py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary font-label text-[12px] transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[15px]">visibility</span> Xem chi tiết
+        </button>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[190px] w-[190px] rounded-xl bg-surface-container-lowest p-2.5 shadow-sm flex flex-col gap-2 shrink-0">
+<div class="w-full h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Exquisite handmade artisan wooden pen crafted from Nu Huong burled wood, polished with brass gold metallic accents, resting on an antique leather notebook." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUrK_eoLyOu7SQIpcvgRZRd-EMcZ_Ed9XsNsaztw9iwNrSMLUcRvNaeEC_27fdVQDq-go0bE6tY1QC2AGJ2s6hzI4oZ4dxzfCaMekfvPjbZGpXlmHKzai8A-kvHcNx2WsjsOnTOUSwmUHDbuEysV6ZEGNXrBdSc9MACAMXH7h_zLt_aCEUbtz_QU4hoyyFsMYrx3g6ELQUxRdcgXCPK65dTsflU47fQAUq_gy8RAwmNNScEszRivkGRQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-caption text-[11px] text-secondary font-medium">Nu Hương Nghệ An</span>
+<h4 class="font-body-medium text-[14px] leading-snug font-bold text-primary truncate">Bút Ký Tinh Hoa Nu Hương</h4>
+<span class="font-label text-label text-primary-container font-bold mt-1">1.650.000 đ</span>
+</div>
+<button class="w-full py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary font-label text-[12px] transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[15px]">visibility</span> Xem chi tiết
+        </button>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[190px] w-[190px] rounded-xl bg-surface-container-lowest p-2.5 shadow-sm flex flex-col gap-2 shrink-0">
+<div class="w-full h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Carved artisan wooden tea box caddy made from solid Nu Nghien burled timber with fine grain swirls and handcrafted dovetail joints on polished dark wood counter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgN_4jN1B1pyoxyw2VLjGyR5TwDvtT5NvCRAQoZBhPMOB_XbmR2dv4ZE4fHusqllq91m2XGjXe98QeW6MTcOJhQRaTCbRNRChOCEpk_-NfvkT79jA__pQkjdBlLo7olprdn5BLy-sz8uK-2eK6QtAj4_sQ2as8wQJO2ryk9jrmwC9s9JSjkTTmPk2AuOb5bBGPL4or785EjAqI9cKwDf8h6xTmJX2gtpaHgGZVQXy_15kqMWsnM4ehyw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-caption text-[11px] text-secondary font-medium">Nu Nghiến Sơn La</span>
+<h4 class="font-body-medium text-[14px] leading-snug font-bold text-primary truncate">Hộp Trà Ngọc Nghiến Cổ</h4>
+<span class="font-label text-label text-primary-container font-bold mt-1">4.200.000 đ</span>
+</div>
+<button class="w-full py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary font-label text-[12px] transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[15px]">visibility</span> Xem chi tiết
+        </button>
+</div>
+</div>
+</section>
+<!-- Related Posts Section -->
+<section class="px-gutter-mobile mt-6 mb-8 flex flex-col gap-3">
+<div>
+<span class="font-caption text-caption text-secondary font-semibold uppercase tracking-wider">Cùng chuyên mục</span>
+<h3 class="font-h3 text-h3 text-primary font-bold">Bài Viết Liên Quan</h3>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Post 1 -->
+<a class="p-2.5 rounded-xl bg-surface-container-lowest shadow-sm flex gap-3 items-center group" href="#">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Vietnamese craftsman carefully applying natural organic finish on a carved wooden sculpture in traditional workshop, warm earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9XIZ9VpVzwIcEO9bhK4Ce9z76JlmXLokwHePGhrfEUgBE7DNQ1gGV7qAxIrq0B74ihf18Gx0J6CV3vr8GT6U8LTdqmrSVHmvUiafjLX5ovppMAx8jVX8DwAMTaDEKIk45C6qHIPzrDQY9Tjq5NsYUp0ZL12129vo6bCooRHlT9Ewp4dGDyltRSH0ugVkQmRNbJPoONHMSXuzpXxIq-Tv8nuKzLGnNsi2nqoJrsh756loZvMPhjjFGuA"/>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-caption text-[11px] text-secondary font-medium">Bảo quản &amp; Duy trì</span>
+<h4 class="font-body-medium text-[14px] leading-tight font-semibold text-primary group-hover:text-primary-container transition-colors line-clamp-2">
+            Phương Pháp Giữ Sắc Mộc Cung Đình: Thuật Dưỡng Gỗ Không Nứt Nẻ Mùa Hanh Khô
+          </h4>
+<span class="font-caption text-[12px] text-on-surface-variant mt-1">3 ngày trước · 4 phút đọc</span>
+</div>
+</a>
+<!-- Post 2 -->
+<a class="p-2.5 rounded-xl bg-surface-container-lowest shadow-sm flex gap-3 items-center group" href="#">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Collection of wood sample blocks showing distinct dark Mun ebony, golden Huong, and rich red Go Do with artisanal engraved labels in Vietnamese studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoAbwjhV7KAc85VH75Mjy0VJ8zeFUrKCZz5qnWfeDNjhpD84K7sxUOKn3AKgGKmXgkeiZs7_ic8G2Og5omQsIt_6rLy_TK680um2-FUcJFe1uu33uQygaOz5ueVZgDHTsXyL8QgnYTm_g3JbCxqy_TOWC20xrEW4w7vURIHlD8SukUcaHMnw6lQY60KypmFXypeWo4wKFbXoFELKIji89Bd9fIz43ci2jsuvY7i8-5AUR-ahEFxC-YBA"/>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-caption text-[11px] text-secondary font-medium">Giám định chất lượng</span>
+<h4 class="font-body-medium text-[14px] leading-tight font-semibold text-primary group-hover:text-primary-container transition-colors line-clamp-2">
+            Phân Biệt Gỗ Mun Hoa và Gỗ Mun Sừng: Kinh Nghiệm Thực Chiến 30 Năm
+          </h4>
+<span class="font-caption text-[12px] text-on-surface-variant mt-1">1 tuần trước · 7 phút đọc</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Bottom Spacing for Floating Bar and Mobile Gestures -->
+<div class="h-[110px] w-full"></div>
+<!-- Floating Table of Contents Button (Bottom Left) -->
+<div class="fixed bottom-6 left-4 z-40">
+<button aria-label="Mục lục bài viết" class="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-surface-container-lowest text-primary-container shadow-[0_4px_16px_rgba(107,63,31,0.18)] hover:bg-surface-container transition-all active:scale-95" onclick="toggleTocModal()">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+<span class="font-label text-label font-bold">Mục lục</span>
+</button>
+</div>
+<!-- Floating Zalo Consultation Bubble (Bottom Right) -->
+<div class="fixed bottom-6 right-4 z-40">
+<a aria-label="Tư vấn trực tiếp" class="w-12 h-12 rounded-full bg-[#06C755] text-on-secondary flex items-center justify-center shadow-[0_4px_20px_rgba(6,199,85,0.4)] relative group transition-transform active:scale-95" href="tel:0988888888">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-error rounded-full ring-2 ring-surface"></span>
+</a>
+</div>
+<!-- Table of Contents Modal Drawer -->
+<div class="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm hidden flex-col justify-end" id="toc-modal" onclick="closeTocOnBackdrop(event)">
+<div class="w-full bg-surface rounded-t-2xl p-5 shadow-2xl flex flex-col gap-4 max-h-[618px] overflow-y-auto">
+<div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+<div class="flex items-center gap-2 text-primary font-h3 text-h3">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+          Mục Lục Bài Viết
+        </div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface" onclick="toggleTocModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-2 font-body text-body">
+<a class="p-2.5 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-2" href="#section-lead" onclick="toggleTocModal()">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+<span>Lời tựa di sản mỹ nghệ xứ Bắc</span>
+</a>
+<a class="p-2.5 rounded-lg hover:bg-surface-container text-primary font-medium flex items-center gap-2" href="#section-1" onclick="toggleTocModal()">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+<span>1. Khái niệm và sự hình thành của Nu Gỗ</span>
+</a>
+<a class="p-2.5 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-2" href="#section-2" onclick="toggleTocModal()">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+<span>2. Điểm khác biệt giữa Vân Sóng, Mắt Quỷ và Nu Gai</span>
+</a>
+<a class="p-2.5 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-2" href="#section-tip" onclick="toggleTocModal()">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container shrink-0"></span>
+<span>Lời khuyên nghệ nhân bảo dưỡng</span>
+</a>
+<a class="p-2.5 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-2" href="#section-products" onclick="toggleTocModal()">
+<span class="w-1.5 h-1.5 rounded-full bg-outline shrink-0"></span>
+<span>Vật phẩm sưu tầm liên quan</span>
+</a>
+</nav>
+<button class="w-full py-2.5 rounded-xl bg-primary text-on-primary font-label text-label" onclick="toggleTocModal()">
+        Đóng mục lục
+      </button>
+</div>
+</div>
+</div>
+<script>
+  // Simple reading progress calculator on scroll
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+      const bar = document.getElementById('read-progress');
+      if (bar) bar.style.width = progress + '%';
+    }
+  });
+
+  // Table of Contents Drawer Toggle
+  function toggleTocModal() {
+    const modal = document.getElementById('toc-modal');
+    if (!modal) return;
+    if (modal.classList.contains('hidden')) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    } else {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  }
+
+  function closeTocOnBackdrop(e) {
+    if (e.target.id === 'toc-modal') {
+      toggleTocModal();
+    }
+  }
+
+  // Micro-interactions: Like button
+  let liked = false;
+  function toggleLike() {
+    liked = !liked;
+    const btn = document.getElementById('like-btn');
+    const icon = document.getElementById('like-icon');
+    const count = document.getElementById('like-count');
+    if (liked) {
+      icon.style.fontVariationSettings = "'FILL' 1";
+      btn.classList.add('bg-primary', 'text-on-primary');
+      btn.classList.remove('bg-surface-container-high', 'text-primary');
+      count.textContent = '149 Đã thích';
+    } else {
+      icon.style.fontVariationSettings = "'FILL' 0";
+      btn.classList.remove('bg-primary', 'text-on-primary');
+      btn.classList.add('bg-surface-container-high', 'text-primary');
+      count.textContent = '148 Hữu ích';
+    }
+  }
+
+  function shareArticle() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Vân Gỗ và Nu Gỗ: Tuyệt Tác Tự Nhiên',
+        url: window.location.href
+      }).catch(() => {});
+    } else {
+      alert('Đã lưu bài viết vào danh sách quan tâm!');
+    }
+  }
+
+  function openConsult() {
+    window.location.href = 'tel:0988888888';
+  }
+</script></main></body></html>

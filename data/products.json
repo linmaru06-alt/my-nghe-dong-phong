@@ -1,0 +1,393 @@
+[
+  {
+    "id": "vt-001",
+    "slug": "vong-tay-go-tu-dan-tieu-diep",
+    "name": "Vòng Tay Gỗ Tử Đàn Tiểu Diệp Kim Sa",
+    "code": "VT-TD-01",
+    "category": "vong-tay",
+    "woodType": "Gỗ Tử Đàn",
+    "description": "Chế tác từ phôi gỗ Tử Đàn Tiểu Diệp già cỗi nhiều năm tuổi, tôm gỗ mịn tít và ánh kim sa lấp lánh như sao sa. Đeo càng lâu chất gỗ càng lên nước bóng gương sâu thẫm.",
+    "preservation": "Tránh tiếp xúc hóa chất tẩy rửa mạnh. Khi không đeo nên cất trong túi nhung hoặc hộp gấm thoáng khí.",
+    "sizes": [
+      { "label": "10mm (19 hạt - Nữ)", "price": 2100000 },
+      { "label": "12mm (17 hạt - Tay vừa)", "price": 2400000 },
+      { "label": "14mm (15 hạt - Nam chuẩn)", "price": 2600000 },
+      { "label": "16mm (14 hạt - Nam to)", "price": 3200000 },
+      { "label": "18mm (13 hạt - VIP)", "price": null }
+    ],
+    "images": ["/assets/images/products/vong-tay-tu-dan-1.webp", "/assets/images/products/vong-tay-tu-dan-2.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["cach-chon-size-vong-tay-go", "cach-bao-quan-vong-tay-go-hang-ngay"],
+    "createdAt": "2025-06-01"
+  },
+  {
+    "id": "vt-002",
+    "slug": "vong-tay-go-sua-do-bac-bo",
+    "name": "Vòng Tay Gỗ Sưa Đỏ Bắc Bộ Vân Mây",
+    "code": "VT-SUA-02",
+    "category": "vong-tay",
+    "woodType": "Gỗ Sưa Đỏ",
+    "description": "Vân mây biến hóa 4 mặt huyền ảo, mùi thơm dịu ngọt quý phái đặc trưng của dòng sưa đỏ cổ thụ nghìn năm tích tụ linh khí.",
+    "preservation": "Lau bằng khăn vải cotton khô sạch sau khi đeo. Để nơi thoáng mát, tránh ánh nắng trực tiếp gay gắt.",
+    "sizes": [
+      { "label": "12mm (17 hạt)", "price": 3500000 },
+      { "label": "14mm (15 hạt)", "price": 3800000 },
+      { "label": "16mm (14 hạt)", "price": 4600000 },
+      { "label": "20mm (12 hạt - Hàng tuyển)", "price": null }
+    ],
+    "images": ["/assets/images/products/vong-tay-sua-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["cach-chon-size-vong-tay-go"],
+    "createdAt": "2025-06-02"
+  },
+  {
+    "id": "vt-003",
+    "slug": "vong-tay-nu-bach-xanh-chim-nuoc",
+    "name": "Vòng Tay Nu Bách Xanh Mộc Châu Chìm Nước",
+    "code": "VT-NBX-03",
+    "category": "vong-tay",
+    "woodType": "Nu Bách Xanh",
+    "description": "Vân nu hoa dầy đặc, hàm lượng tinh dầu cao chìm nước 100%, mùi thơm thảo mộc ấm ngọt lan tỏa suốt ngày dài.",
+    "preservation": "Hạn chế ngâm nước nóng. Xoa nhẹ vào lòng bàn tay để nhiệt lượng kích thích tinh dầu gỗ tỏa hương.",
+    "sizes": [
+      { "label": "12mm (17 hạt)", "price": 1600000 },
+      { "label": "14mm (15 hạt)", "price": 1850000 },
+      { "label": "16mm (14 hạt)", "price": 2200000 }
+    ],
+    "images": ["/assets/images/products/vong-tay-nu-bach-xanh-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["van-go-va-nu-go-dac-diem-thuong-gap"],
+    "createdAt": "2025-06-03"
+  },
+  {
+    "id": "vt-004",
+    "slug": "vong-tay-nu-ngoc-am-ha-giang-chim-nuoc",
+    "name": "Vòng Tay Nu Ngọc Am Hà Giang Chìm Nước",
+    "code": "VT-NNA-04",
+    "category": "vong-tay",
+    "woodType": "Nu Ngọc Am",
+    "description": "Nu hoa cám chìm nước, tinh dầu thơm ngào ngạt lan tỏa giúp tẩy uế khí, an thần và mang lại giấc ngủ ngon.",
+    "preservation": "Lau khăn khô mềm định kỳ. Tránh để nơi ẩm ướt hoặc nhiệt độ quá cao.",
+    "sizes": [
+      { "label": "12mm (17 hạt)", "price": 1250000 },
+      { "label": "14mm (15 hạt)", "price": 1450000 },
+      { "label": "16mm (14 hạt)", "price": 1750000 }
+    ],
+    "images": ["/assets/images/products/vong-tay-ngoc-am-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["cach-bao-quan-vong-tay-go-hang-ngay"],
+    "createdAt": "2025-06-04"
+  },
+  {
+    "id": "vt-005",
+    "slug": "vong-tay-chop-bach-xanh",
+    "name": "Vòng Tay Chớp Bách Xanh Thơm Ngát",
+    "code": "VT-CBX-05",
+    "category": "vong-tay",
+    "woodType": "Chớp Bách Xanh",
+    "description": "Hiệu ứng vân chớp ánh kim 3D chuyển động khi nghiêng dưới ánh sáng, mùi hương thanh mát dễ chịu.",
+    "preservation": "Để nơi thoáng khí, dùng khăn mềm lau nhẹ nhàng sau khi ra nhiều mồ hôi.",
+    "sizes": [
+      { "label": "10mm (19 hạt)", "price": 950000 },
+      { "label": "12mm (17 hạt)", "price": 1100000 },
+      { "label": "14mm (15 hạt)", "price": 1350000 }
+    ],
+    "images": ["/assets/images/products/vong-tay-chop-bx-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["cach-bao-quan-vong-tay-go-hang-ngay"],
+    "createdAt": "2025-06-05"
+  },
+  {
+    "id": "vt-006",
+    "slug": "vong-tay-tram-huong-tu-nhien",
+    "name": "Vòng Tay Trầm Hương Tự Nhiên",
+    "code": "VT-TH-06",
+    "category": "vong-tay",
+    "woodType": "Trầm Hương",
+    "description": "Thớ dầu tự nhiên dầy đặc, vân chỉ đen nhánh đan xen, hương thơm trầm tĩnh tích tụ tinh hoa đất trời qua nhiều thập kỷ.",
+    "preservation": "Tuyệt đối không để dính nước hoa hay xà phòng làm bít tắc lỗ tiết dầu tự nhiên của trầm.",
+    "sizes": [
+      { "label": "10mm (Chuỗi hạt)", "price": null },
+      { "label": "12mm (Nam/Nữ)", "price": null },
+      { "label": "14mm (Hàng tuyển)", "price": null }
+    ],
+    "images": ["/assets/images/products/vong-tay-tram-huong-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["cach-bao-quan-vong-tay-go-hang-ngay"],
+    "createdAt": "2025-06-06"
+  },
+
+  {
+    "id": "bk-001",
+    "slug": "but-ky-nu-huyet-long-thau-quang",
+    "name": "Bút Ký Gỗ Nu Huyết Long Thấu Quang",
+    "code": "BK-HL-01",
+    "category": "but-ky",
+    "woodType": "Nu Huyết Long",
+    "description": "Thân bút gỗ nu huyết long thấu quang đỏ rực như ruby dưới ánh đèn, phối khoen kim loại mạ vàng sang trọng, nét mực dạ Parker êm mượt.",
+    "preservation": "Lau thân bút bằng khăn bông khô. Tránh va đập mạnh làm ảnh hưởng cơ cấu ngòi bút.",
+    "sizes": [
+      { "label": "Bút đơn kèm hộp gấm", "price": 950000 },
+      { "label": "Set quà tặng (Bút + 2 ruột phụ + Hộp gỗ)", "price": 1250000 }
+    ],
+    "images": ["/assets/images/products/but-ky-huyet-long-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "createdAt": "2025-06-07"
+  },
+  {
+    "id": "bk-002",
+    "slug": "but-ky-nu-bach-xanh-van-hoa",
+    "name": "Bút Ký Gỗ Nu Bách Xanh Vân Hoa",
+    "code": "BK-BX-02",
+    "category": "but-ky",
+    "woodType": "Nu Bách Xanh",
+    "description": "Vân nu hoa đan kết hài hòa, thoang thoảng hương thơm thảo mộc tự nhiên mỗi khi cầm bút ký hợp đồng.",
+    "preservation": "Bảo quản nơi khô ráo, tránh nguồn nhiệt cao.",
+    "sizes": [
+      { "label": "Bút ký tiêu chuẩn", "price": 850000 },
+      { "label": "Kèm hộp quà sang trọng", "price": 1050000 }
+    ],
+    "images": ["/assets/images/products/but-ky-nu-bach-xanh-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "createdAt": "2025-06-08"
+  },
+  {
+    "id": "bk-003",
+    "slug": "but-ky-hoang-dan-lang-son",
+    "name": "Bút Ký Gỗ Hoàng Đàn Tuyết Lạng Sơn",
+    "code": "BK-HD-03",
+    "category": "but-ky",
+    "woodType": "Hoàng Đàn",
+    "description": "Dòng bút đế vương chế tác từ phôi hoàng đàn tuyết già, tinh dầu lên tuyết óng ánh, hương thơm ngào ngạt vương giả.",
+    "preservation": "Cất trong hộp kín khi không sử dụng để tinh dầu kết tinh thành tuyết trắng tự nhiên.",
+    "sizes": [
+      { "label": "Bản kỷ niệm giới hạn", "price": null }
+    ],
+    "images": ["/assets/images/products/but-ky-hoang-dan-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "createdAt": "2025-06-09"
+  },
+  {
+    "id": "bk-004",
+    "slug": "but-ky-mun-sung-den-bong",
+    "name": "Bút Ký Gỗ Mun Sừng Đen Bóng",
+    "code": "BK-MS-04",
+    "category": "but-ky",
+    "woodType": "Mun Sừng",
+    "description": "Chất gỗ mun sừng đen tuyền huyền bí, không tôm gỗ, bóng loáng sang trọng thể hiện uy quyền người lãnh đạo.",
+    "preservation": "Lau sạch bằng khăn mềm.",
+    "sizes": [
+      { "label": "Bút tiêu chuẩn", "price": 750000 },
+      { "label": "Set quà khắc tên riêng", "price": 950000 }
+    ],
+    "images": ["/assets/images/products/but-ky-mun-sung-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["nhung-dieu-can-xem-khi-chon-but-ky-go"],
+    "createdAt": "2025-06-10"
+  },
+
+  {
+    "id": "bl-001",
+    "slug": "bi-lan-tay-go-cam-lai",
+    "name": "Cặp Bi Lăn Tay Gỗ Cẩm Lai Vân Chỉ",
+    "code": "BL-CAM-01",
+    "category": "bi-lan-tay",
+    "woodType": "Gỗ Cẩm",
+    "description": "Vân chỉ cẩm lai đen tím uốn lượn sắc sảo, tiện tròn chuẩn xác, kích thích huyệt vị kinh lạc giảm tê mỏi bàn tay.",
+    "preservation": "Lăn tay hàng ngày, mồ hôi tay làm bi càng ngày càng lên nước nâu bóng đậm đà.",
+    "sizes": [
+      { "label": "Đường kính 4.5cm (Cặp 2 quả)", "price": 450000 },
+      { "label": "Đường kính 5.0cm (Cặp 2 quả)", "price": 550000 }
+    ],
+    "images": ["/assets/images/products/bi-lan-tay-cam-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-11"
+  },
+  {
+    "id": "bl-002",
+    "slug": "bi-lan-tay-go-sua-do",
+    "name": "Cặp Bi Lăn Tay Gỗ Sưa Đỏ Dưỡng Sinh",
+    "code": "BL-SUA-02",
+    "category": "bi-lan-tay",
+    "woodType": "Gỗ Sưa Đỏ",
+    "description": "Cặp bi tiện từ phôi sưa đỏ già nguyên khối, vân vần vũ 3D, mùi thơm thanh nhã giải tỏa âu lo căng thẳng.",
+    "preservation": "Lau khăn khô mềm định kỳ.",
+    "sizes": [
+      { "label": "Đường kính 4.8cm (Cặp 2 quả)", "price": 1800000 },
+      { "label": "Đường kính 5.2cm (Cặp 2 quả)", "price": 2300000 }
+    ],
+    "images": ["/assets/images/products/bi-lan-tay-sua-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-12"
+  },
+
+  {
+    "id": "gg-001",
+    "slug": "goi-hat-go-sua-do",
+    "name": "Gối Hạt Gỗ Sưa Đỏ Tự Nhiên Cao Cấp",
+    "code": "GG-SUA-01",
+    "category": "goi-go",
+    "woodType": "Gỗ Sưa Đỏ",
+    "description": "Đan kết từ hàng nghìn hạt sưa đỏ tuyển chọn, độ cong công thái học nâng đỡ đốt sống cổ, mùi thơm ru êm giấc ngủ sâu.",
+    "preservation": "Lau sạch hạt bằng khăn ẩm vắt kiệt, để nơi râm mát thoáng khí.",
+    "sizes": [
+      { "label": "Kích thước 30cm x 50cm", "price": null },
+      { "label": "Kích thước 35cm x 55cm", "price": null }
+    ],
+    "images": ["/assets/images/products/goi-go-sua-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-13"
+  },
+  {
+    "id": "gg-002",
+    "slug": "goi-hat-go-bach-xanh",
+    "name": "Gối Hạt Gỗ Bách Xanh Hương Thơm An Thần",
+    "code": "GG-BX-02",
+    "category": "goi-go",
+    "woodType": "Nu Bách Xanh",
+    "description": "Hạt bách xanh thơm ấm nồng, thông thoáng khí huyết, hỗ trợ xua tan mệt mỏi sau ngày làm việc dài.",
+    "preservation": "Vệ sinh nhẹ bằng khăn sạch, không ngâm ngập trong nước.",
+    "sizes": [
+      { "label": "Kích thước 30cm x 48cm", "price": 1350000 },
+      { "label": "Kích thước 35cm x 52cm", "price": 1650000 }
+    ],
+    "images": ["/assets/images/products/goi-go-bach-xanh-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-14"
+  },
+
+  {
+    "id": "tau-001",
+    "slug": "tau-hut-go-trac-can-sung",
+    "name": "Tẩu Thuốc Gỗ Trắc Đỏ Đen Cán Sừng",
+    "code": "TAU-TRAC-01",
+    "category": "tau",
+    "woodType": "Gỗ Trắc",
+    "description": "Buồng đốt gỗ trắc già chịu nhiệt tốt, cán sừng uốn cong cổ điển mang phong thái lịch lãm phong trần.",
+    "preservation": "Vệ sinh buồng đốt định kỳ bằng que thông chuyên dụng sau khi nguội hẳn.",
+    "sizes": [
+      { "label": "Chiều dài tiêu chuẩn 14.5cm", "price": 850000 }
+    ],
+    "images": ["/assets/images/products/tau-go-trac-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-15"
+  },
+  {
+    "id": "tau-002",
+    "slug": "tau-thuoc-go-nu-cam",
+    "name": "Tẩu Thuốc Chế Tác Gỗ Nu Cẩm Lai",
+    "code": "TAU-CAM-02",
+    "category": "tau",
+    "woodType": "Gỗ Cẩm",
+    "description": "Vân hoa nu cẩm sắc sảo phủ kín thân tẩu, dáng tẩu Freehand độc bản dành cho người sưu tầm sành điệu.",
+    "preservation": "Tránh cạo mạnh đáy buồng đốt khi còn nóng.",
+    "sizes": [
+      { "label": "Chiều dài 15cm (Dáng Freehand độc bản)", "price": 1150000 }
+    ],
+    "images": ["/assets/images/products/tau-nu-cam-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["van-go-va-nu-go-dac-diem-thuong-gap"],
+    "createdAt": "2025-06-16"
+  },
+
+  {
+    "id": "dua-001",
+    "slug": "dua-go-mun-sung-cao-cap",
+    "name": "Hộp Đũa Gỗ Mun Sừng Cao Cấp (10 Đôi)",
+    "code": "DUA-MS-01",
+    "category": "dua-go",
+    "woodType": "Mun Sừng",
+    "description": "Gỗ mun sừng đen tuyền 100% tự nhiên, không phủ sơn hóa chất, đanh chắc như đá, không thấm nước và không ẩm mốc.",
+    "preservation": "Rửa sạch sau bữa ăn và dựng thẳng trong ống đũa thoáng khí. Không ngâm qua đêm.",
+    "sizes": [
+      { "label": "Hộp 10 đôi (Dài 24.5cm tiêu chuẩn)", "price": 650000 },
+      { "label": "Hộp 10 đôi bọc đầu đồng / bạc", "price": 890000 }
+    ],
+    "images": ["/assets/images/products/dua-mun-sung-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["cach-ve-sinh-va-bao-quan-dua-go"],
+    "createdAt": "2025-06-17"
+  },
+  {
+    "id": "dua-002",
+    "slug": "dua-go-trac-do-den",
+    "name": "Hộp Đũa Gỗ Trắc Đỏ Đen Tự Nhiên (10 Đôi)",
+    "code": "DUA-TRAC-02",
+    "category": "dua-go",
+    "woodType": "Gỗ Trắc",
+    "description": "Vân gỗ trắc đỏ đen tự nhiên sang trọng, bề mặt mộc đánh sáp ong truyền thống an toàn tuyệt đối cho gia đình.",
+    "preservation": "Sau khi rửa lau khô trước khi cất vào ống đũa.",
+    "sizes": [
+      { "label": "Hộp 10 đôi tiêu chuẩn", "price": 480000 }
+    ],
+    "images": ["/assets/images/products/dua-go-trac-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["cach-ve-sinh-va-bao-quan-dua-go"],
+    "createdAt": "2025-06-18"
+  },
+
+  {
+    "id": "dto-001",
+    "slug": "dem-ghe-oto-go-trac",
+    "name": "Đệm Ghế Ô Tô Hạt Gỗ Trắc Đỏ Đen",
+    "code": "DTO-TRAC-01",
+    "category": "dem-o-to",
+    "woodType": "Gỗ Trắc",
+    "description": "Hạt tròn 12mm gỗ trắc mát lạnh chống ê mỏi và chống nóng lưng trên những hành trình dài.",
+    "preservation": "Dùng khăn ẩm lau bề mặt khi bám bụi bẩn.",
+    "sizes": [
+      { "label": "Đệm 1 ghế đơn (Ghế lái hoặc phụ)", "price": 1850000 },
+      { "label": "Bộ 2 ghế trước", "price": 3500000 }
+    ],
+    "images": ["/assets/images/products/dem-oto-trac-1.webp"],
+    "featured": true,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-19"
+  },
+  {
+    "id": "dto-002",
+    "slug": "dem-ghe-oto-go-bach-xanh",
+    "name": "Đệm Ghế Ô Tô Hạt Gỗ Bách Xanh Thơm Tự Nhiên",
+    "code": "DTO-BX-02",
+    "category": "dem-o-to",
+    "woodType": "Nu Bách Xanh",
+    "description": "Mùi hương gỗ bách xanh tự nhiên khử mùi hôi điều hòa xe hơi, tạo cảm giác thư thái và tỉnh táo khi lái xe.",
+    "preservation": "Lau bằng khăn ẩm mềm.",
+    "sizes": [
+      { "label": "Đệm 1 ghế đơn", "price": 1550000 },
+      { "label": "Bộ 2 ghế trước", "price": 2900000 }
+    ],
+    "images": ["/assets/images/products/dem-oto-bach-xanh-1.webp"],
+    "featured": false,
+    "status": "published",
+    "relatedPosts": ["gioi-thieu-nhom-san-pham-dong-phong"],
+    "createdAt": "2025-06-20"
+  }
+]

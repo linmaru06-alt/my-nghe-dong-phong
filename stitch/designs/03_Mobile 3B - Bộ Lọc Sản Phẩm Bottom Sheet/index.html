@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#fff8f5;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#feb783", "on-background": "#29170c", "surface-variant": "#fedcc8", "on-secondary-container": "#78461c", "surface": "#fff8f5", "surface-container-lowest": "#ffffff", "outline-variant": "#d6c3b8", "primary-container": "#6b3f1f", "on-primary-fixed-variant": "#673c1c", "on-primary-container": "#eaac84", "secondary": "#865227", "on-tertiary-fixed-variant": "#00531f", "on-surface": "#29170c", "inverse-primary": "#f8b990", "on-secondary": "#ffffff", "surface-container-highest": "#fedcc8", "primary": "#50290b", "tertiary-fixed": "#69ff89", "inverse-on-surface": "#ffede4", "on-surface-variant": "#51443c", "on-error-container": "#93000a", "on-tertiary-fixed": "#002108", "surface-tint": "#835331", "surface-dim": "#f5d3c0", "outline": "#84746b", "inverse-surface": "#402c1f", "on-secondary-fixed-variant": "#6a3b11", "primary-fixed": "#ffdcc6", "secondary-fixed-dim": "#feb783", "error": "#ba1a1a", "surface-container-low": "#fff1ea", "on-primary-fixed": "#311300", "tertiary-container": "#005620", "surface-container-high": "#ffe3d3", "on-tertiary-container": "#29d460", "error-container": "#ffdad6", "background": "#fff8f5", "surface-container": "#ffeadf", "on-primary": "#ffffff", "tertiary-fixed-dim": "#3ee26c", "primary-fixed-dim": "#f8b990", "tertiary": "#003c14", "on-tertiary": "#ffffff", "on-error": "#ffffff", "secondary-fixed": "#ffdcc4", "surface-bright": "#fff8f5", "on-secondary-fixed": "#301400" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.5rem", "space-3xl": "4.5rem", "space-md": "1rem", "gutter-desktop": "1.5rem", "space-2xl": "3rem", "container-max": "1280px", "space-2xs": "0.25rem", "space-sm": "0.75rem", "space-4xl": "6rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "space-xl": "2rem" }, fontFamily: { "h1-mobile": ["Playfair Display"], "body-large": ["Be Vietnam Pro"], "label": ["Be Vietnam Pro"], "body": ["Be Vietnam Pro"], "caption": ["Be Vietnam Pro"], "display": ["Playfair Display"], "body-medium": ["Be Vietnam Pro"], "h2": ["Playfair Display"], "display-mobile": ["Playfair Display"], "h1": ["Playfair Display"], "h3": ["Playfair Display"] }, fontSize: { "h1-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "0em", "fontWeight": "600" }], "body-large": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "label": ["13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "caption": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-medium": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "h2": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "h1": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "h3": ["22px", { "lineHeight": "30px", "fontWeight": "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body text-body text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(107,63,31,0.06)] pt-safe"><div class="h-14 px-gutter-mobile flex items-center justify-between gap-space-xs"><button aria-label="Quay lại hoặc Đóng" class="w-11 h-11 flex items-center justify-center -ml-2 text-on-surface hover:text-primary transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-h3 text-[19px] leading-tight text-primary text-center truncate flex-1 px-space-xs font-semibold">Bộ Lọc Sản Phẩm</h1><div class="w-11 h-11 flex items-center justify-end"><button aria-label="Đóng modal" class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">close</span></button></div></div></header><main class="flex flex-col relative w-full pt-14 pb-safe bg-surface flex-1"><div class="flex flex-col w-full relative select-none">
+<!-- Dimmed Underlay: Artisan Product Grid Behind Filter Sheet -->
+<div class="w-full flex flex-col gap-space-md opacity-35 filter blur-[1px] pointer-events-none px-gutter-mobile pt-space-xs">
+<!-- Quick Stats & Chips Underneath -->
+<div class="flex items-center justify-between">
+<p class="font-body text-caption text-on-surface-variant">Hiển thị 20 kiệt tác thủ công</p>
+<div class="flex items-center gap-space-2xs bg-surface-container px-space-xs py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary">tune</span>
+<span class="font-label text-caption text-primary font-semibold">Đang lọc (2)</span>
+</div>
+</div>
+<!-- Ghost Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex gap-space-sm shadow-sm">
+<div class="w-20 h-20 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Exquisite hand-carved red rosewood Buddhist meditation bead bracelet resting on antique raw raw timber grain, warm soft lighting reflecting subtle resin luster, ultra detailed heirloom quality craftsmanship" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg3HiPf_jTsDzsb-Tm2K0sHlPZ5vi1ao72hkWRr7iJKDNxt9cZrmBMp-CvuyPv1ZsMyJ6UHXbzYRpVqGuVVWJZDf_PlZ_grx1KOo4188X1tNaAxtpSWLjzayvuyQs5kdOv0901GLKjmsfwF5uf7qqmqVH3AZ8M0cLcZU2uy90uXeDu78AjRxlwpy6NxAYR7UTQ2VE-n02e27EFBI9CVAFQf3BqQQwOAnrsbsl_OaN_WTrEVW5iVr68xw"/>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<span class="font-label text-caption text-secondary">Gỗ Sưa Đỏ Bắc Bộ</span>
+<h4 class="font-h3 text-body-medium text-on-surface truncate">Vòng Tay Hạt Tròn Mắt Quỷ 14mm</h4>
+<p class="font-body text-caption text-on-surface-variant mt-1">4.200.000 đ</p>
+</div>
+</div>
+<!-- Ghost Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex gap-space-sm shadow-sm">
+<div class="w-20 h-20 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Vietnamese aromatic Lang Son Snow Cedarwood prayer beads with crystalline resin frosting sitting on a handcrafted ceramic pedestal with burning agarwood incense smoke in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYNI7fekeuFRmViw4Hlle87VYqXwaIoxQ9tpbnfwHVVqvIvkRY2JL2sC-wpDAbDWkE6msoC_yafpm_kYDIQbMWkuUa4aOcOUa_RRqEEp3MVT_3qbQh9bFGQju9D2aX9-mocQ3x6s7Z7FP1n2JhaZ2QL8baq74MG3HF8yQng9gX5bc2es51mtdbty9QJY0ggqqyhpNmEFKPz-FhKCeGaRCysVL2aw3epPgYKxDfuK0S7Rh3xaNxtHRZCA"/>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<span class="font-label text-caption text-secondary">Hoàng Đàn Tuyết</span>
+<h4 class="font-h3 text-body-medium text-on-surface truncate">Chuỗi 108 Hạt Tuyết Tinh Khôi</h4>
+<p class="font-body text-caption text-on-surface-variant mt-1">6.800.000 đ</p>
+</div>
+</div>
+<!-- Ghost Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex gap-space-sm shadow-sm">
+<div class="w-20 h-20 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Polished jet-black Khanh Hoa ebony wood rolling meditation spheres with intricate naturally formed marble veins on silk cloth inside wooden studio box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKSe5vnL2SBorGy44O6b058sBu3A6PBVavoMl6Em4Q7FxueSYXQJ-OYz1dBhas22gmAuDK3Ag27pjiPFzYtgrnVGzIjmlPlgLkQGi4EmysuHp7mXhyQgdb6E6nAAAzh7hzRFjhPE6Gn8WN1vhHMDr3-dDeQm_KnpiMptIjTtMwib-7OydRmpsCyVIupIMC_ZLI2FXlduTjXOQmZUAJWj8fBcJz7-pSbPWlaFUg6R4f8fXLzQ-Hibn1Q"/>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<span class="font-label text-caption text-secondary">Mun Sừng Khánh Hòa</span>
+<h4 class="font-h3 text-body-medium text-on-surface truncate">Cặp Bi Lăn Tay Tròn Đều Cổ Ngọc</h4>
+<p class="font-body text-caption text-on-surface-variant mt-1">2.450.000 đ</p>
+</div>
+</div>
+</div>
+<!-- Modal Scrim Overlay -->
+<div class="fixed inset-0 z-40 bg-[#2C1A0E]/55 transition-opacity backdrop-blur-[2px]"></div>
+<!-- Bottom Sheet Surface (~65% viewport height) -->
+<div class="fixed inset-x-0 bottom-0 z-50 flex flex-col max-h-[724px] bg-surface-container-low rounded-t-[24px] shadow-[0_-8px_32px_rgba(44,26,14,0.22)] overflow-hidden">
+<!-- Grabber Header -->
+<div class="flex flex-col items-center pt-space-xs pb-space-xs px-gutter-mobile bg-surface-container-low flex-shrink-0">
+<div class="w-10 h-1 rounded-full bg-outline-variant/70 mb-space-xs"></div>
+<div class="w-full flex items-center justify-between py-1">
+<div class="w-16"></div>
+<h2 class="font-h2 text-h3 text-primary font-semibold tracking-tight text-center flex-1">Bộ Lọc Tác Phẩm</h2>
+<button class="w-16 text-right font-label text-caption text-secondary hover:text-primary transition-colors focus:outline-none" id="reset-filter-btn" type="button">
+          Đặt lại
+        </button>
+</div>
+</div>
+<!-- Decorative Whisper Subtitle -->
+<div class="px-gutter-mobile pb-space-xs text-center flex-shrink-0">
+<p class="font-body text-caption text-on-surface-variant">Tuyển chọn theo thớ gỗ, phẩm cấp và kích thước chuẩn tâm linh</p>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-gutter-mobile pb-space-2xl space-y-space-lg overscroll-contain">
+<!-- 1. Danh mục chế tác -->
+<section class="space-y-space-xs pt-space-2xs">
+<div class="flex items-center justify-between">
+<span class="font-label text-label uppercase tracking-wider text-primary font-bold">Danh mục chế tác</span>
+<span class="font-caption text-caption text-on-surface-variant">Chọn nhiều</span>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<!-- Active Pill -->
+<button class="category-pill flex items-center gap-1.5 px-space-sm py-1.5 rounded-full bg-primary-container text-on-primary font-label text-caption shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Tất cả</span>
+<span class="opacity-75 font-caption">(20)</span>
+</button>
+<!-- Active Pill -->
+<button class="category-pill flex items-center gap-1.5 px-space-sm py-1.5 rounded-full bg-primary text-on-primary font-label text-caption shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Vòng phong thủy</span>
+<span class="opacity-75 font-caption">(6)</span>
+</button>
+<!-- Inactive Pills -->
+<button class="category-pill flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label text-caption hover:bg-surface-container transition-all" type="button">
+<span>Bút ký cao cấp</span>
+<span class="text-on-surface-variant font-caption">(4)</span>
+</button>
+<button class="category-pill flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label text-caption hover:bg-surface-container transition-all" type="button">
+<span>Bi lăn tay</span>
+<span class="text-on-surface-variant font-caption">(3)</span>
+</button>
+<button class="category-pill flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label text-caption hover:bg-surface-container transition-all" type="button">
+<span>Khay trà &amp; Tượng</span>
+<span class="text-on-surface-variant font-caption">(4)</span>
+</button>
+<button class="category-pill flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label text-caption hover:bg-surface-container transition-all" type="button">
+<span>Gối &amp; Đệm hạt</span>
+<span class="text-on-surface-variant font-caption">(3)</span>
+</button>
+</div>
+</section>
+<!-- 2. Chủng loại gỗ quý -->
+<section class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label text-label uppercase tracking-wider text-primary font-bold">Chủng loại gỗ quý</span>
+<span class="font-caption text-caption text-secondary">Phôi lâu năm</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-xs space-y-1 shadow-sm">
+<!-- Item Checked -->
+<label class="wood-option flex items-center justify-between p-space-xs rounded-lg cursor-pointer bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-5 h-5 rounded bg-primary flex items-center justify-center text-on-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-medium text-body-medium text-on-surface truncate">Gỗ Sưa Đỏ Bắc Bộ</span>
+<span class="font-caption text-caption text-secondary">Vân mắt quỷ thâm sâu</span>
+</div>
+</div>
+<span class="font-label text-caption text-on-surface-variant flex-shrink-0 ml-2">5 tác phẩm</span>
+</label>
+<!-- Item Checked -->
+<label class="wood-option flex items-center justify-between p-space-xs rounded-lg cursor-pointer bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-5 h-5 rounded bg-primary flex items-center justify-center text-on-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-medium text-body-medium text-on-surface truncate">Hoàng Đàn Tuyết Lạng Sơn</span>
+<span class="font-caption text-secondary text-caption">Thơm ngọt dịu mát tinh khôi</span>
+</div>
+</div>
+<span class="font-label text-caption text-on-surface-variant flex-shrink-0 ml-2">3 tác phẩm</span>
+</label>
+<!-- Item Unchecked -->
+<label class="wood-option flex items-center justify-between p-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-5 h-5 rounded bg-surface-container flex items-center justify-center text-transparent flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body text-body-medium text-on-surface truncate">Trầm Hương Rừng Tự Nhiên</span>
+<span class="font-caption text-caption text-on-surface-variant">Tích dầu cổ thụ Quảng Nam</span>
+</div>
+</div>
+<span class="font-label text-caption text-on-surface-variant flex-shrink-0 ml-2">4 tác phẩm</span>
+</label>
+<!-- Item Unchecked -->
+<label class="wood-option flex items-center justify-between p-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-5 h-5 rounded bg-surface-container flex items-center justify-center text-transparent flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body text-body-medium text-on-surface truncate">Mun Sừng Khánh Hòa</span>
+<span class="font-caption text-caption text-on-surface-variant">Đen bóng ngọc huyền bí</span>
+</div>
+</div>
+<span class="font-label text-caption text-on-surface-variant flex-shrink-0 ml-2">3 tác phẩm</span>
+</label>
+<!-- Item Unchecked -->
+<label class="wood-option flex items-center justify-between p-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-5 h-5 rounded bg-surface-container flex items-center justify-center text-transparent flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body text-body-medium text-on-surface truncate">Gỗ Trắc Đỏ Đen Cổ Thụ</span>
+<span class="font-caption text-caption text-on-surface-variant">Đanh thép nghìn năm tuổi</span>
+</div>
+</div>
+<span class="font-label text-caption text-on-surface-variant flex-shrink-0 ml-2">3 tác phẩm</span>
+</label>
+<!-- Item Unchecked -->
+<label class="wood-option flex items-center justify-between p-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-5 h-5 rounded bg-surface-container flex items-center justify-center text-transparent flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body text-body-medium text-on-surface truncate">Gỗ Pơ Mu Già Tuyển</span>
+<span class="font-caption text-caption text-on-surface-variant">Hương thơm xua muỗi tĩnh tâm</span>
+</div>
+</div>
+<span class="font-label text-caption text-on-surface-variant flex-shrink-0 ml-2">2 tác phẩm</span>
+</label>
+</div>
+</section>
+<!-- 3. Khoảng giá niêm yết -->
+<section class="space-y-space-xs">
+<span class="font-label text-label uppercase tracking-wider text-primary font-bold block">Khoảng giá thẩm định</span>
+<div class="grid grid-cols-2 gap-space-2xs">
+<button class="py-2.5 px-space-xs rounded-lg bg-surface-container-lowest text-on-surface font-body text-caption hover:bg-surface-container text-center transition-all" type="button">
+            Dưới 2 triệu
+          </button>
+<button class="py-2.5 px-space-xs rounded-lg bg-primary text-on-primary font-body-medium text-caption shadow-sm text-center flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">done</span>
+<span>2 - 5 triệu</span>
+</button>
+<button class="py-2.5 px-space-xs rounded-lg bg-surface-container-lowest text-on-surface font-body text-caption hover:bg-surface-container text-center transition-all" type="button">
+            Trên 5 triệu
+          </button>
+<button class="py-2.5 px-space-xs rounded-lg bg-surface-container-lowest text-on-surface font-body text-caption hover:bg-surface-container text-center transition-all" type="button">
+            Độc bản / Đặt riêng
+          </button>
+</div>
+</section>
+<!-- 4. Tình trạng phôi gỗ -->
+<section class="space-y-space-xs">
+<span class="font-label text-label uppercase tracking-wider text-primary font-bold block">Tình trạng chế tác</span>
+<div class="flex flex-wrap gap-space-2xs">
+<button class="flex items-center gap-1.5 px-space-sm py-2 rounded-lg bg-surface-container text-primary font-label text-caption shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary">verified</span>
+<span>Có sẵn tại xưởng (Mộc Hoá)</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-sm py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label text-caption hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">straighten</span>
+<span>Chế tác theo cổ tay</span>
+</button>
+</div>
+</section>
+<!-- Artisan Heritage Guarantee Note -->
+<div class="p-space-sm rounded-xl bg-surface-container flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0 mt-0.5">workspace_premium</span>
+<div class="flex flex-col">
+<span class="font-label text-caption text-primary font-semibold">Bảo đảm phôi thật 100%</span>
+<p class="font-body text-caption text-on-surface-variant">Tất cả tác phẩm đều có tem bảo chứng vân gỗ trọn đời và kiểm định tuổi mộc trước khi gửi khách.</p>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="w-full bg-surface-container-lowest p-gutter-mobile shadow-[0_-4px_20px_rgba(44,26,14,0.08)] flex items-center gap-space-xs flex-shrink-0 pb-safe">
+<!-- Close / Back Button -->
+<button class="h-12 px-space-md rounded-xl bg-surface-container text-on-surface font-label text-body-medium hover:bg-surface-container-high transition-colors flex items-center justify-center" onclick="history.back()" type="button">
+        Đóng
+      </button>
+<!-- Apply Filter Button (Primary Accent) -->
+<button class="h-12 flex-1 rounded-xl bg-primary-container hover:bg-primary text-on-primary font-label text-body-medium font-semibold shadow-md flex items-center justify-center gap-space-xs transition-all active:scale-[0.98]" onclick="history.back()" type="button">
+<span>Áp dụng</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed opacity-60"></span>
+<span>8 tác phẩm</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Micro-interactions for Filter sheet
+  document.querySelectorAll('.wood-option').forEach(option => {
+    option.addEventListener('click', function(e) {
+      e.preventDefault();
+      const iconBox = this.querySelector('div:first-child > div');
+      const isSelected = iconBox.classList.contains('bg-primary');
+
+      if (isSelected) {
+        iconBox.classList.remove('bg-primary', 'text-on-primary');
+        iconBox.classList.add('bg-surface-container', 'text-transparent');
+        this.classList.remove('bg-surface-container-low');
+        this.classList.add('hover:bg-surface-container');
+      } else {
+        iconBox.classList.add('bg-primary', 'text-on-primary');
+        iconBox.classList.remove('bg-surface-container', 'text-transparent');
+        this.classList.add('bg-surface-container-low');
+        this.classList.remove('hover:bg-surface-container');
+      }
+    });
+  });
+
+  const resetBtn = document.getElementById('reset-filter-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      document.querySelectorAll('.wood-option').forEach((option, idx) => {
+        const iconBox = option.querySelector('div:first-child > div');
+        iconBox.classList.remove('bg-primary', 'text-on-primary');
+        iconBox.classList.add('bg-surface-container', 'text-transparent');
+        option.classList.remove('bg-surface-container-low');
+        option.classList.add('hover:bg-surface-container');
+      });
+    });
+  }
+</script></main></body></html>

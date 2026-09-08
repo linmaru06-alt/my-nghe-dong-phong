@@ -1,0 +1,57 @@
+:root {
+  /* Nền tự nhiên ấm cúng & sang trọng */
+  --bg-primary: #FDFBF7;
+  --bg-secondary: #F7F2EA;
+  --bg-surface: #FFFFFF;
+  --bg-wood-dark: #23160F;
+  --bg-wood-card: #2B1B13;
+
+  /* Nâu gỗ quý (Wood tones) */
+  --wood-deep: #3A2012;
+  --wood-primary: #5C3A21;
+  --wood-warm: #8B4D27;
+  --wood-light: #C49767;
+
+  /* Điểm nhấn Hoàng gia & Ánh kim (Luxury Accents) */
+  --gold-primary: #C5A059;
+  --gold-light: #E7CF9B;
+  --gold-dark: #9A7732;
+  --amber: #D97706;
+
+  /* Kênh liên hệ & Chuyển đổi */
+  --zalo-blue: #0068FF;
+  --zalo-hover: #0052CC;
+  --hotline-green: #108A44;
+  --hotline-hover: #0B6B34;
+
+  /* Chữ & Độ tương phản */
+  --text-main: #22160E;
+  --text-secondary: #5E4E46;
+  --text-muted: #8E7C73;
+  --text-light: #FDFBF7;
+
+  /* Viền & Đổ bóng tinh tế */
+  --border-subtle: #E8E0D5;
+  --border-gold: #D6C29E;
+  --border-active: #C5A059;
+
+  --shadow-sm: 0 2px 8px rgba(42, 22, 12, 0.05);
+  --shadow-md: 0 8px 24px rgba(42, 22, 12, 0.08);
+  --shadow-lg: 0 16px 40px rgba(42, 22, 12, 0.12);
+  --shadow-gold: 0 4px 20px rgba(197, 160, 89, 0.25);
+
+  /* Bo góc & Kích thước */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Chuyển động mượt mà */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Phông chữ */
+  --font-serif: "Cinzel", "Playfair Display", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
