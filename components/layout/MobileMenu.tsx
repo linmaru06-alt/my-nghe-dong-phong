@@ -153,9 +153,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           key={cat.id}
                           href={`/san-pham?category=${cat.id}`}
                           onClick={onClose}
-                          className="flex items-center gap-2 py-2 text-xs text-text-muted hover:text-primary transition-colors"
+                          className="flex items-center py-2 text-xs text-text-muted hover:text-primary transition-colors font-medium"
                         >
-                          <span>{cat.icon}</span>
                           <span>{cat.name}</span>
                         </Link>
                       ))}

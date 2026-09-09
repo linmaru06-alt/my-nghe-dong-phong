@@ -29,9 +29,8 @@ export default function NotFound() {
             <Link
               key={cat.id}
               href={`/san-pham?category=${cat.id}`}
-              className="px-3.5 py-1.5 rounded-pill text-xs bg-surface border border-border text-text hover:border-primary hover:text-primary transition-colors flex items-center gap-1"
+              className="px-3.5 py-1.5 rounded-pill text-xs bg-surface border border-border text-text hover:border-primary hover:text-primary transition-colors inline-block"
             >
-              <span>{cat.icon}</span>
               <span>{cat.name}</span>
             </Link>
           ))}

@@ -163,9 +163,8 @@ export default function SearchClient({
                   <Link
                     key={cat.id}
                     href={`/san-pham?category=${cat.id}`}
-                    className="px-3.5 py-1.5 rounded-pill text-xs bg-bg border border-border hover:border-primary hover:text-primary transition-colors flex items-center gap-1"
+                    className="px-4 py-2 rounded-pill text-xs bg-bg border border-border hover:border-primary hover:text-primary transition-colors font-medium inline-block"
                   >
-                    <span>{cat.icon}</span>
                     <span>{cat.name}</span>
                   </Link>
                 ))}
@@ -200,9 +199,8 @@ export default function SearchClient({
               <Link
                 key={cat.id}
                 href={`/san-pham?category=${cat.id}`}
-                className="px-4 py-2 rounded-pill text-xs font-semibold bg-surface border border-border hover:border-primary hover:text-primary transition-all shadow-xs flex items-center gap-1.5"
+                className="px-4 py-2 rounded-pill text-xs font-semibold bg-surface border border-border hover:border-primary hover:text-primary transition-all shadow-xs inline-block"
               >
-                <span>{cat.icon}</span>
                 <span>{cat.name}</span>
               </Link>
             ))}

@@ -98,9 +98,8 @@ export function BlogSidebar({ relatedProductIds = [], customProducts }: BlogSide
               href={`/san-pham?category=${cat.id}`}
               className="flex items-center justify-between py-1.5 text-xs text-text-muted hover:text-primary transition-colors group"
             >
-              <span className="flex items-center gap-2">
-                <span>{cat.icon}</span>
-                <span>{cat.name}</span>
+              <span className="text-xs text-text-muted group-hover:text-primary transition-colors font-medium">
+                {cat.name}
               </span>
               <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-primary" />
             </Link>

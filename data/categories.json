@@ -2,7 +2,6 @@
   {
     "id": "vong-tay",
     "name": "Vòng tay phong thủy",
-    "icon": "🪬",
     "order": 1,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAcCRajqgcCPBuPbGHZf3YC7nX0sUbO1SpzdhA4E-pNFSrLGfxYZ6mJbxpdumFZk-JGzbAoZnNT2izHxaOjpSt_YZG0Z9_zi1S9RmxTbxo0moFuyoiGCCtK2TVh5Be6il1x1kiqoHW97DeFtyMjmbqeVAczKdZy3i8DKMGgZYBc8RalgxYMGGdNCFYWQv1SAUbvNA_xh_mcbOgkEKb16q-pI-OZGCvG4qsUcBba8TQfj2xZ0-etPro15w",
     "description": "Sưa đỏ Bắc Bộ, Trầm hương, Tử đàn Ấn Độ, Bách xanh chớp thơm ngát."
@@ -10,7 +9,6 @@
   {
     "id": "but-ky",
     "name": "Bút ký gỗ quý",
-    "icon": "🖊️",
     "order": 2,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCr4O4Gin3xgSyel0LsXL99XnDNbvMmrUhFKFC9J8GAi4lpMgZWqF-9p9hPtNU7rzUo2-V8Oyx14a0mi3rslz2O6mldFSXS8SzprLHU0D8d9cnf7tFrSJAJOqfgAVW1pV4hH2PMbhugyRdNUQ7JXcfdTu3bNN2y_u7G4TSCT0BEGPs357E1VgYCrsTu-tXXJEbBmkN0HlOEudb7SIej_qW_KBbPptF4IYgto4MRSGylCKKBSLs6B6Q6yQ",
     "description": "Nu huyết long, nu bách xanh, hoàng đàn, mun sừng, ngòi Đức mạ vàng."
@@ -18,7 +16,6 @@
   {
     "id": "bi-lan-tay",
     "name": "Bi lăn tay dưỡng sinh",
-    "icon": "⚪",
     "order": 3,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuC_NFWN3Xik8wwqA-pExcs9VOqXpJOUxtEwt94RWqR9ZB2bQQ0OPgPr1qyJYdL8JuqiYGvsSlbOerHpHEPAN2TcGzO81aVJbJU2gP9v6VJCdivCcA6qfqzIY4Yeyx17ssybY_tLwBXmDyS3DgxcVKnFKsurcbjGhtg1WLvetjkoZ_brmHj2gZUom-Hg3-64UdLa48CJF_TOxjyV06x_BSm7KibuNSLYr2_ICV7orS0tlzJZMjAVi8UjGA",
     "description": "Gỗ Cẩm, Gỗ Sưa, Hoàng Đàn tuyết, lưu thông khí huyết và thư giãn bàn tay."
@@ -26,7 +23,6 @@
   {
     "id": "goi-go",
     "name": "Gối gỗ thư giãn",
-    "icon": "🪵",
     "order": 4,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBMxRCnH0O6Oe0exhwC8XhVGVePH_0m-fVjsi_JqqW3nfjGs4bcng_1Tm9oMlVNd7IAV7D7K054vt5LkYiPR3HJHaVNsMPkXuhqYV4cLayy2JEWO6arFhv4C9AbDOv6Nwj4ea-JZxyuIfczC5YKeDLI88qm3qlgUcWWF1PvXvErpyDUataV7C_k1tLdPNPZXy7qRcSU16dhPrfDyA--eFEoB8uzc-wylvWowgqqfeHwBpTzSqkzNLxXCQ",
     "description": "Gỗ Sưa, Bách Xanh xâu hạt thoáng khí, hỗ trợ giấc ngủ sâu và giảm mỏi cổ gáy."
@@ -34,7 +30,6 @@
   {
     "id": "tau",
     "name": "Tẩu nghệ thuật",
-    "icon": "🪄",
     "order": 5,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCrGI9MUSk4pHXeMwy7jkdJ0xhbl4pQYzUdIzgZK15TDT85gsVg-1S-4wJUYl0E3ctL-QcdIIfnFuU_VxPQNy9fgIG2L4OrqNO7qb2pCDAf_6Mqd43e56XHqNcSDj81ztGhAXhtOs7vSKa8DKkBlji4wdVEihzPZA6R67kXaUbEJXxmT0VQHq04q16t2cyDlPoD_cIypHex4RMELSg5v2MHzAHYv9Ec02qL-JSLiYNt0dBvmIdS9cuYYg",
     "description": "Gỗ trắc cán sừng, gỗ nu cẩm thủ công điêu khắc độc bản."
@@ -42,7 +37,6 @@
   {
     "id": "dua-go",
     "name": "Đũa gỗ mỹ nghệ",
-    "icon": "🥢",
     "order": 6,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAiLW35LsMkF4W6gwrd37dVjfKwYWhOjlB8_CxCznR53kcaANoyO6TIZ-xq7tFlm4xwHtPxG_y3r2HZaXV2ggds35yEXIqWdEkrqT2BUom5tiUFG0W2k2vnMvjCeC6Pth7Z1d2KO92n8VqA_kulrt3mZi6lq3ky5Cx42fsmswbLJqx6eJ-KP_VdswFO22elKG1-4ZOV_ugMsInAOqaOqCRzPgQJNEx0oSYuk0aI7KtNsUR_1O13r8GG4w",
     "description": "Gỗ Mun sừng, Gỗ trắc tự nhiên, không ẩm mốc, bền đẹp sang trọng trên bàn ăn."
@@ -50,7 +44,6 @@
   {
     "id": "dem-o-to",
     "name": "Đệm ô tô hạt gỗ",
-    "icon": "🚗",
     "order": 7,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBjzFS8nA7_ZGbcy40m_3Db_1_Z76hv9I9EEXETadHXdK2Wzr7apBuOFwP4mmmlvmTBaonNzXDcrNiPwb9rM3MGgJFFirX_r6OuF63oG8xdyGXiQINidygGJg5kIcm6EfwePHHapQWfVgIQWUL6qFak3B16mRkoS1YoCUZ_RLw3t885oSAk39Z5YlLcAUEZYUa8JzanvQOWbV2e-UhfSu1bNnD3WNSOH7QEAtRgtoOwwGcsf_vtY_y4MQ",
     "description": "Hạt gỗ Trắc, Bách Xanh tự nhiên massage lưng, chống nóng mồ hôi hiệu quả."

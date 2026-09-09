@@ -237,7 +237,7 @@ export default function ProductDetailClient({ product: propProduct, slug }: Prod
                 <Badge variant="wood">{product.woodType}</Badge>
                 {categoryInfo && (
                   <Badge variant="category">
-                    {categoryInfo.icon} {categoryInfo.name}
+                    {categoryInfo.name}
                   </Badge>
                 )}
               </div>

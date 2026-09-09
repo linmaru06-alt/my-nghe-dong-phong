@@ -150,13 +150,12 @@ export function ProductFilter({
               type="button"
               onClick={() => onSelectCategory(cat.id)}
               className={cn(
-                "px-3.5 py-1.5 md:px-4 md:py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 snap-start flex items-center gap-1.5 select-none",
+                "px-4 py-2 rounded-pill text-xs font-semibold whitespace-nowrap transition-all duration-200 snap-start select-none",
                 isActive
                   ? "bg-primary text-white shadow-sm"
                   : "bg-surface border border-border text-text hover:border-primary hover:text-primary"
               )}
             >
-              <span>{cat.icon}</span>
               <span>{cat.name}</span>
             </button>
           );
