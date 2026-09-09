@@ -26,22 +26,45 @@ export interface Product {
 
 const PRODUCTS_FILE = path.join(process.cwd(), "data", "products.json");
 
+let memoryProductsCache: Product[] | null = null;
+const TMP_PRODUCTS_FILE = path.join(require("os").tmpdir(), "dongphong_products.json");
+
 /**
- * Đọc danh sách tất cả sản phẩm trực tiếp từ data/products.json trên ổ đĩa
+ * Đọc danh sách tất cả sản phẩm trực tiếp từ data/products.json hoặc bộ nhớ /tmp trên Vercel
  */
 export async function getAllProducts(): Promise<Product[]> {
+  if (memoryProductsCache && memoryProductsCache.length > 0) {
+    return memoryProductsCache;
+  }
+
+  // 1. Thử đọc từ /tmp (nếu trên Vercel đã lưu tạm)
+  try {
+    const tmpContent = await fs.readFile(TMP_PRODUCTS_FILE, "utf-8");
+    const products: Product[] = JSON.parse(tmpContent);
+    if (Array.isArray(products) && products.length > 0) {
+      memoryProductsCache = products;
+      return products;
+    }
+  } catch {}
+
+  // 2. Thử đọc trực tiếp từ file data/products.json
   try {
     const fileContent = await fs.readFile(PRODUCTS_FILE, "utf-8");
     const products: Product[] = JSON.parse(fileContent);
-    return Array.isArray(products) ? products : [];
-  } catch (error) {
-    console.error("[Products Server Layer] Lỗi đọc data/products.json:", error);
-    try {
-      const fallback = require("@/data/products.json");
-      return Array.isArray(fallback) ? fallback : [];
-    } catch {
-      return [];
+    if (Array.isArray(products) && products.length > 0) {
+      memoryProductsCache = products;
+      return products;
     }
+  } catch (error) {
+    console.warn("[Products Server Layer] Không thể đọc trực tiếp data/products.json:", error);
+  }
+
+  // 3. Fallback tĩnh từ module bundle
+  try {
+    const fallback = require("@/data/products.json");
+    return Array.isArray(fallback) ? fallback : [];
+  } catch {
+    return [];
   }
 }
 
@@ -80,9 +103,20 @@ export async function getProductBySlug(rawSlug: string): Promise<Product | undef
  * Lưu danh sách sản phẩm và xóa cache máy chủ tức thời
  */
 export async function saveProducts(products: Product[]): Promise<{ success: boolean; total: number }> {
-  const dataDir = path.dirname(PRODUCTS_FILE);
-  await fs.mkdir(dataDir, { recursive: true });
-  await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+  memoryProductsCache = products;
+
+  // 1. Thử lưu vào data/products.json trên đĩa
+  try {
+    const dataDir = path.dirname(PRODUCTS_FILE);
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+  } catch (err: any) {
+    // 2. Nếu đĩa read-only trên Vercel, lưu vào /tmp
+    console.warn("[Products Server Layer] Ổ đĩa Read-Only (Vercel), lưu vào /tmp:", err.message);
+    try {
+      await fs.writeFile(TMP_PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+    } catch {}
+  }
 
   try {
     revalidatePath("/");
@@ -94,3 +128,4 @@ export async function saveProducts(products: Product[]): Promise<{ success: bool
 
   return { success: true, total: products.length };
 }
+
