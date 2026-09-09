@@ -34,9 +34,9 @@ export function Footer() {
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="https://lh3.googleusercontent.com/aida/AEtjO1Wv-Nv0NV-zUQsGyPVIlJSw2dr-eXrrFLhX4vV0jbqhyvWeJcJssNwwhKvoquU3yskfSy-xlhJfLgzQF-S0GKdWMwgWyJPqzgve4jv0Ag9OVbXuBJk-pweNhKb9QKxiql41pkh3UmgY2r2Ny9hVZ-xO1NG97ADNZJ3sji-iLCEcPRRYxtFDN5-WUHsJNxpm5v3PbBkTiemGlql1xLod_mzgUQVJaj9Na60qh98swVAR-Wzk1hcdEz1V5lgX"
+                src="/images/logo.png"
                 alt="Mỹ Nghệ Đông Phong"
-                className="w-12 h-12 rounded-full object-contain border border-[#C5A059]/30"
+                className="w-14 h-14 object-contain drop-shadow"
               />
               <div>
                 <span className="font-serif text-2xl font-bold text-white block tracking-tight">

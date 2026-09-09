@@ -70,9 +70,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <div className="p-4 border-b border-border flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <img
-                  src="https://lh3.googleusercontent.com/aida/AEtjO1Wv-Nv0NV-zUQsGyPVIlJSw2dr-eXrrFLhX4vV0jbqhyvWeJcJssNwwhKvoquU3yskfSy-xlhJfLgzQF-S0GKdWMwgWyJPqzgve4jv0Ag9OVbXuBJk-pweNhKb9QKxiql41pkh3UmgY2r2Ny9hVZ-xO1NG97ADNZJ3sji-iLCEcPRRYxtFDN5-WUHsJNxpm5v3PbBkTiemGlql1xLod_mzgUQVJaj9Na60qh98swVAR-Wzk1hcdEz1V5lgX"
+                  src="/images/logo.png"
                   alt="Mỹ Nghệ Đông Phong"
-                  className="w-9 h-9 rounded-full object-contain border border-border"
+                  className="w-10 h-10 object-contain drop-shadow-sm"
                 />
                 <div>
                   <span className="font-serif text-base font-bold text-primary block leading-none">

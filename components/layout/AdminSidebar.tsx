@@ -100,14 +100,21 @@ export function AdminSidebar() {
         )}
       >
         {/* Brand Header */}
-        <div className="p-6 border-b border-border">
-          <Link href="/admin" className="block">
-            <span className="font-serif text-lg font-bold text-primary block leading-none">
-              Mỹ Nghệ Đông Phong
-            </span>
-            <span className="text-[10px] text-text-muted tracking-widest uppercase font-semibold">
-              Quản Trị Hệ Thống
-            </span>
+        <div className="p-5 border-b border-border">
+          <Link href="/admin" className="flex items-center gap-3 group">
+            <img
+              src="/images/logo.png"
+              alt="Mỹ Nghệ Đông Phong"
+              className="w-9 h-9 object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105"
+            />
+            <div>
+              <span className="font-serif text-base font-bold text-primary block leading-none">
+                Mỹ Nghệ Đông Phong
+              </span>
+              <span className="text-[10px] text-text-muted tracking-widest uppercase font-semibold block mt-1">
+                Quản Trị Hệ Thống
+              </span>
+            </div>
           </Link>
         </div>
 

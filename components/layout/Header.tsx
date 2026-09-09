@@ -69,9 +69,9 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             <img
-              src="https://lh3.googleusercontent.com/aida/AEtjO1Wv-Nv0NV-zUQsGyPVIlJSw2dr-eXrrFLhX4vV0jbqhyvWeJcJssNwwhKvoquU3yskfSy-xlhJfLgzQF-S0GKdWMwgWyJPqzgve4jv0Ag9OVbXuBJk-pweNhKb9QKxiql41pkh3UmgY2r2Ny9hVZ-xO1NG97ADNZJ3sji-iLCEcPRRYxtFDN5-WUHsJNxpm5v3PbBkTiemGlql1xLod_mzgUQVJaj9Na60qh98swVAR-Wzk1hcdEz1V5lgX"
+              src="/images/logo.png"
               alt="Mỹ Nghệ Đông Phong Logo"
-              className="h-10 w-10 object-contain rounded-full border border-white/20 shadow-sm"
+              className="h-11 w-11 object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
             />
             <div className="flex flex-col">
               <span

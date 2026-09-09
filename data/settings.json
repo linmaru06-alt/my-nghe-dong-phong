@@ -1,11 +1,13 @@
 {
   "brand": {
     "name": "Mỹ Nghệ Đông Phong",
+    "logo": "/images/logo.png",
     "phone": "0912 345 678",
     "zaloLink": "https://zalo.me/0912345678",
     "address": "Làng nghề Mộc truyền thống, Hà Nội, Việt Nam",
     "businessHours": "08:00 - 21:00 (Hàng ngày, kể cả T7 & CN)"
   },
+  "logo": "/images/logo.png",
   "siteName": "Mỹ Nghệ Đông Phong",
   "shortName": "Đông Phong",
   "tagline": "Tinh hoa từ những thớ gỗ quý",

@@ -75,10 +75,12 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md bg-[#2A160C]/90 backdrop-blur-md border border-[#C5A059]/40 rounded-2xl p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#C5A059] to-[#8C6D2D] p-[1px] shadow-lg">
-            <div className="w-full h-full rounded-full bg-[#1F1610] flex items-center justify-center">
-              <ShieldCheck className="w-7 h-7 text-[#C5A059]" />
-            </div>
+          <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+            <img
+              src="/images/logo.png"
+              alt="Mỹ Nghệ Đông Phong"
+              className="w-full h-full object-contain drop-shadow-lg"
+            />
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#FDFBF7] tracking-tight">
             Mỹ Nghệ Đông Phong

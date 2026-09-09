@@ -21,6 +21,13 @@ export const metadata: Metadata = {
   description:
     "Chuyên chế tác mộc thủ công từ các loại gỗ quý tự nhiên: Tử Đàn, Sưa, Nu Bách Xanh, Huyết Long, Mun Sừng. Tư vấn Zalo và hotline trực tiếp.",
   keywords: ["đồ gỗ mỹ nghệ", "vòng tay phong thủy", "bút ký gỗ quý", "mỹ nghệ đông phong"],
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "64x64", type: "image/png" },
+      { url: "/images/logo.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/images/logo.png",
+  },
 };
 
 import Header from "@/components/layout/Header";
