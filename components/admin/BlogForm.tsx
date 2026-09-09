@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { Save, Send, Eye } from "lucide-react";
+import { Save, Send, Eye, Upload, Image as ImageIcon, X, Loader2 } from "lucide-react";
 import { usePostsStore } from "@/lib/usePosts";
 import { slugify } from "@/lib/slugify";
 import { toast } from "@/components/ui/Toast";
@@ -29,6 +30,7 @@ export interface BlogFormProps {
 export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
   const router = useRouter();
   const { addPost, updatePost } = usePostsStore();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [formData, setFormData] = useState<BlogFormData>(
     initialData || {
@@ -37,14 +39,16 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
       category: "kien-thuc-ve-go",
       excerpt: "",
       content: "## 1. Giới thiệu tổng quan\n\nNội dung chi tiết bài viết...",
-      thumbnail: "/images/blog-placeholder.jpg",
+      thumbnail: "",
       readingTime: 5,
       status: "published",
     }
   );
 
   const [isPreviewTab, setIsPreviewTab] = useState(false);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isUploadingThumb, setIsUploadingThumb] = useState(false);
+  const [isUploadingContentImg, setIsUploadingContentImg] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const title = e.target.value;
@@ -63,12 +67,94 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
     setFormData((prev) => ({ ...prev, content, readingTime }));
   };
 
-  const handleSave = (statusToSet?: "published" | "draft") => {
+  // Upload thumbnail image to backend /api/admin/upload
+  const handleThumbnailUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingThumb(true);
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("folder", "blog");
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: data,
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success && json.url) {
+        setFormData((prev) => ({ ...prev, thumbnail: json.url }));
+        toast.success("Tải ảnh đại diện thành công", "Ảnh đã được lưu vào thư mục hệ thống.");
+      } else {
+        throw new Error(json.error || "Không thể tải ảnh lên máy chủ");
+      }
+    } catch (err: any) {
+      console.error("Lỗi tải ảnh thumbnail:", err);
+      toast.error("Lỗi tải ảnh", err.message || "Vui lòng thử lại với file ảnh khác");
+    } finally {
+      setIsUploadingThumb(false);
+      e.target.value = "";
+    }
+  };
+
+  // Upload image to insert directly into content
+  const handleContentImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingContentImg(true);
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("folder", "blog");
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: data,
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success && json.url) {
+        const altText = file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+        const imageMarkdown = `\n\n![${altText}](${json.url})\n\n`;
+
+        // Insert at cursor position if available
+        if (textareaRef.current) {
+          const start = textareaRef.current.selectionStart || formData.content.length;
+          const end = textareaRef.current.selectionEnd || formData.content.length;
+          const newContent =
+            formData.content.substring(0, start) +
+            imageMarkdown +
+            formData.content.substring(end);
+          setFormData((prev) => ({ ...prev, content: newContent }));
+        } else {
+          setFormData((prev) => ({
+            ...prev,
+            content: prev.content + imageMarkdown,
+          }));
+        }
+
+        toast.success("Đã chèn ảnh vào bài viết", "Ảnh đã được tải lên và gắn vào nội dung.");
+      } else {
+        throw new Error(json.error || "Không thể tải ảnh");
+      }
+    } catch (err: any) {
+      toast.error("Lỗi tải ảnh nội dung", err.message);
+    } finally {
+      setIsUploadingContentImg(false);
+      e.target.value = "";
+    }
+  };
+
+  const handleSave = async (statusToSet?: "published" | "draft") => {
     if (!formData.title.trim()) {
       alert("Vui lòng nhập tiêu đề bài viết");
       return;
     }
 
+    setIsSaving(true);
     const finalStatus = statusToSet || formData.status;
     const postPayload = {
       ...formData,
@@ -79,31 +165,29 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
         new Date().toISOString().split("T")[0],
     };
 
-    if (isEdit && formData.id) {
-      updatePost(formData.id, postPayload);
-    } else {
-      addPost(postPayload as any);
+    try {
+      if (isEdit && formData.id) {
+        await updatePost(formData.id, postPayload);
+      } else {
+        await addPost(postPayload as any);
+      }
+
+      toast.success(
+        finalStatus === "published" ? "Đã xuất bản bài viết thành công!" : "Đã lưu bản nháp thành công!",
+        "Dữ liệu và ảnh đã tự động đồng bộ ngay lập tức lên trang chính và trang bài viết."
+      );
+
+      setTimeout(() => {
+        router.push("/admin/bai-viet");
+      }, 600);
+    } catch (error: any) {
+      toast.error("Lỗi khi lưu bài viết", error.message || "Vui lòng thử lại");
+      setIsSaving(false);
     }
-
-    toast.success(
-      "Đã lưu bài viết thành công!",
-      "Dữ liệu đã được ghi vào data/posts.json và sẵn sàng đẩy lên GitHub/Vercel."
-    );
-
-    setTimeout(() => {
-      router.push("/admin/bai-viet");
-    }, 800);
   };
 
   return (
     <div className="space-y-6 pb-16 relative">
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div className="fixed top-6 right-6 z-50 bg-emerald-700 text-white px-5 py-3 rounded-btn shadow-xl text-sm font-semibold animate-in fade-in duration-200">
-          {toastMessage}
-        </div>
-      )}
-
       {/* Main Form Fields */}
       <div className="bg-surface p-6 md:p-8 rounded-card border border-border shadow-xs space-y-6">
         <h2 className="font-serif text-lg font-bold text-primary border-b border-border pb-3">
@@ -120,7 +204,7 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
             onChange={handleTitleChange}
             required
             placeholder="VD: Cẩm nang phân biệt gỗ Tử Đàn Ấn Độ và Tử Đàn Nam Phi"
-            className="w-full bg-bg border border-border rounded-btn px-3.5 py-2.5 text-sm text-text focus:outline-none focus:border-primary font-serif font-bold text-base"
+            className="w-full bg-bg border border-border rounded-btn px-3.5 py-2.5 text-text focus:outline-none focus:border-primary font-serif font-bold text-base"
           />
         </div>
 
@@ -148,7 +232,7 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, category: e.target.value }))
               }
-              className="w-full bg-bg border border-border rounded-btn px-3.5 py-2.5 text-sm text-text focus:outline-none focus:border-primary"
+              className="w-full bg-bg border border-border rounded-btn px-3.5 py-2.5 text-sm text-text focus:outline-none focus:border-primary cursor-pointer"
             >
               <option value="kien-thuc-ve-go">Kiến thức về gỗ</option>
               <option value="huong-dan-lua-chon">Hướng dẫn lựa chọn</option>
@@ -174,18 +258,82 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
           </div>
         </div>
 
-        <div>
-          <label className="text-xs font-semibold text-text uppercase tracking-wider block mb-1.5">
-            URL Ảnh đại diện thumbnail
+        {/* Thumbnail Image Picker & Uploader */}
+        <div className="space-y-2">
+          <label className="text-xs font-semibold text-text uppercase tracking-wider block">
+            Ảnh đại diện bài viết (Thumbnail)
           </label>
-          <input
-            type="text"
-            value={formData.thumbnail}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, thumbnail: e.target.value }))
-            }
-            className="w-full bg-bg border border-border rounded-btn px-3.5 py-2.5 text-xs text-text focus:outline-none focus:border-primary"
-          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+            {/* Image Preview Box */}
+            <div className="sm:col-span-4 relative aspect-16/10 rounded-lg overflow-hidden bg-bg border-2 border-dashed border-border flex flex-col items-center justify-center group">
+              {formData.thumbnail ? (
+                <>
+                  <Image
+                    src={formData.thumbnail}
+                    alt="Thumbnail preview"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, thumbnail: "" }))}
+                      className="p-1.5 rounded-full bg-white/90 text-red-600 hover:bg-white transition-colors"
+                      title="Xóa ảnh này"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="text-center p-4 text-text-muted">
+                  <ImageIcon className="w-8 h-8 mx-auto mb-1.5 opacity-50" />
+                  <span className="text-xs">Chưa có ảnh đại diện</span>
+                </div>
+              )}
+            </div>
+
+            {/* Upload Controls */}
+            <div className="sm:col-span-8 space-y-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <label className={`inline-flex items-center gap-2 px-4 py-2 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-semibold cursor-pointer shadow-xs transition-colors ${isUploadingThumb ? 'opacity-60 pointer-events-none' : ''}`}>
+                  {isUploadingThumb ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Đang tải ảnh lên...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="w-4 h-4" />
+                      <span>Tải ảnh từ máy tính / điện thoại</span>
+                    </>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    disabled={isUploadingThumb}
+                    onChange={handleThumbnailUpload}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-[11px] text-text-muted">Chấp nhận JPG, PNG, WebP tối đa 10MB</span>
+              </div>
+
+              <div>
+                <span className="text-[11px] text-text-muted block mb-1">Hoặc dán URL ảnh trực tuyến:</span>
+                <input
+                  type="text"
+                  value={formData.thumbnail}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, thumbnail: e.target.value }))
+                  }
+                  placeholder="https://... hoặc /images/blog/..."
+                  className="w-full bg-bg border border-border rounded-btn px-3 py-1.5 text-xs text-text focus:outline-none focus:border-primary font-mono"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -203,48 +351,74 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
           />
         </div>
 
-        {/* Markdown Editor with Preview Toggle */}
+        {/* Markdown Editor with Preview Toggle & Image Insert */}
         <div>
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <label className="text-xs font-semibold text-text uppercase tracking-wider">
               Nội dung bài viết (Markdown)
             </label>
+
             <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setIsPreviewTab(false)}
-                className={`px-3 py-1 rounded text-xs font-medium ${
-                  !isPreviewTab
-                    ? "bg-primary text-white"
-                    : "bg-bg text-text-muted hover:text-text"
-                }`}
-              >
-                Soạn thảo
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsPreviewTab(true)}
-                className={`px-3 py-1 rounded text-xs font-medium ${
-                  isPreviewTab
-                    ? "bg-primary text-white"
-                    : "bg-bg text-text-muted hover:text-text"
-                }`}
-              >
-                Xem trước
-              </button>
+              {/* Insert Image Button */}
+              <label className={`inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium border border-border hover:border-primary text-text cursor-pointer transition-colors ${isUploadingContentImg ? 'opacity-60 pointer-events-none' : ''}`}>
+                {isUploadingContentImg ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin text-primary" />
+                    <span className="text-[11px]">Đang chèn...</span>
+                  </>
+                ) : (
+                  <>
+                    <ImageIcon className="w-3.5 h-3.5 text-primary" />
+                    <span>+ Chèn ảnh vào bài viết</span>
+                  </>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  disabled={isUploadingContentImg}
+                  onChange={handleContentImageUpload}
+                  className="hidden"
+                />
+              </label>
+
+              <div className="flex items-center border border-border rounded overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setIsPreviewTab(false)}
+                  className={`px-3 py-1 text-xs font-medium transition-colors ${
+                    !isPreviewTab
+                      ? "bg-primary text-white"
+                      : "bg-surface text-text-muted hover:text-text"
+                  }`}
+                >
+                  Soạn thảo
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsPreviewTab(true)}
+                  className={`px-3 py-1 text-xs font-medium transition-colors ${
+                    isPreviewTab
+                      ? "bg-primary text-white"
+                      : "bg-surface text-text-muted hover:text-text"
+                  }`}
+                >
+                  Xem trước
+                </button>
+              </div>
             </div>
           </div>
 
           {!isPreviewTab ? (
             <textarea
-              rows={14}
+              ref={textareaRef}
+              rows={16}
               value={formData.content}
               onChange={handleContentChange}
-              placeholder="Sử dụng cú pháp Markdown: ## Tiêu đề h2, ### Tiêu đề h3, > Trích dẫn..."
+              placeholder="Sử dụng cú pháp Markdown: ## Tiêu đề h2, ### Tiêu đề h3, ![Ảnh minh họa](/url), > Trích dẫn..."
               className="w-full font-mono text-xs bg-bg border border-border rounded-btn p-4 text-text focus:outline-none focus:border-primary leading-relaxed"
             />
           ) : (
-            <div className="p-6 rounded-btn border border-border bg-bg min-h-[300px] prose prose-stone max-w-none text-sm">
+            <div className="p-6 rounded-btn border border-border bg-bg min-h-[350px] prose prose-stone max-w-none text-sm leading-relaxed">
               <ReactMarkdown>{formData.content}</ReactMarkdown>
             </div>
           )}
@@ -265,8 +439,9 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
         <div className="flex items-center gap-3">
           <button
             type="button"
+            disabled={isSaving}
             onClick={() => handleSave("draft")}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-btn border border-border hover:border-primary text-xs font-semibold text-text transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-btn border border-border hover:border-primary text-xs font-semibold text-text transition-colors disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>Lưu nháp</span>
@@ -274,11 +449,21 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
 
           <button
             type="button"
+            disabled={isSaving}
             onClick={() => handleSave("published")}
-            className="inline-flex items-center gap-1.5 px-6 py-2 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm"
+            className="inline-flex items-center gap-1.5 px-6 py-2 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm disabled:opacity-50"
           >
-            <Send className="w-4 h-4" />
-            <span>Đăng bài viết</span>
+            {isSaving ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Đang đẩy lên trang chính...</span>
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4" />
+                <span>Đăng bài viết</span>
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -287,3 +472,4 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
 }
 
 export default BlogForm;
+

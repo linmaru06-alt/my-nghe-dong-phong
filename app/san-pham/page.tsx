@@ -1,4 +1,7 @@
 import ProductsClient from "./ProductsClient";
+import { getPublishedProducts } from "@/lib/server/products";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Danh Mục Sản Phẩm Đồ Gỗ Quý | Mỹ Nghệ Đông Phong",
@@ -15,7 +18,9 @@ interface ProductsPageProps {
   };
 }
 
-export default function ProductsPage({ searchParams }: ProductsPageProps) {
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const products = await getPublishedProducts();
+
   return (
     <main className="flex-1 w-full bg-bg">
       <ProductsClient
@@ -23,7 +28,9 @@ export default function ProductsPage({ searchParams }: ProductsPageProps) {
         initialWoodType={searchParams?.woodType || ""}
         initialQuery={searchParams?.q || ""}
         initialPage={Number(searchParams?.page) || 1}
+        initialProducts={products}
       />
     </main>
   );
 }
+

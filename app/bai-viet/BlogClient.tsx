@@ -18,12 +18,16 @@ const tabs = [
   { id: "bao-quan-san-pham", label: "Bảo quản sản phẩm" },
 ];
 
+import type { Post } from "@/lib/server/posts";
+
 export interface BlogClientProps {
   initialTab?: string;
+  initialPosts?: Post[];
 }
 
-export default function BlogClient({ initialTab = "" }: BlogClientProps) {
+export default function BlogClient({ initialTab = "", initialPosts }: BlogClientProps) {
   const [activeTab, setActiveTab] = useState(initialTab);
+  const posts = initialPosts || postsData;
 
   useEffect(() => {
     setActiveTab(initialTab);
@@ -31,12 +35,13 @@ export default function BlogClient({ initialTab = "" }: BlogClientProps) {
 
   // Lọc bài viết
   const filteredPosts = activeTab
-    ? postsData.filter((p) => p.category === activeTab && p.status === "published")
-    : postsData.filter((p) => p.status === "published");
+    ? posts.filter((p) => p.category === activeTab && p.status === "published")
+    : posts.filter((p) => p.status === "published");
 
   // Bài viết tiêu điểm đầu tiên
   const featuredPost = filteredPosts[0];
   const remainingPosts = filteredPosts.slice(1);
+
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">

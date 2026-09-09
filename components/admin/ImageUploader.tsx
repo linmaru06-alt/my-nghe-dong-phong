@@ -8,13 +8,16 @@ export interface ImageUploaderProps {
   images: string[];
   onChange: (images: string[]) => void;
   maxFiles?: number;
+  folder?: string;
 }
 
 export function ImageUploader({
   images = [],
   onChange,
   maxFiles = 10,
+  folder = "products",
 }: ImageUploaderProps) {
+
   const [urlInput, setUrlInput] = useState("");
 
   const handleAddUrl = (e: React.FormEvent) => {
@@ -57,7 +60,8 @@ export function ImageUploader({
       try {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("folder", "products");
+        formData.append("folder", folder);
+
 
         const res = await fetch("/api/admin/upload", {
           method: "POST",

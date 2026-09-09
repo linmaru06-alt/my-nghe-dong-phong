@@ -2,11 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import BlogCard from "@/components/blog/BlogCard";
-import postsData from "@/data/posts.json";
+import type { Post } from "@/lib/server/posts";
+import { getLatestPosts } from "@/lib/server/posts";
 
-export function BlogPreview() {
-  // Take 2 latest articles
-  const latestPosts = postsData.slice(0, 2);
+interface BlogPreviewProps {
+  posts?: Post[];
+}
+
+export async function BlogPreview({ posts }: BlogPreviewProps) {
+  // Ưu tiên dữ liệu truyền từ page hoặc tự đọc từ server layer
+  const latestPosts = posts && posts.length > 0 ? posts.slice(0, 2) : await getLatestPosts(2);
 
   return (
     <section className="py-16 md:py-24 bg-bg select-none">
@@ -46,3 +51,4 @@ export function BlogPreview() {
 }
 
 export default BlogPreview;
+

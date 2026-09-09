@@ -1,17 +1,13 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
+import { getAllPosts, savePosts } from "@/lib/server/posts";
 
-const POSTS_FILE = path.join(process.cwd(), "data", "posts.json");
-
-// GET /api/admin/posts - Lấy danh sách bài viết trực tiếp từ file JSON trên ổ cứng
+// GET /api/admin/posts - Lấy danh sách bài viết trực tiếp từ Server Data Layer
 export async function GET() {
   try {
-    const fileContent = await fs.readFile(POSTS_FILE, "utf-8");
-    const posts = JSON.parse(fileContent);
+    const posts = await getAllPosts();
     return NextResponse.json({ success: true, data: posts });
   } catch (error: any) {
-    console.error("[API /api/admin/posts GET] Lỗi đọc file:", error);
+    console.error("[API /api/admin/posts GET] Lỗi đọc bài viết:", error);
     return NextResponse.json(
       { success: false, error: "Không thể đọc dữ liệu bài viết từ đĩa" },
       { status: 500 }
@@ -19,7 +15,7 @@ export async function GET() {
   }
 }
 
-// POST /api/admin/posts - Lưu & ghi đè danh sách bài viết trực tiếp vào data/posts.json
+// POST /api/admin/posts - Lưu & ghi đè danh sách bài viết và revalidate trang chủ & blog
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -32,22 +28,12 @@ export async function POST(req: Request) {
       );
     }
 
-    // Ghi vào file data/posts.json hoặc fallback /tmp trên Vercel
-    try {
-      const dataDir = path.dirname(POSTS_FILE);
-      await fs.mkdir(dataDir, { recursive: true });
-      await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), "utf-8");
-    } catch {
-      try {
-        const tmpFile = path.join(require("os").tmpdir(), "dongphong_posts.json");
-        await fs.writeFile(tmpFile, JSON.stringify(posts, null, 2), "utf-8");
-      } catch {}
-    }
+    const result = await savePosts(posts);
 
     return NextResponse.json({
       success: true,
-      message: "Đã lưu và đồng bộ thành công bài viết",
-      total: posts.length,
+      message: "Đã lưu và đồng bộ thành công bài viết lên trang chính",
+      total: result.total,
     });
   } catch (error: any) {
     console.error("[API /api/admin/posts POST] Lỗi ghi file:", error);
@@ -57,3 +43,4 @@ export async function POST(req: Request) {
     );
   }
 }
+

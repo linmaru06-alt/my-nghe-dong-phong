@@ -12,15 +12,27 @@ import postsData from "@/data/posts.json";
 import categoriesData from "@/data/categories.json";
 import settingsData from "@/data/settings.json";
 
+import type { Product } from "@/lib/server/products";
+import type { Post } from "@/lib/server/posts";
+
 export interface SearchClientProps {
   initialQuery?: string;
+  initialProducts?: Product[];
+  initialPosts?: Post[];
 }
 
-export default function SearchClient({ initialQuery = "" }: SearchClientProps) {
+export default function SearchClient({
+  initialQuery = "",
+  initialProducts,
+  initialPosts,
+}: SearchClientProps) {
   const router = useRouter();
   const q = initialQuery;
   const [searchInput, setSearchInput] = useState(initialQuery);
   const [activeTab, setActiveTab] = useState<"products" | "posts">("products");
+
+  const productsList = initialProducts || productsData;
+  const postsList = initialPosts || postsData;
 
   useEffect(() => {
     setSearchInput(initialQuery);
@@ -31,7 +43,7 @@ export default function SearchClient({ initialQuery = "" }: SearchClientProps) {
   // Search logic
   const matchedProducts = useMemo(() => {
     if (!trimmed) return [];
-    return productsData.filter(
+    return productsList.filter(
       (p) =>
         p.status === "published" &&
         (p.name.toLowerCase().includes(trimmed) ||
@@ -39,18 +51,19 @@ export default function SearchClient({ initialQuery = "" }: SearchClientProps) {
           p.woodType.toLowerCase().includes(trimmed) ||
           p.description.toLowerCase().includes(trimmed))
     );
-  }, [trimmed]);
+  }, [trimmed, productsList]);
 
   const matchedPosts = useMemo(() => {
     if (!trimmed) return [];
-    return postsData.filter(
+    return postsList.filter(
       (p) =>
         p.status === "published" &&
         (p.title.toLowerCase().includes(trimmed) ||
           p.excerpt.toLowerCase().includes(trimmed) ||
           p.content.toLowerCase().includes(trimmed))
     );
-  }, [trimmed]);
+  }, [trimmed, postsList]);
+
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();

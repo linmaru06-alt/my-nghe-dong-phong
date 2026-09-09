@@ -18,20 +18,20 @@ export interface Post {
 interface PostsState {
   posts: Post[];
   isLoaded: boolean;
-  loadPosts: () => void;
+  loadPosts: () => Promise<void>;
   getPostBySlug: (slug: string) => Post | undefined;
   getPostById: (id: string) => Post | undefined;
-  savePost: (post: Post) => void;
-  addPost: (post: Post) => void;
-  updatePost: (id: string, post: Partial<Post>) => void;
-  deletePost: (id: string) => void;
-  resetToDefault: () => void;
+  savePost: (post: Post) => Promise<boolean>;
+  addPost: (post: Post) => Promise<boolean>;
+  updatePost: (id: string, post: Partial<Post>) => Promise<boolean>;
+  deletePost: (id: string) => Promise<boolean>;
+  resetToDefault: () => Promise<void>;
 }
 
 const STORAGE_KEY = "dongphong_posts_v2";
 
-async function syncPostsToBackend(posts: Post[]) {
-  if (typeof window === "undefined") return;
+async function syncPostsToBackend(posts: Post[]): Promise<boolean> {
+  if (typeof window === "undefined") return false;
   try {
     const res = await fetch("/api/admin/posts", {
       method: "POST",
@@ -40,9 +40,12 @@ async function syncPostsToBackend(posts: Post[]) {
     });
     if (!res.ok) {
       console.warn("[usePosts] API đồng bộ disk trả về mã lỗi:", res.status);
+      return false;
     }
+    return true;
   } catch (err) {
     console.warn("[usePosts] Không thể đồng bộ bài viết vào backend disk:", err);
+    return false;
   }
 }
 
@@ -87,7 +90,7 @@ export const usePostsStore = create<PostsState>((set, get) => ({
     return get().posts.find((p) => p.id === id);
   },
 
-  savePost: (post: Post) => {
+  savePost: async (post: Post) => {
     const list = [...get().posts];
     const index = list.findIndex((p) => p.id === post.id);
 
@@ -101,34 +104,36 @@ export const usePostsStore = create<PostsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ posts: list });
-    syncPostsToBackend(list);
+    return await syncPostsToBackend(list);
   },
 
-  addPost: (post: Post) => {
-    get().savePost(post);
+  addPost: async (post: Post) => {
+    return await get().savePost(post);
   },
 
-  updatePost: (id: string, updates: Partial<Post>) => {
+  updatePost: async (id: string, updates: Partial<Post>) => {
     const existing = get().getPostById(id);
     if (existing) {
-      get().savePost({ ...existing, ...updates });
+      return await get().savePost({ ...existing, ...updates });
     }
+    return false;
   },
 
-  deletePost: (id: string) => {
+  deletePost: async (id: string) => {
     const list = get().posts.filter((p) => p.id !== id);
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ posts: list });
-    syncPostsToBackend(list);
+    return await syncPostsToBackend(list);
   },
 
-  resetToDefault: () => {
+  resetToDefault: async () => {
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialPosts));
     }
     set({ posts: initialPosts as Post[] });
-    syncPostsToBackend(initialPosts as Post[]);
+    await syncPostsToBackend(initialPosts as Post[]);
   },
 }));
+

@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Plus, Trash2, Eye, Save, Send } from "lucide-react";
+import { Plus, Trash2, Eye, Save, Send, Loader2 } from "lucide-react";
+
 import ImageUploader from "./ImageUploader";
 import categoriesData from "@/data/categories.json";
 import woodTypesData from "@/data/woodTypes.json";
@@ -53,6 +54,7 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
   );
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   // Auto generate code and slug when name changes if not in edit mode
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,12 +98,13 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
     setFormData((prev) => ({ ...prev, sizes: updated }));
   };
 
-  const handleSave = (statusToSet?: "published" | "draft") => {
+  const handleSave = async (statusToSet?: "published" | "draft") => {
     if (!formData.name.trim()) {
       alert("Vui lòng nhập tên sản phẩm");
       return;
     }
 
+    setIsSaving(true);
     const finalStatus = statusToSet || formData.status;
     const productPayload = {
       ...formData,
@@ -114,21 +117,27 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
           : ["/images/placeholder.jpg"],
     };
 
-    if (isEdit && formData.id) {
-      updateProduct(formData.id, productPayload);
-    } else {
-      addProduct(productPayload as any);
+    try {
+      if (isEdit && formData.id) {
+        await updateProduct(formData.id, productPayload);
+      } else {
+        await addProduct(productPayload as any);
+      }
+
+      toast.success(
+        finalStatus === "published" ? "Đã xuất bản tác phẩm thành công!" : "Đã lưu bản nháp thành công!",
+        "Dữ liệu đã tự động đồng bộ ngay lập tức lên trang chủ và danh mục sản phẩm."
+      );
+
+      setTimeout(() => {
+        router.push("/admin/san-pham");
+      }, 600);
+    } catch (err: any) {
+      toast.error("Lỗi khi lưu sản phẩm", err.message || "Vui lòng thử lại");
+      setIsSaving(false);
     }
-
-    toast.success(
-      "Đã lưu tác phẩm thành công!",
-      "Dữ liệu đã được ghi vào data/products.json và sẵn sàng đẩy lên GitHub/Vercel."
-    );
-
-    setTimeout(() => {
-      router.push("/admin/san-pham");
-    }, 800);
   };
+
 
   const handlePreview = () => {
     if (typeof window !== "undefined") {
@@ -428,8 +437,9 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
         <div className="flex items-center gap-3">
           <button
             type="button"
+            disabled={isSaving}
             onClick={() => handleSave("draft")}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-btn border border-border hover:border-primary text-xs font-semibold text-text transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-btn border border-border hover:border-primary text-xs font-semibold text-text transition-colors disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>Lưu nháp</span>
@@ -437,13 +447,24 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
 
           <button
             type="button"
+            disabled={isSaving}
             onClick={() => handleSave("published")}
-            className="inline-flex items-center gap-1.5 px-6 py-2 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm"
+            className="inline-flex items-center gap-1.5 px-6 py-2 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm disabled:opacity-50"
           >
-            <Send className="w-4 h-4" />
-            <span>Đăng sản phẩm</span>
+            {isSaving ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Đang đẩy lên trang chính...</span>
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4" />
+                <span>Đăng sản phẩm</span>
+              </>
+            )}
           </button>
         </div>
+
       </div>
     </div>
   );

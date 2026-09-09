@@ -7,10 +7,18 @@ import { ArrowRight, LayoutGrid } from "lucide-react";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
 
-export function CategoryGrid() {
+import type { Product } from "@/lib/server/products";
+
+export interface CategoryGridProps {
+  products?: Product[];
+}
+
+export function CategoryGrid({ products }: CategoryGridProps) {
+  const productsList = products || productsData;
   const getCount = (catId: string) => {
-    return productsData.filter((p) => p.category === catId).length;
+    return productsList.filter((p) => p.category === catId && p.status !== "draft").length;
   };
+
 
   return (
     <>

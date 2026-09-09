@@ -1,29 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogDetailClient from "./BlogDetailClient";
-import postsData from "@/data/posts.json";
+import { getAllPosts, getPostBySlug } from "@/lib/server/posts";
+
+export const dynamicParams = true;
+export const revalidate = 0;
 
 interface PageProps {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return postsData.map((post) => ({
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-function findPostBySlug(rawSlug: string) {
-  if (!rawSlug) return undefined;
-  const decoded = decodeURIComponent(rawSlug).trim().toLowerCase();
-  return (
-    postsData.find((p) => p.slug.toLowerCase() === decoded) ||
-    postsData.find((p) => p.id.toLowerCase() === decoded)
-  );
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const post = findPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     return {
@@ -35,17 +30,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${post.title} | Mỹ Nghệ Đông Phong`,
-    description: post.excerpt.slice(0, 160),
+    description: post.excerpt?.slice(0, 160) || "",
     openGraph: {
       title: `${post.title} — Mỹ Nghệ Đông Phong`,
-      description: post.excerpt.slice(0, 160),
+      description: post.excerpt?.slice(0, 160) || "",
       images: [{ url: thumb }],
     },
   };
 }
 
-export default function BlogDetailPage({ params }: PageProps) {
-  const post = findPostBySlug(params.slug);
+export default async function BlogDetailPage({ params }: PageProps) {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -57,3 +52,4 @@ export default function BlogDetailPage({ params }: PageProps) {
     </main>
   );
 }
+

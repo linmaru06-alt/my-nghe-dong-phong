@@ -9,6 +9,8 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import productsData from "@/data/products.json";
 import woodTypesData from "@/data/woodTypes.json";
 
+import type { Product } from "@/lib/server/products";
+
 const ITEMS_PER_PAGE = 12;
 
 export interface ProductsClientProps {
@@ -16,6 +18,7 @@ export interface ProductsClientProps {
   initialWoodType?: string;
   initialQuery?: string;
   initialPage?: number;
+  initialProducts?: Product[];
 }
 
 export default function ProductsClient({
@@ -23,8 +26,11 @@ export default function ProductsClient({
   initialWoodType = "",
   initialQuery = "",
   initialPage = 1,
+  initialProducts,
 }: ProductsClientProps) {
   const router = useRouter();
+  const productsList = initialProducts || productsData;
+
 
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedWoodType, setSelectedWoodType] = useState(initialWoodType);
@@ -80,8 +86,9 @@ export default function ProductsClient({
 
   // Lọc sản phẩm
   const filteredProducts = useMemo(() => {
-    return productsData.filter((product) => {
+    return productsList.filter((product) => {
       if (product.status !== "published") return false;
+
 
       // Lọc danh mục
       if (selectedCategory && product.category !== selectedCategory) {
@@ -110,7 +117,8 @@ export default function ProductsClient({
 
       return true;
     });
-  }, [selectedCategory, selectedWoodType, searchQuery]);
+  }, [selectedCategory, selectedWoodType, searchQuery, productsList]);
+
 
   // Tính toán phân trang
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);

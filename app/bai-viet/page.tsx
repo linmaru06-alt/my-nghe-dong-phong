@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import BlogClient from "./BlogClient";
+import { getPublishedPosts } from "@/lib/server/posts";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Cẩm Nang & Kiến Thức Gỗ Quý | Mỹ Nghệ Đông Phong",
@@ -13,10 +16,13 @@ interface BlogPageProps {
   };
 }
 
-export default function BlogPage({ searchParams }: BlogPageProps) {
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const posts = await getPublishedPosts();
+
   return (
     <main className="flex-1 w-full bg-bg">
-      <BlogClient initialTab={searchParams?.tab || ""} />
+      <BlogClient initialTab={searchParams?.tab || ""} initialPosts={posts} />
     </main>
   );
 }
+

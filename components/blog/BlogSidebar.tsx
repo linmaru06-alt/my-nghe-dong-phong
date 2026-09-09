@@ -9,13 +9,16 @@ import { formatPrice } from "@/lib/formatPrice";
 
 export interface BlogSidebarProps {
   relatedProductIds?: string[];
+  customProducts?: any[];
 }
 
-export function BlogSidebar({ relatedProductIds = [] }: BlogSidebarProps) {
+export function BlogSidebar({ relatedProductIds = [], customProducts }: BlogSidebarProps) {
+  const dataSource = customProducts || productsData;
   // Find related products or pick top 3 featured products
   const products = relatedProductIds.length > 0
-    ? productsData.filter((p) => relatedProductIds.includes(p.id))
-    : productsData.filter((p) => p.featured).slice(0, 3);
+    ? dataSource.filter((p) => relatedProductIds.includes(p.id))
+    : dataSource.filter((p) => p.featured).slice(0, 3);
+
 
   return (
     <aside className="space-y-8 select-none">

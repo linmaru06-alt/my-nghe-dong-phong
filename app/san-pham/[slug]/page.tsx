@@ -1,29 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductDetailClient from "./ProductDetailClient";
-import productsData from "@/data/products.json";
+import { getAllProducts, getProductBySlug } from "@/lib/server/products";
+
+export const dynamicParams = true;
+export const revalidate = 0;
 
 interface PageProps {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return productsData.map((product) => ({
+export async function generateStaticParams() {
+  const products = await getAllProducts();
+  return products.map((product) => ({
     slug: product.slug,
   }));
 }
 
-function findProductBySlug(rawSlug: string) {
-  if (!rawSlug) return undefined;
-  const decoded = decodeURIComponent(rawSlug).trim().toLowerCase();
-  return (
-    productsData.find((p) => p.slug.toLowerCase() === decoded) ||
-    productsData.find((p) => p.id.toLowerCase() === decoded)
-  );
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const product = findProductBySlug(params.slug);
+  const product = await getProductBySlug(params.slug);
 
   if (!product) {
     return {
@@ -35,17 +30,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${product.name} (${product.code}) | Mỹ Nghệ Đông Phong`,
-    description: product.description.slice(0, 160),
+    description: product.description?.slice(0, 160) || "",
     openGraph: {
       title: `${product.name} — Mỹ Nghệ Đông Phong`,
-      description: product.description.slice(0, 160),
+      description: product.description?.slice(0, 160) || "",
       images: [{ url: firstImage }],
     },
   };
 }
 
-export default function ProductDetailPage({ params }: PageProps) {
-  const product = findProductBySlug(params.slug);
+export default async function ProductDetailPage({ params }: PageProps) {
+  const product = await getProductBySlug(params.slug);
 
   if (!product) {
     notFound();

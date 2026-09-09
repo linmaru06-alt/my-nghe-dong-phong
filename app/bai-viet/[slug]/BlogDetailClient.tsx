@@ -67,7 +67,24 @@ const markdownComponents: Components = {
     </ol>
   ),
   li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+  img: ({ src, alt }: any) => (
+    <figure className="my-6 block text-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt || "Ảnh bài viết Mỹ Nghệ Đông Phong"}
+        className="rounded-lg max-w-full h-auto mx-auto shadow-sm border border-border"
+        loading="lazy"
+      />
+      {alt && (
+        <figcaption className="text-center text-xs text-text-muted mt-2 italic font-serif">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+  ),
 };
+
 
 export interface BlogDetailClientProps {
   post?: any;

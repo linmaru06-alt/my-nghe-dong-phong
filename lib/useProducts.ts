@@ -26,22 +26,22 @@ export interface Product {
 interface ProductsState {
   products: Product[];
   isLoaded: boolean;
-  loadProducts: () => void;
+  loadProducts: () => Promise<void>;
   getProductBySlug: (slug: string) => Product | undefined;
   getProductById: (id: string) => Product | undefined;
-  saveProduct: (product: Product) => void;
-  addProduct: (product: Product) => void;
-  updateProduct: (id: string, product: Partial<Product>) => void;
-  deleteProduct: (id: string) => void;
-  toggleFeatured: (id: string) => void;
-  toggleStatus: (id: string) => void;
-  resetToDefault: () => void;
+  saveProduct: (product: Product) => Promise<boolean>;
+  addProduct: (product: Product) => Promise<boolean>;
+  updateProduct: (id: string, product: Partial<Product>) => Promise<boolean>;
+  deleteProduct: (id: string) => Promise<boolean>;
+  toggleFeatured: (id: string) => Promise<boolean>;
+  toggleStatus: (id: string) => Promise<boolean>;
+  resetToDefault: () => Promise<void>;
 }
 
 const STORAGE_KEY = "dongphong_products_v2";
 
-async function syncProductsToBackend(products: Product[]) {
-  if (typeof window === "undefined") return;
+async function syncProductsToBackend(products: Product[]): Promise<boolean> {
+  if (typeof window === "undefined") return false;
   try {
     const res = await fetch("/api/admin/products", {
       method: "POST",
@@ -50,9 +50,12 @@ async function syncProductsToBackend(products: Product[]) {
     });
     if (!res.ok) {
       console.warn("[useProducts] API đồng bộ disk trả về mã lỗi:", res.status);
+      return false;
     }
+    return true;
   } catch (err) {
     console.warn("[useProducts] Không thể đồng bộ sản phẩm vào backend disk:", err);
+    return false;
   }
 }
 
@@ -63,7 +66,6 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
   loadProducts: async () => {
     if (typeof window === "undefined") return;
     try {
-      // Thử nạp dữ liệu trực tiếp từ file data/products.json qua API
       const res = await fetch("/api/admin/products");
       if (res.ok) {
         const json = await res.json();
@@ -98,7 +100,7 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
     return get().products.find((p) => p.id === id);
   },
 
-  saveProduct: (product: Product) => {
+  saveProduct: async (product: Product) => {
     const list = [...get().products];
     const index = list.findIndex((p) => p.id === product.id);
 
@@ -112,30 +114,31 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
-    syncProductsToBackend(list);
+    return await syncProductsToBackend(list);
   },
 
-  addProduct: (product: Product) => {
-    get().saveProduct(product);
+  addProduct: async (product: Product) => {
+    return await get().saveProduct(product);
   },
 
-  updateProduct: (id: string, updates: Partial<Product>) => {
+  updateProduct: async (id: string, updates: Partial<Product>) => {
     const existing = get().getProductById(id);
     if (existing) {
-      get().saveProduct({ ...existing, ...updates });
+      return await get().saveProduct({ ...existing, ...updates });
     }
+    return false;
   },
 
-  deleteProduct: (id: string) => {
+  deleteProduct: async (id: string) => {
     const list = get().products.filter((p) => p.id !== id);
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
-    syncProductsToBackend(list);
+    return await syncProductsToBackend(list);
   },
 
-  toggleFeatured: (id: string) => {
+  toggleFeatured: async (id: string) => {
     const list = get().products.map((p) =>
       p.id === id ? { ...p, featured: !p.featured } : p
     );
@@ -143,10 +146,10 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
-    syncProductsToBackend(list);
+    return await syncProductsToBackend(list);
   },
 
-  toggleStatus: (id: string) => {
+  toggleStatus: async (id: string) => {
     const list = get().products.map((p) =>
       p.id === id
         ? { ...p, status: (p.status === "published" ? "draft" : "published") as "published" | "draft" }
@@ -156,14 +159,15 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
     set({ products: list });
-    syncProductsToBackend(list);
+    return await syncProductsToBackend(list);
   },
 
-  resetToDefault: () => {
+  resetToDefault: async () => {
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialProducts));
     }
     set({ products: initialProducts as Product[] });
-    syncProductsToBackend(initialProducts as Product[]);
+    await syncProductsToBackend(initialProducts as Product[]);
   },
 }));
+

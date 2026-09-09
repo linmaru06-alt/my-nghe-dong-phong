@@ -7,8 +7,9 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, ArrowRight, BookOpen, Package, Sparkles, Tag } from "lucide-react";
 import { useProductsStore } from "@/lib/useProducts";
-import postsData from "@/data/posts.json";
+import { usePostsStore } from "@/lib/usePosts";
 import { formatPrice } from "@/lib/formatPrice";
+
 
 export interface SearchDropdownProps {
   isOpen: boolean;
@@ -64,6 +65,7 @@ export function SearchDropdown({ isOpen, onClose }: SearchDropdownProps) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const { products } = useProductsStore();
+  const { posts } = usePostsStore();
 
   useEffect(() => {
     if (isOpen) {
@@ -111,14 +113,16 @@ export function SearchDropdown({ isOpen, onClose }: SearchDropdownProps) {
 
   const filteredPosts = useMemo(() => {
     if (!normalizedQuery) return [];
-    return postsData
+    return posts
       .filter((p) => {
+        if (p.status === "draft") return false;
         const titleNorm = removeVietnameseTones(p.title);
         const excerptNorm = removeVietnameseTones(p.excerpt);
         return titleNorm.includes(normalizedQuery) || excerptNorm.includes(normalizedQuery);
       })
       .slice(0, 3);
-  }, [normalizedQuery]);
+  }, [posts, normalizedQuery]);
+
 
   const hasResults = filteredProducts.length > 0 || filteredPosts.length > 0;
 
