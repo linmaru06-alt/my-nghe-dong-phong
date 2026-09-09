@@ -56,10 +56,23 @@ export const usePostsStore = create<PostsState>((set, get) => ({
   loadPosts: async () => {
     if (typeof window === "undefined") return;
     try {
-      const res = await fetch("/api/admin/posts");
+      const res = await fetch("/api/admin/posts", { cache: "no-store" });
       if (res.ok) {
         const json = await res.json();
         if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          const localStored = localStorage.getItem(STORAGE_KEY);
+          const localTimestamp = Number(localStorage.getItem(STORAGE_KEY + "_timestamp") || 0);
+          const now = Date.now();
+          // Nếu có chỉnh sửa cục bộ trong 2 phút vừa qua, ưu tiên giữ lại để tránh bị đè ngược
+          if (localStored && now - localTimestamp < 120000) {
+            try {
+              const parsed = JSON.parse(localStored);
+              if (Array.isArray(parsed) && parsed.length > 0) {
+                set({ posts: parsed, isLoaded: true });
+                return;
+              }
+            } catch {}
+          }
           localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
           set({ posts: json.data, isLoaded: true });
           return;
@@ -102,6 +115,7 @@ export const usePostsStore = create<PostsState>((set, get) => ({
 
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      localStorage.setItem(STORAGE_KEY + "_timestamp", Date.now().toString());
     }
     set({ posts: list });
     return await syncPostsToBackend(list);
@@ -123,6 +137,7 @@ export const usePostsStore = create<PostsState>((set, get) => ({
     const list = get().posts.filter((p) => p.id !== id);
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      localStorage.setItem(STORAGE_KEY + "_timestamp", Date.now().toString());
     }
     set({ posts: list });
     return await syncPostsToBackend(list);

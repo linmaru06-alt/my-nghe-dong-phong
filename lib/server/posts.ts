@@ -1,6 +1,22 @@
 import fs from "fs/promises";
 import path from "path";
 import { revalidatePath } from "next/cache";
+import { v2 as cloudinary } from "cloudinary";
+
+const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
+const API_KEY = process.env.CLOUDINARY_API_KEY;
+const API_SECRET = process.env.CLOUDINARY_API_SECRET;
+
+const isCloudinaryConfigured = Boolean(CLOUD_NAME && API_KEY && API_SECRET);
+
+if (isCloudinaryConfigured) {
+  cloudinary.config({
+    cloud_name: CLOUD_NAME,
+    api_key: API_KEY,
+    api_secret: API_SECRET,
+    secure: true,
+  });
+}
 
 export interface Post {
   id: string;
@@ -22,14 +38,29 @@ let memoryPostsCache: Post[] | null = null;
 const TMP_POSTS_FILE = path.join(require("os").tmpdir(), "dongphong_posts.json");
 
 /**
- * Đọc danh sách tất cả bài viết trực tiếp từ file data/posts.json hoặc bộ nhớ /tmp trên Vercel
+ * Đọc danh sách tất cả bài viết trực tiếp từ Cloudinary / data/posts.json / bộ nhớ /tmp trên Vercel
  */
 export async function getAllPosts(): Promise<Post[]> {
   if (memoryPostsCache && memoryPostsCache.length > 0) {
     return memoryPostsCache;
   }
 
-  // 1. Thử đọc từ /tmp (nếu đang chạy trên Vercel và đã được ghi tạm)
+  // 1. Thử đọc từ Cloudinary đám mây nếu có CLOUD_NAME (dữ liệu mới nhất trên Vercel)
+  if (CLOUD_NAME) {
+    try {
+      const cloudUrl = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/dongphong_data/posts.json?t=${Date.now()}`;
+      const res = await fetch(cloudUrl, { cache: "no-store" });
+      if (res.ok) {
+        const cloudPosts = await res.json();
+        if (Array.isArray(cloudPosts) && cloudPosts.length > 0) {
+          memoryPostsCache = cloudPosts;
+          return cloudPosts;
+        }
+      }
+    } catch {}
+  }
+
+  // 2. Thử đọc từ /tmp (nếu đang chạy trên Vercel và đã được ghi tạm)
   try {
     const tmpContent = await fs.readFile(TMP_POSTS_FILE, "utf-8");
     const posts: Post[] = JSON.parse(tmpContent);
@@ -39,7 +70,7 @@ export async function getAllPosts(): Promise<Post[]> {
     }
   } catch {}
 
-  // 2. Đọc trực tiếp từ file data/posts.json
+  // 3. Đọc trực tiếp từ file data/posts.json
   try {
     const fileContent = await fs.readFile(POSTS_FILE, "utf-8");
     const posts: Post[] = JSON.parse(fileContent);
@@ -100,13 +131,29 @@ export async function getPostBySlug(rawSlug: string): Promise<Post | undefined> 
 export async function savePosts(posts: Post[]): Promise<{ success: boolean; total: number }> {
   memoryPostsCache = posts;
 
-  // 1. Thử lưu vào data/posts.json trên đĩa cục bộ
+  // 1. Nếu có Cloudinary, đồng bộ thẳng lên Cloudinary Raw Storage đám mây
+  if (isCloudinaryConfigured) {
+    try {
+      const base64Data = `data:application/json;base64,${Buffer.from(JSON.stringify(posts, null, 2)).toString("base64")}`;
+      await cloudinary.uploader.upload(base64Data, {
+        resource_type: "raw",
+        public_id: "dongphong_data/posts.json",
+        overwrite: true,
+        invalidate: true,
+      });
+      console.log("[Posts Server Layer] Đã lưu và đồng bộ posts.json lên Cloudinary Raw Storage thành công");
+    } catch (cloudErr: any) {
+      console.warn("[Posts Server Layer] Lỗi tải posts.json lên Cloudinary:", cloudErr.message);
+    }
+  }
+
+  // 2. Thử lưu vào data/posts.json trên đĩa cục bộ (Localhost)
   try {
     const dataDir = path.dirname(POSTS_FILE);
     await fs.mkdir(dataDir, { recursive: true });
     await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), "utf-8");
   } catch (err: any) {
-    // 2. Nếu đĩa read-only trên Vercel, lưu tạm vào thư mục /tmp
+    // 3. Nếu đĩa read-only trên Vercel, lưu tạm vào thư mục /tmp
     console.warn("[Posts Server Layer] Ổ đĩa Read-Only (Vercel), lưu vào /tmp:", err.message);
     try {
       await fs.writeFile(TMP_POSTS_FILE, JSON.stringify(posts, null, 2), "utf-8");

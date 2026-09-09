@@ -1,6 +1,22 @@
 import fs from "fs/promises";
 import path from "path";
 import { revalidatePath } from "next/cache";
+import { v2 as cloudinary } from "cloudinary";
+
+const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
+const API_KEY = process.env.CLOUDINARY_API_KEY;
+const API_SECRET = process.env.CLOUDINARY_API_SECRET;
+
+const isCloudinaryConfigured = Boolean(CLOUD_NAME && API_KEY && API_SECRET);
+
+if (isCloudinaryConfigured) {
+  cloudinary.config({
+    cloud_name: CLOUD_NAME,
+    api_key: API_KEY,
+    api_secret: API_SECRET,
+    secure: true,
+  });
+}
 
 export interface ProductSize {
   label: string;
@@ -30,14 +46,29 @@ let memoryProductsCache: Product[] | null = null;
 const TMP_PRODUCTS_FILE = path.join(require("os").tmpdir(), "dongphong_products.json");
 
 /**
- * Đọc danh sách tất cả sản phẩm trực tiếp từ data/products.json hoặc bộ nhớ /tmp trên Vercel
+ * Đọc danh sách tất cả sản phẩm trực tiếp từ Cloudinary / data/products.json / bộ nhớ /tmp trên Vercel
  */
 export async function getAllProducts(): Promise<Product[]> {
   if (memoryProductsCache && memoryProductsCache.length > 0) {
     return memoryProductsCache;
   }
 
-  // 1. Thử đọc từ /tmp (nếu trên Vercel đã lưu tạm)
+  // 1. Thử đọc từ Cloudinary đám mây nếu có CLOUD_NAME (dữ liệu mới nhất trên Vercel)
+  if (CLOUD_NAME) {
+    try {
+      const cloudUrl = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/dongphong_data/products.json?t=${Date.now()}`;
+      const res = await fetch(cloudUrl, { cache: "no-store" });
+      if (res.ok) {
+        const cloudProducts = await res.json();
+        if (Array.isArray(cloudProducts) && cloudProducts.length > 0) {
+          memoryProductsCache = cloudProducts;
+          return cloudProducts;
+        }
+      }
+    } catch {}
+  }
+
+  // 2. Thử đọc từ /tmp (nếu trên Vercel đã lưu tạm)
   try {
     const tmpContent = await fs.readFile(TMP_PRODUCTS_FILE, "utf-8");
     const products: Product[] = JSON.parse(tmpContent);
@@ -47,7 +78,7 @@ export async function getAllProducts(): Promise<Product[]> {
     }
   } catch {}
 
-  // 2. Thử đọc trực tiếp từ file data/products.json
+  // 3. Thử đọc trực tiếp từ file data/products.json
   try {
     const fileContent = await fs.readFile(PRODUCTS_FILE, "utf-8");
     const products: Product[] = JSON.parse(fileContent);
@@ -105,14 +136,30 @@ export async function getProductBySlug(rawSlug: string): Promise<Product | undef
 export async function saveProducts(products: Product[]): Promise<{ success: boolean; total: number }> {
   memoryProductsCache = products;
 
-  // 1. Thử lưu vào data/products.json trên đĩa
+  // 1. Nếu có Cloudinary, đồng bộ thẳng lên Cloudinary Raw Storage đám mây
+  if (isCloudinaryConfigured) {
+    try {
+      const base64Data = `data:application/json;base64,${Buffer.from(JSON.stringify(products, null, 2)).toString("base64")}`;
+      await cloudinary.uploader.upload(base64Data, {
+        resource_type: "raw",
+        public_id: "dongphong_data/products.json",
+        overwrite: true,
+        invalidate: true,
+      });
+      console.log("[Products Server Layer] Đã lưu và đồng bộ products.json lên Cloudinary Raw Storage thành công");
+    } catch (cloudErr: any) {
+      console.warn("[Products Server Layer] Lỗi tải products.json lên Cloudinary:", cloudErr.message);
+    }
+  }
+
+  // 2. Thử lưu vào data/products.json trên đĩa (Localhost)
   try {
     const dataDir = path.dirname(PRODUCTS_FILE);
     await fs.mkdir(dataDir, { recursive: true });
     await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
   } catch (err: any) {
-    // 2. Nếu đĩa read-only trên Vercel, lưu vào /tmp
-    console.warn("[Products Server Layer] Ổ đĩa Read-Only (Vercel), lưu vào /tmp:", err.message);
+    // 3. Nếu đĩa read-only trên Vercel, lưu vào /tmp
+    console.warn("[Products Server Layer] Ổ đĩa Read-Only (Vercel), lưu tạm vào /tmp:", err.message);
     try {
       await fs.writeFile(TMP_PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
     } catch {}
