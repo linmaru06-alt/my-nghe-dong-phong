@@ -57,10 +57,10 @@ export const ProductCard = React.memo(function ProductCard({
       <Link
         href={`/san-pham/${slug}`}
         prefetch={true}
-        className="group flex flex-col rounded-2xl bg-white border border-[#C5A059]/25 hover:border-[#C5A059]/80 shadow-[0_4px_16px_rgba(44,26,14,0.06)] hover:shadow-[0_16px_36px_rgba(44,26,14,0.14)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden relative block"
+        className="group flex flex-col rounded-2xl bg-white border border-[#C5A059]/25 hover:border-[#C5A059]/80 shadow-[0_4px_16px_rgba(44,26,14,0.06)] hover:shadow-[0_16px_36px_rgba(44,26,14,0.14)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden relative block gpu-accelerated"
       >
         {/* Product Image Container */}
-        <div className="relative aspect-square w-full bg-[#FAF6F0] overflow-hidden block">
+        <div className="relative aspect-square w-full bg-[#FAF6F0] overflow-hidden block wood-sheen-container">
           <Image
             src={imageUrl}
             alt={name}

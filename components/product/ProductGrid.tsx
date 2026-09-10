@@ -4,6 +4,7 @@ import React from "react";
 import ProductCard, { ProductCardProps } from "./ProductCard";
 import Skeleton from "@/components/ui/Skeleton";
 import EmptyState from "@/components/ui/EmptyState";
+import { ScrollRevealGroup } from "@/components/ui/ScrollReveal";
 
 export interface ProductGridProps {
   products: ProductCardProps[];
@@ -40,11 +41,15 @@ export function ProductGrid({
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+    <ScrollRevealGroup
+      staggerDelay={60}
+      direction="up"
+      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6"
+    >
       {products.map((product) => (
         <ProductCard key={product.id} {...product} />
       ))}
-    </div>
+    </ScrollRevealGroup>
   );
 }
 

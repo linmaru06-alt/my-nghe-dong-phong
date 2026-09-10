@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, LayoutGrid } from "lucide-react";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
+import ScrollReveal, { ScrollRevealGroup } from "@/components/ui/ScrollReveal";
 
 import type { Product } from "@/lib/server/products";
 
@@ -18,7 +19,6 @@ export function CategoryGrid({ products }: CategoryGridProps) {
   const getCount = (catId: string) => {
     return productsList.filter((p) => p.category === catId && p.status !== "draft").length;
   };
-
 
   return (
     <>
@@ -58,7 +58,7 @@ export function CategoryGrid({ products }: CategoryGridProps) {
               href={`/san-pham?category=${cat.id}`}
               className="flex flex-col items-center gap-1.5 shrink-0 group"
             >
-              <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm bg-[#f5efe6] border border-border group-active:scale-95 transition-transform relative">
+              <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm bg-[#f5efe6] border border-border group-active:scale-95 transition-transform relative wood-sheen-container">
                 <Image
                   src={cat.image}
                   alt={cat.name}
@@ -76,31 +76,37 @@ export function CategoryGrid({ products }: CategoryGridProps) {
       </section>
 
       {/* ─── DESKTOP VIEW (Stitch Screen 15: Desktop 1 - 4-Column Grid) ─── */}
-      <section id="danh-muc" className="hidden md:block w-full max-w-[1320px] mx-auto px-4 md:px-8 py-16 md:py-24 select-none">
-        {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-12 md:mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary">
-            Danh Mục Sản Phẩm
-          </h2>
-          <div className="w-16 h-0.5 mx-auto mt-2.5 mb-3 bg-secondary" />
-          <p className="text-sm md:text-base text-text-muted leading-relaxed">
-            Khám phá các tuyệt tác đồ gỗ mỹ nghệ phong thủy và chế tác gia dụng cao cấp từ gỗ tự nhiên lâu năm.
-          </p>
-        </div>
+      <section id="danh-muc" className="hidden md:block w-full max-w-[1320px] mx-auto px-4 md:px-8 py-16 md:py-24 select-none overflow-hidden">
+        {/* Section Header with Scroll Reveal */}
+        <ScrollReveal direction="up" delay={0}>
+          <div className="text-center max-w-xl mx-auto mb-12 md:mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary">
+              Danh Mục Sản Phẩm
+            </h2>
+            <div className="w-16 h-0.5 mx-auto mt-2.5 mb-3 bg-secondary" />
+            <p className="text-sm md:text-base text-text-muted leading-relaxed">
+              Khám phá các tuyệt tác đồ gỗ mỹ nghệ phong thủy và chế tác gia dụng cao cấp từ gỗ tự nhiên lâu năm.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Grid: 4 cols on desktop */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {/* Grid: 4 cols on desktop with Staggered Scroll Reveal */}
+        <ScrollRevealGroup
+          staggerDelay={60}
+          direction="up"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
           {categoriesData.map((cat) => {
             const count = getCount(cat.id);
 
             return (
-              <div key={cat.id}>
+              <div key={cat.id} className="h-full">
                 <Link
                   href={`/san-pham?category=${cat.id}`}
                   className="group flex flex-col p-4 rounded-xl bg-surface border border-border shadow-card hover:shadow-xl hover:-translate-y-1 hover:border-primary transition-all duration-300 h-full justify-between"
                 >
                   <div>
-                    <div className="aspect-square w-full rounded-lg overflow-hidden relative mb-3 bg-[#f5efe6]">
+                    <div className="aspect-square w-full rounded-lg overflow-hidden relative mb-3 bg-[#f5efe6] wood-sheen-container">
                       <Image
                         src={cat.image}
                         alt={cat.name}
@@ -127,7 +133,7 @@ export function CategoryGrid({ products }: CategoryGridProps) {
           })}
 
           {/* 8th Card: View All */}
-          <div>
+          <div className="h-full">
             <Link
               href="/san-pham"
               className="group flex flex-col items-center justify-center p-6 rounded-xl text-center border-2 border-dashed border-secondary/40 bg-bg hover:bg-accent-soft/50 hover:border-primary hover:-translate-y-1 transition-all duration-300 h-full min-h-[260px]"
@@ -147,7 +153,7 @@ export function CategoryGrid({ products }: CategoryGridProps) {
               </span>
             </Link>
           </div>
-        </div>
+        </ScrollRevealGroup>
       </section>
     </>
   );

@@ -60,3 +60,60 @@ h1, h2, h3, h4, h5, h6 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Smooth Scrolling & Hardware Acceleration */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Wood Grain Sheen Effect (Ánh quang lướt qua vân gỗ quý) */
+.wood-sheen-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.wood-sheen-container::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.22) 50%,
+    transparent 100%
+  );
+  transform: rotate(28deg) translateZ(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .wood-sheen-container::after {
+  opacity: 1;
+  animation: woodSheenSweep 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes woodSheenSweep {
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+

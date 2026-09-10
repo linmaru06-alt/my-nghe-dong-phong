@@ -13,6 +13,7 @@ import useCloseOnNavigate from "@/hooks/useCloseOnNavigate";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -28,10 +29,17 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 80) {
+      const scrollY = window.scrollY;
+      if (scrollY > 60) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        const progress = Math.min(Math.max((scrollY / docHeight) * 100, 0), 100);
+        setScrollProgress(progress);
       }
     };
 
@@ -62,7 +70,7 @@ export function Header() {
           "fixed top-0 left-0 right-0 z-40 transition-all duration-300 select-none",
           isTransparent
             ? "bg-transparent text-white py-4 md:py-5"
-            : "bg-bg/95 backdrop-blur-md shadow-sticky text-text py-3 md:py-3.5 border-b border-border/50"
+            : "bg-bg/95 backdrop-blur-md shadow-[0_4px_20px_rgba(107,63,31,0.08)] text-text py-2.5 md:py-3 border-b border-border/70"
         )}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -71,7 +79,10 @@ export function Header() {
             <img
               src="/images/logo.png"
               alt="Mỹ Nghệ Đông Phong Logo"
-              className="h-11 w-11 object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+              className={cn(
+                "object-contain drop-shadow-sm transition-all duration-300 group-hover:scale-105",
+                isScrolled ? "h-9 w-9 md:h-10 md:w-10" : "h-11 w-11"
+              )}
             />
             <div className="flex flex-col">
               <span
@@ -193,6 +204,14 @@ export function Header() {
               </AnimatePresence>
             </button>
           </div>
+        </div>
+
+        {/* Golden Scroll Progress Bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-black/5 overflow-hidden pointer-events-none">
+          <div
+            className="h-full bg-gradient-to-r from-[#C5A059] via-[#F3E5AB] to-[#D4AF37] transition-[width] duration-150 ease-out shadow-[0_0_8px_rgba(212,175,55,0.7)]"
+            style={{ width: `${scrollProgress}%` }}
+          />
         </div>
       </header>
 

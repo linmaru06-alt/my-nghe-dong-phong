@@ -33,6 +33,7 @@ export const metadata: Metadata = {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingZalo from "@/components/layout/FloatingZalo";
+import BackToTop from "@/components/ui/BackToTop";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import PageTransition from "@/components/ui/PageTransition";
 import ToastContainer from "@/components/ui/Toast";
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Header />
         <PageTransition>{children}</PageTransition>
         <Footer />
+        <BackToTop />
         <FloatingZalo />
         <MobileBottomNav />
         <ToastContainer />
