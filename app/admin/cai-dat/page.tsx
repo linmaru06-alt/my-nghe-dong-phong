@@ -15,6 +15,8 @@ import {
   MapPin,
   Clock,
   Loader2,
+  ShoppingBag,
+  Globe,
 } from "lucide-react";
 import { useSettingsStore } from "@/lib/useSettings";
 import { toast } from "@/components/ui/Toast";
@@ -26,6 +28,8 @@ export default function AdminSettingsPage() {
     siteName: "",
     phone: "",
     zaloLink: "",
+    facebookLink: "",
+    shopeeLink: "",
     address: "",
     businessHours: "",
     email: "",
@@ -54,6 +58,16 @@ export default function AdminSettingsPage() {
         siteName: settings.brand?.name || settings.siteName || "",
         phone: settings.brand?.phone || settings.hotline || "",
         zaloLink: settings.brand?.zaloLink || settings.zaloLink || "",
+        facebookLink:
+          settings.brand?.facebook ||
+          settings.facebook ||
+          settings.socialLinks?.facebook ||
+          "",
+        shopeeLink:
+          settings.brand?.shopeeLink ||
+          settings.shopeeLink ||
+          settings.socialLinks?.shopee ||
+          "",
         address: settings.brand?.address || settings.address || "",
         businessHours: settings.brand?.businessHours || settings.workingHours || "",
         email: settings.email || "",
@@ -188,7 +202,7 @@ export default function AdminSettingsPage() {
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, phone: e.target.value }))
                   }
-                  placeholder="0912 345 678"
+                  placeholder="096 8888 972"
                   className="w-full font-mono bg-bg border border-border rounded-btn px-3.5 py-2 text-sm text-text focus:outline-none focus:border-primary"
                 />
               </div>
@@ -209,7 +223,7 @@ export default function AdminSettingsPage() {
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, zaloLink: e.target.value }))
                   }
-                  placeholder="https://zalo.me/0912345678"
+                  placeholder="https://zalo.me/0968888972"
                   className="w-full bg-bg border border-border rounded-btn px-3.5 py-2 text-sm text-text focus:outline-none focus:border-primary"
                 />
               </div>
@@ -228,6 +242,44 @@ export default function AdminSettingsPage() {
                     setFormData((prev) => ({ ...prev, email: e.target.value }))
                   }
                   placeholder="lienhe@mynghedongphong.vn"
+                  className="w-full bg-bg border border-border rounded-btn px-3.5 py-2 text-sm text-text focus:outline-none focus:border-primary"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs font-semibold text-text uppercase tracking-wider block mb-1.5">
+                Đường dẫn Facebook (Fanpage / Trang cá nhân)
+              </label>
+              <div className="relative">
+                <Globe className="w-4 h-4 text-text-muted absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="text"
+                  value={formData.facebookLink}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, facebookLink: e.target.value }))
+                  }
+                  placeholder="https://www.facebook.com/phong.nk.12"
+                  className="w-full bg-bg border border-border rounded-btn px-3.5 py-2 text-sm text-text focus:outline-none focus:border-primary"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold text-text uppercase tracking-wider block mb-1.5">
+                Đường dẫn Gian hàng Shopee
+              </label>
+              <div className="relative">
+                <ShoppingBag className="w-4 h-4 text-text-muted absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="text"
+                  value={formData.shopeeLink}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, shopeeLink: e.target.value }))
+                  }
+                  placeholder="https://vn.shp.ee/JdnPvA3B"
                   className="w-full bg-bg border border-border rounded-btn px-3.5 py-2 text-sm text-text focus:outline-none focus:border-primary"
                 />
               </div>

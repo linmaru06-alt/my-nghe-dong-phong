@@ -2,8 +2,10 @@
   "brand": {
     "name": "Mỹ Nghệ Đông Phong",
     "logo": "/images/logo.png",
-    "phone": "0912 345 678",
-    "zaloLink": "https://zalo.me/0912345678",
+    "phone": "096 8888 972",
+    "zaloLink": "https://zalo.me/0968888972",
+    "facebook": "https://www.facebook.com/phong.nk.12",
+    "shopeeLink": "https://vn.shp.ee/JdnPvA3B",
     "address": "Làng nghề Mộc truyền thống, Hà Nội, Việt Nam",
     "businessHours": "08:00 - 21:00 (Hàng ngày, kể cả T7 & CN)"
   },
@@ -12,16 +14,19 @@
   "shortName": "Đông Phong",
   "tagline": "Tinh hoa từ những thớ gỗ quý",
   "description": "Chuyên chế tác và cung cấp các vật phẩm gỗ quý tự nhiên: Vòng tay phong thủy, bút ký cao cấp, bi lăn tay, gối gỗ quý, tẩu thuốc, đũa gỗ và đệm ô tô.",
-  "hotline": "0912 345 678",
-  "hotlineRaw": "0912345678",
-  "zalo": "0912345678",
-  "zaloLink": "https://zalo.me/0912345678",
+  "hotline": "096 8888 972",
+  "hotlineRaw": "0968888972",
+  "zalo": "0968888972",
+  "zaloLink": "https://zalo.me/0968888972",
+  "facebook": "https://www.facebook.com/phong.nk.12",
+  "shopeeLink": "https://vn.shp.ee/JdnPvA3B",
   "address": "Làng nghề Mộc truyền thống, Hà Nội, Việt Nam",
   "workingHours": "08:00 - 21:00 (Hàng ngày, kể cả T7 & CN)",
   "email": "lienhe@mynghedongphong.vn",
   "socialLinks": {
-    "facebook": "https://facebook.com",
-    "zalo": "https://zalo.me/0912345678",
+    "facebook": "https://www.facebook.com/phong.nk.12",
+    "zalo": "https://zalo.me/0968888972",
+    "shopee": "https://vn.shp.ee/JdnPvA3B",
     "youtube": "https://youtube.com"
   },
   "policies": [

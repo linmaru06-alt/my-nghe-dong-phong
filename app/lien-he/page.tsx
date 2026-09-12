@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageCircle, Phone, MapPin, Clock, HelpCircle } from "lucide-react";
+import { MessageCircle, Phone, MapPin, Clock, HelpCircle, ShoppingBag, Facebook, ExternalLink, Sparkles } from "lucide-react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Accordion from "@/components/ui/Accordion";
 import settingsData from "@/data/settings.json";
@@ -7,11 +7,22 @@ import settingsData from "@/data/settings.json";
 export const metadata = {
   title: "Liên Hệ & Tư Vấn Thỉnh Gỗ Quý | Mỹ Nghệ Đông Phong",
   description:
-    "Thông tin liên hệ hotline, Zalo chính thức và địa chỉ xưởng chế tác thủ công Mỹ Nghệ Đông Phong. Trực tiếp giải đáp thắc mắc khách hàng 24/7.",
+    "Thông tin liên hệ hotline, Zalo chính thức, gian hàng Shopee và Facebook xưởng chế tác thủ công Mỹ Nghệ Đông Phong. Trực tiếp giải đáp thắc mắc khách hàng 24/7.",
 };
 
 export default function ContactPage() {
-  const cleanPhone = settingsData.brand.phone.replace(/\s+/g, "");
+  const phone = settingsData.brand.phone;
+  const cleanPhone = phone.replace(/\s+/g, "");
+  const zaloLink = settingsData.brand.zaloLink;
+  const shopeeLink =
+    (settingsData as any).brand?.shopeeLink ||
+    (settingsData as any).shopeeLink ||
+    "https://vn.shp.ee/JdnPvA3B";
+  const facebookLink =
+    (settingsData as any).brand?.facebook ||
+    (settingsData as any).facebook ||
+    settingsData.socialLinks?.facebook ||
+    "https://www.facebook.com/phong.nk.12";
 
   // Convert FAQs from settings.json into Accordion format
   const faqItems = settingsData.faq.map((item, index) => ({
@@ -40,7 +51,7 @@ export default function ContactPage() {
         </div>
 
         {/* 3 Contact Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
           {/* 1. Zalo Card (Most Prominent) */}
           <div className="p-8 rounded-card bg-surface border-2 border-zalo/40 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between text-center relative overflow-hidden group">
             <div className="absolute top-0 right-0 bg-zalo text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
@@ -58,12 +69,13 @@ export default function ContactPage() {
               </p>
             </div>
             <a
-              href={settingsData.brand.zaloLink}
+              href={zaloLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-4 rounded-btn bg-zalo hover:brightness-105 text-white text-xs font-bold shadow-sm transition-all"
+              className="w-full py-3 px-4 rounded-btn bg-zalo hover:brightness-105 text-white text-xs font-bold shadow-sm transition-all flex items-center justify-center gap-2"
             >
-              Nhắn Tin Zalo Ngay
+              <MessageCircle className="w-4 h-4 fill-white" />
+              <span>Nhắn Tin Zalo ({phone})</span>
             </a>
           </div>
 
@@ -82,9 +94,10 @@ export default function ContactPage() {
             </div>
             <a
               href={`tel:${cleanPhone}`}
-              className="w-full py-3 px-4 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-bold shadow-sm transition-all"
+              className="w-full py-3 px-4 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-bold shadow-sm transition-all flex items-center justify-center gap-2"
             >
-              Gọi {settingsData.brand.phone}
+              <Phone className="w-4 h-4" />
+              <span>Gọi {phone}</span>
             </a>
           </div>
 
@@ -104,6 +117,85 @@ export default function ContactPage() {
             <div className="pt-2 text-xs text-text-muted flex items-center justify-center gap-1.5 border-t border-border/50">
               <Clock className="w-3.5 h-3.5 text-secondary" />
               <span>{settingsData.brand.businessHours}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Official Online Channels: Shopee & Facebook */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="flex items-center gap-2 mb-4">
+            <Sparkles className="w-4 h-4 text-accent-gold" />
+            <h2 className="font-serif text-base font-bold text-primary uppercase tracking-wide">
+              Kênh Mua Sắm & Mạng Xã Hội Chính Thức
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Shopee Card */}
+            <div className="p-6 md:p-7 rounded-card bg-surface border border-[#EE4D2D]/30 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 bg-[#EE4D2D] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg flex items-center gap-1">
+                <span>Gian Hàng Shopee</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-3.5 mb-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-[#EE4D2D]/10 text-[#EE4D2D] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <ShoppingBag className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-text">
+                      Gian Hàng Shopee Chính Hãng
+                    </h3>
+                    <span className="text-[11px] text-[#EE4D2D] font-medium block">
+                      Đảm bảo chính hãng • Miễn phí vận chuyển
+                    </span>
+                  </div>
+                </div>
+                <p className="text-xs text-text-muted mb-6 leading-relaxed">
+                  Đặt mua nhanh chóng, áp dụng voucher giảm giá sàn Shopee, thanh toán an toàn và nhận hàng kiểm tra toàn quốc.
+                </p>
+              </div>
+              <a
+                href={shopeeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-4 rounded-btn bg-[#EE4D2D] hover:bg-[#d73f20] text-white text-xs font-bold shadow-sm transition-all flex items-center justify-center gap-2"
+              >
+                <span>Ghé Thăm Gian Hàng Shopee</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Facebook Card */}
+            <div className="p-6 md:p-7 rounded-card bg-surface border border-[#1877F2]/30 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 bg-[#1877F2] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg flex items-center gap-1">
+                <span>Facebook Kết Nối</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-3.5 mb-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <Facebook className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-text">
+                      Trang Facebook Xưởng Mộc
+                    </h3>
+                    <span className="text-[11px] text-[#1877F2] font-medium block">
+                      Cập nhật phôi gỗ & Video chế tác mỗi ngày
+                    </span>
+                  </div>
+                </div>
+                <p className="text-xs text-text-muted mb-6 leading-relaxed">
+                  Theo dõi không gian xưởng, giao lưu cùng nghệ nhân Đông Phong và xem cận cảnh các tác phẩm độc bản vừa hoàn thiện.
+                </p>
+              </div>
+              <a
+                href={facebookLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-4 rounded-btn bg-[#1877F2] hover:bg-[#1464c9] text-white text-xs font-bold shadow-sm transition-all flex items-center justify-center gap-2"
+              >
+                <span>Kết Nối Qua Facebook</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>

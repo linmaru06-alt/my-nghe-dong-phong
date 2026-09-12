@@ -40,5 +40,5 @@ export function createZaloLink(
   } else if (productName) {
     msg = `Chào Mỹ Nghệ Đông Phong, tôi muốn được tư vấn tác phẩm "${productName}"`;
   }
-  return `https://zalo.me/${phone || "0912345678"}?text=${encodeURIComponent(msg)}`;
+  return `https://zalo.me/${phone || "0968888972"}?text=${encodeURIComponent(msg)}`;
 }

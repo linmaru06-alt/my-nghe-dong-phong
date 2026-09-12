@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, MessageCircle, MapPin, Clock, ShieldCheck, HeartHandshake } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Clock, ShieldCheck, HeartHandshake, Facebook, ShoppingBag } from "lucide-react";
 import settingsData from "@/data/settings.json";
 import { useSettingsStore } from "@/lib/useSettings";
 
@@ -18,6 +18,16 @@ export function Footer() {
   const brand = settings?.brand || settingsData.brand;
   const phone = brand?.phone || settingsData.brand.phone;
   const zaloLink = brand?.zaloLink || settingsData.brand.zaloLink;
+  const facebookLink =
+    brand?.facebook ||
+    settings?.facebook ||
+    settingsData.socialLinks.facebook ||
+    "https://www.facebook.com/phong.nk.12";
+  const shopeeLink =
+    brand?.shopeeLink ||
+    settings?.shopeeLink ||
+    (settingsData as any).shopeeLink ||
+    "https://vn.shp.ee/JdnPvA3B";
   const address = brand?.address || settingsData.brand.address;
   const businessHours = brand?.businessHours || settingsData.brand.businessHours;
 
@@ -57,6 +67,47 @@ export function Footer() {
               <span className="flex items-center gap-1.5">
                 <HeartHandshake className="w-4 h-4" /> Bảo hành trọn đời thớ gỗ
               </span>
+            </div>
+
+            {/* Social & Official Channels */}
+            <div className="pt-3 border-t border-[#3D2314]">
+              <span className="text-xs text-[#A8988C] block mb-2 font-medium">
+                Gian hàng & Kênh chính thức:
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href={shopeeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#EE4D2D]/15 hover:bg-[#EE4D2D] text-[#FF7A59] hover:text-white border border-[#EE4D2D]/40 text-xs font-semibold transition-all duration-200 group"
+                  title="Gian hàng Shopee chính hãng Mỹ Nghệ Đông Phong"
+                >
+                  <ShoppingBag className="w-3.5 h-3.5 text-[#EE4D2D] group-hover:text-white transition-colors" />
+                  <span>Shopee</span>
+                </a>
+
+                <a
+                  href={facebookLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1877F2]/15 hover:bg-[#1877F2] text-[#6CA9FF] hover:text-white border border-[#1877F2]/40 text-xs font-semibold transition-all duration-200 group"
+                  title="Trang Facebook cá nhân / Fanpage"
+                >
+                  <Facebook className="w-3.5 h-3.5 text-[#1877F2] group-hover:text-white transition-colors" />
+                  <span>Facebook</span>
+                </a>
+
+                <a
+                  href={zaloLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zalo/15 hover:bg-zalo text-[#62A8FF] hover:text-white border border-zalo/40 text-xs font-semibold transition-all duration-200 group"
+                  title="Nhắn Zalo tư vấn nghệ nhân"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-zalo group-hover:text-white transition-colors" />
+                  <span>Zalo</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -132,7 +183,37 @@ export function Footer() {
                 </div>
                 <div>
                   <span className="text-[11px] text-[#A8988C] block">Zalo chính thức:</span>
-                  <span className="font-medium text-zalo">Nhắn Zalo xem video vân gỗ</span>
+                  <span className="font-medium text-zalo">Nhắn Zalo ({phone})</span>
+                </div>
+              </a>
+
+              <a
+                href={shopeeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white hover:text-[#EE4D2D] transition-colors"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#EE4D2D]/20 flex items-center justify-center text-[#EE4D2D] flex-shrink-0">
+                  <ShoppingBag className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[11px] text-[#A8988C] block">Gian hàng Shopee:</span>
+                  <span className="font-medium text-[#FF7A59]">Mua online nhận mã giảm giá</span>
+                </div>
+              </a>
+
+              <a
+                href={facebookLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white hover:text-[#1877F2] transition-colors"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#1877F2]/20 flex items-center justify-center text-[#1877F2] flex-shrink-0">
+                  <Facebook className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[11px] text-[#A8988C] block">Facebook kết nối:</span>
+                  <span className="font-medium text-[#6CA9FF]">Ghé thăm Facebook xưởng</span>
                 </div>
               </a>
 

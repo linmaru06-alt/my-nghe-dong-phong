@@ -8,7 +8,7 @@ export interface SettingsState {
   updateSettings: (newSettings: any) => Promise<boolean>;
 }
 
-const STORAGE_KEY = "dongphong_settings_v2";
+const STORAGE_KEY = "dongphong_settings_v3";
 
 export const useSettingsStore = create<SettingsState>((set, get) => ({
   settings: initialSettings,

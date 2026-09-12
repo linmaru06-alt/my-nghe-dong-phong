@@ -138,7 +138,7 @@ export function Contact() {
                   <input
                     type="tel"
                     required
-                    placeholder="VD: 0912 345 678"
+                    placeholder="VD: 096 8888 972"
                     className="admin-form-input"
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
