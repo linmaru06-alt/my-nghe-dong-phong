@@ -42,7 +42,12 @@ export interface Product {
 
 const PRODUCTS_FILE = path.join(process.cwd(), "data", "products.json");
 
-let memoryProductsCache: Product[] | null = null;
+interface ProductsCache {
+  data: Product[];
+  timestamp: number;
+}
+let memoryProductsCache: ProductsCache | null = null;
+const CACHE_TTL_MS = 5000; // 5 giây tự động làm mới từ Supabase để mọi khách đều thấy tức thì
 const TMP_PRODUCTS_FILE = path.join(require("os").tmpdir(), "dongphong_products.json");
 
 import { supabase, supabaseAdmin } from "@/lib/supabase";
@@ -54,8 +59,9 @@ const isSupabaseConfigured = Boolean(
 );
 
 export async function getAllProducts(): Promise<Product[]> {
-  if (memoryProductsCache && memoryProductsCache.length > 0) {
-    return memoryProductsCache;
+  const now = Date.now();
+  if (memoryProductsCache && now - memoryProductsCache.timestamp < CACHE_TTL_MS) {
+    return memoryProductsCache.data;
   }
 
   // 1. Đọc trực tiếp từ Supabase Database nếu có cấu hình
@@ -83,7 +89,7 @@ export async function getAllProducts(): Promise<Product[]> {
           relatedPosts: item.related_posts || item.relatedPosts || [],
           createdAt: item.created_at || new Date().toISOString(),
         }));
-        memoryProductsCache = mapped;
+        memoryProductsCache = { data: mapped, timestamp: Date.now() };
         return mapped;
       }
     } catch (err: any) {
@@ -99,7 +105,7 @@ export async function getAllProducts(): Promise<Product[]> {
       if (res.ok) {
         const cloudProducts = await res.json();
         if (Array.isArray(cloudProducts) && cloudProducts.length > 0) {
-          memoryProductsCache = cloudProducts;
+          memoryProductsCache = { data: cloudProducts, timestamp: Date.now() };
           return cloudProducts;
         }
       }
@@ -111,7 +117,7 @@ export async function getAllProducts(): Promise<Product[]> {
     const tmpContent = await fs.readFile(TMP_PRODUCTS_FILE, "utf-8");
     const products: Product[] = JSON.parse(tmpContent);
     if (Array.isArray(products) && products.length > 0) {
-      memoryProductsCache = products;
+      memoryProductsCache = { data: products, timestamp: Date.now() };
       return products;
     }
   } catch {}
@@ -121,7 +127,7 @@ export async function getAllProducts(): Promise<Product[]> {
     const fileContent = await fs.readFile(PRODUCTS_FILE, "utf-8");
     const products: Product[] = JSON.parse(fileContent);
     if (Array.isArray(products) && products.length > 0) {
-      memoryProductsCache = products;
+      memoryProductsCache = { data: products, timestamp: Date.now() };
       return products;
     }
   } catch (error) {
@@ -172,7 +178,7 @@ export async function getProductBySlug(rawSlug: string): Promise<Product | undef
  * Lưu danh sách sản phẩm và xóa cache máy chủ tức thời
  */
 export async function saveProducts(products: Product[]): Promise<{ success: boolean; total: number }> {
-  memoryProductsCache = products;
+  memoryProductsCache = null;
 
   // 1. Đồng bộ lên Supabase Database (Ưu tiên cao nhất)
   if (isSupabaseConfigured) {

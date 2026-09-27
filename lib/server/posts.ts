@@ -34,7 +34,12 @@ export interface Post {
 
 const POSTS_FILE = path.join(process.cwd(), "data", "posts.json");
 
-let memoryPostsCache: Post[] | null = null;
+interface PostsCache {
+  data: Post[];
+  timestamp: number;
+}
+let memoryPostsCache: PostsCache | null = null;
+const CACHE_TTL_MS = 5000; // 5s TTL
 const TMP_POSTS_FILE = path.join(require("os").tmpdir(), "dongphong_posts.json");
 
 /**
@@ -49,8 +54,9 @@ const isSupabaseConfigured = Boolean(
 );
 
 export async function getAllPosts(): Promise<Post[]> {
-  if (memoryPostsCache && memoryPostsCache.length > 0) {
-    return memoryPostsCache;
+  const now = Date.now();
+  if (memoryPostsCache && now - memoryPostsCache.timestamp < CACHE_TTL_MS) {
+    return memoryPostsCache.data;
   }
 
   // 1. Đọc trực tiếp từ Supabase Database nếu có cấu hình
@@ -75,7 +81,7 @@ export async function getAllPosts(): Promise<Post[]> {
           publishedAt: item.published_at || item.publishedAt || item.created_at || new Date().toISOString().split("T")[0],
           readingTime: item.read_time || item.readingTime || 5,
         }));
-        memoryPostsCache = mapped;
+        memoryPostsCache = { data: mapped, timestamp: Date.now() };
         return mapped;
       }
     } catch (err: any) {
@@ -91,7 +97,7 @@ export async function getAllPosts(): Promise<Post[]> {
       if (res.ok) {
         const cloudPosts = await res.json();
         if (Array.isArray(cloudPosts) && cloudPosts.length > 0) {
-          memoryPostsCache = cloudPosts;
+          memoryPostsCache = { data: cloudPosts, timestamp: Date.now() };
           return cloudPosts;
         }
       }
@@ -103,7 +109,7 @@ export async function getAllPosts(): Promise<Post[]> {
     const tmpContent = await fs.readFile(TMP_POSTS_FILE, "utf-8");
     const posts: Post[] = JSON.parse(tmpContent);
     if (Array.isArray(posts) && posts.length > 0) {
-      memoryPostsCache = posts;
+      memoryPostsCache = { data: posts, timestamp: Date.now() };
       return posts;
     }
   } catch {}
@@ -113,7 +119,7 @@ export async function getAllPosts(): Promise<Post[]> {
     const fileContent = await fs.readFile(POSTS_FILE, "utf-8");
     const posts: Post[] = JSON.parse(fileContent);
     if (Array.isArray(posts) && posts.length > 0) {
-      memoryPostsCache = posts;
+      memoryPostsCache = { data: posts, timestamp: Date.now() };
       return posts;
     }
   } catch (error) {
@@ -167,7 +173,7 @@ export async function getPostBySlug(rawSlug: string): Promise<Post | undefined> 
  * Lưu danh sách bài viết vào data/posts.json (hoặc /tmp trên Vercel) và xóa cache trang công khai
  */
 export async function savePosts(posts: Post[]): Promise<{ success: boolean; total: number }> {
-  memoryPostsCache = posts;
+  memoryPostsCache = null;
 
   // 1. Đồng bộ lên Supabase Database (Ưu tiên cao nhất)
   if (isSupabaseConfigured) {
