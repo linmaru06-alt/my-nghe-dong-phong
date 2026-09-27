@@ -3,6 +3,14 @@ import fs from "fs/promises";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 
+import { supabaseAdmin } from "@/lib/supabase";
+
+const isSupabaseConfigured = Boolean(
+  process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+    !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")
+);
+
 // Cấu hình Cloudinary từ biến môi trường
 const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
 const API_KEY = process.env.CLOUDINARY_API_KEY;
@@ -85,7 +93,40 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // 1. Ưu tiên tải trực tiếp lên Cloudinary đám mây nếu đã cấu hình
+    // 1. Ưu tiên tải trực tiếp lên Supabase Storage vĩnh viễn
+    if (isSupabaseConfigured) {
+      try {
+        const uniqueFileName = `${safeFolder}/${baseNameWithoutExt}-${Date.now()}${extension}`;
+        const { data, error } = await supabaseAdmin.storage
+          .from("dongphong-media")
+          .upload(uniqueFileName, buffer, {
+            contentType: file.type,
+            upsert: true,
+          });
+
+        if (!error && data) {
+          const { data: publicUrlData } = supabaseAdmin.storage
+            .from("dongphong-media")
+            .getPublicUrl(data.path);
+
+          return NextResponse.json({
+            success: true,
+            url: publicUrlData.publicUrl,
+            fileName: uniqueFileName,
+            size: file.size,
+            mimeType: file.type,
+            storage: "supabase",
+            message: "Tải ảnh thành công lên Supabase Storage vĩnh viễn",
+          });
+        } else if (error) {
+          console.warn("[API Upload] Supabase Storage trả lỗi, thử tiếp Cloudinary/đĩa:", error.message);
+        }
+      } catch (supaErr: any) {
+        console.warn("[API Upload] Lỗi tải lên Supabase Storage:", supaErr.message);
+      }
+    }
+
+    // 2. Dự phòng 1: Tải lên Cloudinary đám mây nếu có cấu hình
     if (isCloudinaryConfigured) {
       try {
         const base64Data = `data:${file.type};base64,${buffer.toString("base64")}`;
