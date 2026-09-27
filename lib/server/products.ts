@@ -45,15 +45,53 @@ const PRODUCTS_FILE = path.join(process.cwd(), "data", "products.json");
 let memoryProductsCache: Product[] | null = null;
 const TMP_PRODUCTS_FILE = path.join(require("os").tmpdir(), "dongphong_products.json");
 
-/**
- * Đọc danh sách tất cả sản phẩm trực tiếp từ Cloudinary / data/products.json / bộ nhớ /tmp trên Vercel
- */
+import { supabase, supabaseAdmin } from "@/lib/supabase";
+
+const isSupabaseConfigured = Boolean(
+  process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+    !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")
+);
+
 export async function getAllProducts(): Promise<Product[]> {
   if (memoryProductsCache && memoryProductsCache.length > 0) {
     return memoryProductsCache;
   }
 
-  // 1. Thử đọc từ Cloudinary đám mây nếu có CLOUD_NAME (dữ liệu mới nhất trên Vercel)
+  // 1. Đọc trực tiếp từ Supabase Database nếu có cấu hình
+  if (isSupabaseConfigured) {
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (!error && Array.isArray(data) && data.length > 0) {
+        const mapped: Product[] = data.map((item: any) => ({
+          id: item.id,
+          slug: item.slug,
+          name: item.name,
+          code: item.code,
+          category: item.category,
+          woodType: item.wood_type || item.woodType || "",
+          description: item.description || "",
+          preservation: item.preservation || "",
+          sizes: Array.isArray(item.sizes) ? item.sizes : [],
+          images: Array.isArray(item.images) ? item.images : [],
+          featured: Boolean(item.featured),
+          status: item.status || "published",
+          relatedPosts: item.related_posts || item.relatedPosts || [],
+          createdAt: item.created_at || new Date().toISOString(),
+        }));
+        memoryProductsCache = mapped;
+        return mapped;
+      }
+    } catch (err: any) {
+      console.warn("[Products Server Layer] Lỗi đọc Supabase:", err.message);
+    }
+  }
+
+  // 2. Thử đọc từ Cloudinary đám mây nếu có CLOUD_NAME
   if (CLOUD_NAME) {
     try {
       const cloudUrl = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/dongphong_data/products.json?t=${Date.now()}`;
@@ -136,7 +174,31 @@ export async function getProductBySlug(rawSlug: string): Promise<Product | undef
 export async function saveProducts(products: Product[]): Promise<{ success: boolean; total: number }> {
   memoryProductsCache = products;
 
-  // 1. Nếu có Cloudinary, đồng bộ thẳng lên Cloudinary Raw Storage đám mây
+  // 1. Đồng bộ lên Supabase Database (Ưu tiên cao nhất)
+  if (isSupabaseConfigured) {
+    try {
+      const payload = products.map((p) => ({
+        id: p.id,
+        code: p.code,
+        name: p.name,
+        slug: p.slug,
+        category: p.category,
+        wood_type: p.woodType,
+        description: p.description || null,
+        preservation: p.preservation || null,
+        sizes: p.sizes || [],
+        images: p.images || [],
+        featured: Boolean(p.featured),
+        status: p.status || "published",
+      }));
+      await supabaseAdmin.from("products").upsert(payload, { onConflict: "id" });
+      console.log("[Products Server Layer] Đã đồng bộ lên Supabase Database thành công");
+    } catch (supaErr: any) {
+      console.warn("[Products Server Layer] Lỗi đồng bộ Supabase:", supaErr.message);
+    }
+  }
+
+  // 2. Nếu có Cloudinary, đồng bộ thẳng lên Cloudinary Raw Storage đám mây
   if (isCloudinaryConfigured) {
     try {
       const base64Data = `data:application/json;base64,${Buffer.from(JSON.stringify(products, null, 2)).toString("base64")}`;

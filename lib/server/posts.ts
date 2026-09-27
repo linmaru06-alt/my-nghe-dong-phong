@@ -40,12 +40,50 @@ const TMP_POSTS_FILE = path.join(require("os").tmpdir(), "dongphong_posts.json")
 /**
  * Đọc danh sách tất cả bài viết trực tiếp từ Cloudinary / data/posts.json / bộ nhớ /tmp trên Vercel
  */
+import { supabase, supabaseAdmin } from "@/lib/supabase";
+
+const isSupabaseConfigured = Boolean(
+  process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+    !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")
+);
+
 export async function getAllPosts(): Promise<Post[]> {
   if (memoryPostsCache && memoryPostsCache.length > 0) {
     return memoryPostsCache;
   }
 
-  // 1. Thử đọc từ Cloudinary đám mây nếu có CLOUD_NAME (dữ liệu mới nhất trên Vercel)
+  // 1. Đọc trực tiếp từ Supabase Database nếu có cấu hình
+  if (isSupabaseConfigured) {
+    try {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (!error && Array.isArray(data) && data.length > 0) {
+        const mapped: Post[] = data.map((item: any) => ({
+          id: item.id,
+          slug: item.slug,
+          title: item.title,
+          category: item.category,
+          excerpt: item.excerpt || "",
+          content: item.content || "",
+          thumbnail: item.thumbnail || "",
+          relatedProducts: item.related_products || item.relatedProducts || [],
+          status: item.status || "published",
+          publishedAt: item.published_at || item.publishedAt || item.created_at || new Date().toISOString().split("T")[0],
+          readingTime: item.read_time || item.readingTime || 5,
+        }));
+        memoryPostsCache = mapped;
+        return mapped;
+      }
+    } catch (err: any) {
+      console.warn("[Posts Server Layer] Lỗi đọc Supabase:", err.message);
+    }
+  }
+
+  // 2. Thử đọc từ Cloudinary đám mây nếu có CLOUD_NAME
   if (CLOUD_NAME) {
     try {
       const cloudUrl = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/dongphong_data/posts.json?t=${Date.now()}`;
@@ -131,7 +169,28 @@ export async function getPostBySlug(rawSlug: string): Promise<Post | undefined> 
 export async function savePosts(posts: Post[]): Promise<{ success: boolean; total: number }> {
   memoryPostsCache = posts;
 
-  // 1. Nếu có Cloudinary, đồng bộ thẳng lên Cloudinary Raw Storage đám mây
+  // 1. Đồng bộ lên Supabase Database (Ưu tiên cao nhất)
+  if (isSupabaseConfigured) {
+    try {
+      const payload = posts.map((b) => ({
+        id: b.id,
+        title: b.title,
+        slug: b.slug,
+        excerpt: b.excerpt || null,
+        content: b.content || "",
+        thumbnail: b.thumbnail || null,
+        category: b.category,
+        read_time: b.readingTime || 5,
+        status: b.status || "published",
+      }));
+      await supabaseAdmin.from("posts").upsert(payload, { onConflict: "id" });
+      console.log("[Posts Server Layer] Đã đồng bộ lên Supabase Database thành công");
+    } catch (supaErr: any) {
+      console.warn("[Posts Server Layer] Lỗi đồng bộ Supabase:", supaErr.message);
+    }
+  }
+
+  // 2. Nếu có Cloudinary, đồng bộ thẳng lên Cloudinary Raw Storage đám mây
   if (isCloudinaryConfigured) {
     try {
       const base64Data = `data:application/json;base64,${Buffer.from(JSON.stringify(posts, null, 2)).toString("base64")}`;
